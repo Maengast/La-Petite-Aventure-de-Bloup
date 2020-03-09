@@ -8,7 +8,6 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] Transform victim;
     private PathFinding pathFinding;
-    int currentPathIndex;
     void Start()
     {
         pathFinding = FindObjectOfType<PathFinding>();
