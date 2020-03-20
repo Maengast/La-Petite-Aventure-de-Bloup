@@ -97,7 +97,7 @@ public class Character : MonoBehaviour
         SetBoolAnim("IsGrounded",value);
     }
 
-    protected virtual void TakeDamages(float damages)
+    public virtual void TakeDamages(float damages)
     {
         
     }

@@ -22,7 +22,11 @@
           <e p="prefab.txt" t="Include" />
         </e>
         <e p="Scripts" t="Include">
+          <e p="Attack.cs" t="Include" />
+          <e p="AttackObject.cs" t="Include" />
           <e p="Character.cs" t="Include" />
+          <e p="CircularSaw.cs" t="Include" />
+          <e p="CircularSawAttack.cs" t="Include" />
           <e p="Grounded.cs" t="Include" />
           <e p="Player.cs" t="Include" />
         </e>

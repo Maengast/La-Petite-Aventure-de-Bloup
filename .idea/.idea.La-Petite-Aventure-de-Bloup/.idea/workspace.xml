@@ -12,16 +12,25 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AttackObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CircularSaw.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Attack.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Grounded.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CircularSawAttack.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Grounded.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Attack.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CircularSaws.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AttackObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CircularSaw.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CircularSawAttack.cs" />
       </list>
     </option>
   </component>
@@ -73,7 +82,7 @@
       <updated>1581412948857</updated>
       <workItem from="1581412971565" duration="6752000" />
       <workItem from="1583742023855" duration="21201000" />
-      <workItem from="1583830336149" duration="2836000" />
+      <workItem from="1583830336149" duration="7577000" />
     </task>
     <servers />
   </component>
