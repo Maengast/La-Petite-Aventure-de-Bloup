@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
     public float MaxLife = 50;
     protected float Life = 0;
 
-    private bool FaceRight = true;
+    private bool _faceRight = true;
     public bool IsGrounded = false;
     
     //Jump
@@ -42,7 +42,7 @@ public class Character : MonoBehaviour
     
     protected virtual void Move(Vector2 moveDirection)
     {
-        if((moveDirection.x > 0 && !FaceRight) || (moveDirection.x < 0 && FaceRight)) Flip();
+        if((moveDirection.x > 0 && !_faceRight) || (moveDirection.x < 0 && _faceRight)) Flip();
         moveDirection.x *= XSpeed;
         moveDirection.y *= YSpeed;
         Rigidbody.MovePosition(Rigidbody.position + moveDirection * Time.deltaTime);
@@ -56,7 +56,7 @@ public class Character : MonoBehaviour
     protected void Flip()
     {
         Debug.Log("Flip");
-        if (FaceRight)
+        if (_faceRight)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
@@ -65,7 +65,7 @@ public class Character : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
-        FaceRight = !FaceRight;
+        _faceRight = !_faceRight;
     }
 
     protected virtual void Jump()
