@@ -17,6 +17,10 @@ TagManager:
   - Ground
   - Detection
   - 
+  - UnWalkable
+  - Obstacle
+  - Jump
+
   - 
   - 
   - 
