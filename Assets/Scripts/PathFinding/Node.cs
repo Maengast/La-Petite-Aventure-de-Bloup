@@ -2,32 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node
+namespace PathFinder
 {
-    public bool IsWalkable;
-    public int gridX;
-    public int gridY;
-
-    public int gCost;
-    public int hCost;
-    public Node Parent;
-    public Vector3 Position;
-
-    public Node(bool _walkable, Vector3 _pos ,int _gridX, int _gridY)
+    public class Node
     {
-        IsWalkable = _walkable;
-        gridX = _gridX;
-        gridY = _gridY;
-        Position = _pos;
-    }
+        public bool IsWalkable;
+        public int GridX;
+        public int GridY;
 
-    public int fCost
-    {
-        get
+        public int GCost;
+        public int HCost;
+        public Node Parent;
+        public Vector3 Position;
+        public List<Link> Links = new List<Link>();
+        public bool Ledge { get; set; }
+        public PathLinkType LinkType = PathLinkType.ground;
+
+        public Node(bool _walkable, Vector3 _pos, int _gridX, int _gridY)
         {
-            return gCost + hCost;
+            IsWalkable = _walkable;
+            GridX = _gridX;
+            GridY = _gridY;
+            Position = _pos;
         }
+
+        public int FCost
+        {
+            get
+            {
+                return GCost + HCost;
+            }
+        }
+
+        public void AddLink(Node target, int distance, PathLinkType type = PathLinkType.ground)
+        {
+            Link link = new Link(target, type, distance);
+            Links.Add(link);
+        }
+
+
+
+
+
     }
-
-
 }
+

@@ -3,133 +3,131 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathFinding : MonoBehaviour
+namespace PathFinder
 {
-    public Grid<Node> grid;
-    public Vector2 GridWorldSize;
-    public float CellSize;
-    public Vector3 StartPosition;
-    public LayerMask wall;
-
-    private void Start()
+    public class PathFinding : MonoBehaviour
     {
-        Func<bool, Vector3, int, int, Node> createNode = (bool walkable, Vector3 _pos, int x, int y) => new Node(walkable, _pos, x, y);
-        grid = new Grid<Node>(GridWorldSize, CellSize, StartPosition,wall ,createNode);
-    }
+        private Grid Grid;
 
-    public Grid<Node> GetGrid()
-    {
-        return grid;
-    }
-
-    public List<Node> FindPath(Vector3 _startPos, Vector3 _targetPos)
-    {
-        Node startNode = grid.NodeFromWorldPoint(_startPos);
-        Node targetNode = grid.NodeFromWorldPoint(_targetPos);
-        List<Node> openSet = new List<Node> { startNode };
-        HashSet<Node> closedSet = new HashSet<Node>();
-        while (openSet.Count > 0)
+        private void Start()
         {
-            Node node = GetLowestFCostNode(openSet);
+            Grid = GetComponent<Grid>();
+           //Grid = new Grid(GridWorldSize, CellSize, StartPosition, Wall);
+        }
 
-            if (node == targetNode)
+        public Grid GetGrid()
+        {
+            return Grid;
+        }
+        RaycastHit2D LedgeCheck(Vector3 pos)
+        {
+            RaycastHit2D ledgeHit = Physics2D.Raycast(
+                pos,
+                -Vector2.up,
+                10,
+                Grid.UnwalkableMask);
+
+            return ledgeHit;
+        }
+
+        bool IsGrounded(Vector3 pos)
+        {
+            RaycastHit2D hit = LedgeCheck(pos);
+            if (!hit.collider) return false;
+
+            // Get the current node
+            Node node = Grid.NodeFromWorldPoint(hit.point);
+            //return false if object position is not grounded
+            if (!node.Ledge) return false;
+
+            return true;
+        }
+
+        public List<Node> FindPath(Vector3 startPos, Vector3 targetPos)
+        {
+            if (!IsGrounded(startPos) || !IsGrounded(targetPos)) return null;
+            
+            Node startNode = Grid.NodeFromWorldPoint(LedgeCheck(startPos).point);
+            Node targetNode = Grid.NodeFromWorldPoint(LedgeCheck(targetPos).point);
+
+            List<Node> openList = new List<Node> { startNode };
+            HashSet<Node> closedSet = new HashSet<Node>();
+            while (openList.Count > 0)
             {
-                return RetracePath(startNode ,targetNode);
-               
-            }
-
-            openSet.Remove(node);
-            closedSet.Add(node);
-
-            List<Node> actualNodeNeighbours = GetNeighbours(node);
-            foreach (Node neighbour in actualNodeNeighbours)
-            {
-                if (!neighbour.IsWalkable || closedSet.Contains(neighbour))
+                // Get node with the lowest f cost of the actual openset
+                Node node = GetLowestFCostNode(openList);
+                if (node == targetNode) // check if actual node correspond to target node
                 {
-                    continue;
+                    // if yes, build final path
+                    return RetracePath(startNode, targetNode);
+
                 }
 
-                int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
-                if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                openList.Remove(node); // Remove actual node from the open set
+                closedSet.Add(node); // And then add it to the closed set
+                List<Link> links = node.Links;
+                foreach (Link nodeLink in links)
                 {
-                    neighbour.gCost = newCostToNeighbour;
-                    neighbour.hCost = GetDistance(neighbour, targetNode);
-                    neighbour.Parent = node;
+                    // Check if node is a wall or if closed Set already contains this node
+                    if (!nodeLink.target.IsWalkable || closedSet.Contains(nodeLink.target))
+                    {
+                        continue; // If true we continue to the next neighbour nodelink target
+                    }
+                    int newCostToNeighbour = node.GCost + GetDistance(node, nodeLink.target) + nodeLink.GetCost();
+                    if (newCostToNeighbour < nodeLink.target.GCost || !openList.Contains(nodeLink.target))
+                    {
+                        // Update target node cost, parent and link type
+                        nodeLink.target.GCost = newCostToNeighbour;
+                        nodeLink.target.HCost = GetDistance(nodeLink.target, targetNode);
+                        nodeLink.target.Parent = node;
+                        nodeLink.target.LinkType = nodeLink.type;
+                        // Add target node to open Set
+                        if (!openList.Contains(nodeLink.target))
+                            openList.Add(nodeLink.target);
+                    }
+                }
 
-                    if (!openSet.Contains(neighbour))
-                        openSet.Add(neighbour);
+            }
+            return null;
+        }
+
+        List<Node> RetracePath(Node startNode, Node endNode)
+        {
+            List<Node> path = new List<Node>();
+            Node currentNode = endNode;
+            // Get final path
+            while (currentNode != startNode)
+            {
+                path.Add(currentNode);
+                currentNode = currentNode.Parent;
+            }
+            path.Reverse();
+            return path;
+
+        }
+
+        private Node GetLowestFCostNode(List<Node> pathNodeList)
+        {
+            Node lowestFCostNode = pathNodeList[0];
+            // Foreach node in actual open nodes
+            for (int i = 1; i < pathNodeList.Count; i++)
+            {
+                if (pathNodeList[i].FCost < lowestFCostNode.FCost)
+                {
+                    lowestFCostNode = pathNodeList[i];
                 }
             }
+            // Return node with the lowest f cost
+            return lowestFCostNode;
         }
-        return null;
-    }
 
-
-    public List<Node> GetNeighbours(Node node)
-    {
-        List<Node> neighbours = new List<Node>();
-
-        // Check Est and West cells
-        for (int x = -1; x <= 1; x++)
+        int GetDistance(Node currentNode, Node targetNode)
         {
-            // Check north and South cells
-            for (int y = -1; y <= 1; y++)
-            {
-                // Check if examining current cell
-                if (x == 0 && y == 0)
-                    continue;
-
-                int checkX = node.gridX + x;
-                int checkY = node.gridY + y;
-
-                if (checkX >= 0 && checkX < grid.GetWidth() && checkY >= 0 && checkY < grid.GetHeight())
-                {
-                    neighbours.Add(grid.GetGridObject(checkX, checkY));
-                }
-            }
+            int dstX = Mathf.Abs(targetNode.GridX - currentNode.GridX);
+            int dstY = Mathf.Abs(targetNode.GridY - currentNode.GridY);
+            return dstX + dstY;
         }
 
-        return neighbours;
     }
-
-
-    List<Node> RetracePath(Node _startNode,Node _endNode)
-    {
-        List<Node> path = new List<Node>();
-        Node currentNode = _endNode;
-        while (currentNode != _startNode)
-        {
-            path.Add(currentNode);
-            currentNode = currentNode.Parent;
-        }
-        path.Reverse();
-        return path;
-
-    }
-
-    private Node GetLowestFCostNode(List<Node> pathNodeList)
-    {
-        Node lowestFCostNode = pathNodeList[0];
-        for (int i = 1; i < pathNodeList.Count; i++)
-        {
-            if (pathNodeList[i].fCost < lowestFCostNode.fCost)
-            {
-                lowestFCostNode = pathNodeList[i];
-            }
-        }
-        return lowestFCostNode;
-    }
-
-    int GetDistance(Node nodeA, Node nodeB)
-    {
-        int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
-        int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
-        return dstX + dstY;
-        //int remaining = Mathf.Abs(dstX - dstY);
-        //return 14 * Mathf.Min(dstX, dstY) + 10 * remaining;
-        //if (dstX > dstY)
-        //    return 14 * dstY + 10 * (dstX - dstY);
-        //return 14 * dstX + 10 * (dstY - dstX);
-    }
-
 }
+
