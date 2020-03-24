@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Player : Character
 {
-
-    private Vector2 Movement;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -14,32 +13,28 @@ public class Player : Character
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
-        if (IsGrounded)
+	    if (IsGrounded)
         {
-            Movement.x = Input.GetAxis("Horizontal");
-            SetBoolAnim("IsRunning", Movement.x>0 || Movement.x<0);
+            _movementDirection.x = Input.GetAxis("Horizontal");
+            SetBoolAnim("IsRunning", _movementDirection.x>0 || _movementDirection.x<0);
         }
-        
-        Movement.y = (OnJump)? 1 : (IsGrounded)? 0 : -1;
 
-        if (CanJump && Input.GetButtonDown("Jump"))
+	    if (CanJump && Input.GetButtonDown("Jump"))
         {
             Jump();
             
         }
-        else if (OnJump && transform.position.y >= MaxJumpHeight)
-        {
-            EndJump();
-        }
+	    
+	    base.Update();
+        
     }
 
     private void FixedUpdate()
     {
         CalcCurrentSpeed();
         
-        Move(Movement);
+        Move(_movementDirection);
     }
 }
