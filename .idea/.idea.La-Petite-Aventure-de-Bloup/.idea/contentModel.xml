@@ -4,6 +4,7 @@
     <e p="C:\Users\Amryon\.Rider2019.3\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Amryon\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_La-Petite-Aventure-de-Bloup.-1991294191.00" t="ExcludeRecursive" />
     <e p="D:\Mes documents\Editeur de jeu\Unity\La-Petite-Aventure-de-Bloup" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="BayatGames" t="Include">
@@ -14,6 +15,37 @@
         <e p="Characters" t="Include">
           <e p="characters.txt" t="Include" />
         </e>
+        <e p="JMO Assets" t="Include">
+          <e p="Cartoon FX" t="Include">
+            <e p="CartoonFX Free.txt" t="Include" />
+            <e p="Demo" t="Include">
+              <e p="Assets" t="Include">
+                <e p="CFX_AutoStopLoopedEffect.cs" t="Include" />
+                <e p="CFX_Demo_New.cs" t="Include" />
+                <e p="CFX_Demo_RandomDir.cs" t="Include" />
+                <e p="CFX_Demo_RandomDirectionTranslate.cs" t="Include" />
+                <e p="CFX_Demo_RotateCamera.cs" t="Include" />
+                <e p="CFX_Demo_Translate.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="CFX_AutoDestructShuriken.cs" t="Include" />
+              <e p="CFX_AutoRotate.cs" t="Include" />
+              <e p="CFX_LightFlicker.cs" t="Include" />
+              <e p="CFX_LightIntensityFade.cs" t="Include" />
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="CFX3 Multiply Color.shader" t="Include" />
+              <e p="CFXM_MobileParticleAdd_Alpha8.shader" t="Include" />
+            </e>
+          </e>
+          <e p="Cartoon FX Easy Editor" t="Include">
+            <e p="CartoonFX Easy Editor Readme.txt" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="CFXEasyEditor.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Prefabs" t="Include">
           <e p="prefab.txt" t="Include" />
         </e>
@@ -23,11 +55,57 @@
           <e p="Character.cs" t="Include" />
           <e p="CircularSaw.cs" t="Include" />
           <e p="CircularSawAttack.cs" t="Include" />
+          <e p="Entities" t="Include">
+            <e p="Boss.cs" t="Include" />
+          </e>
           <e p="GameManager.cs" t="Include" />
           <e p="Grounded.cs" t="Include" />
+          <e p="PathFinding" t="Include">
+            <e p="Grid.cs" t="Include" />
+            <e p="LedgePoint.cs" t="Include" />
+            <e p="Link.cs" t="Include" />
+            <e p="Node.cs" t="Include" />
+            <e p="PathFinding.cs" t="Include" />
+          </e>
           <e p="Player.cs" t="Include" />
           <e p="Singleton.cs" t="Include" />
-          <e p="UIManager.cs" t="Include" />
+          <e p="UI" t="Include">
+            <e p="UIButton.cs" t="Include" />
+            <e p="UILevel.cs" t="Include" />
+            <e p="UILoadLevel.cs" t="Include" />
+            <e p="UIManager.cs" t="Include" />
+          </e>
+        </e>
+        <e p="TextMesh Pro" t="Include">
+          <e p="Fonts" t="Include">
+            <e p="LiberationSans - OFL.txt" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="LineBreaking Following Characters.txt" t="Include" />
+            <e p="LineBreaking Leading Characters.txt" t="Include" />
+            <e p="Shaders" t="Include">
+              <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+              <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+              <e p="TMP_Bitmap.shader" t="Include" />
+              <e p="TMP_SDF Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface.shader" t="Include" />
+              <e p="TMP_SDF.shader" t="Include" />
+              <e p="TMP_Sprite.shader" t="Include" />
+              <e p="TMPro.cginc" t="Include" />
+              <e p="TMPro_Properties.cginc" t="Include" />
+              <e p="TMPro_Surface.cginc" t="Include" />
+            </e>
+          </e>
+          <e p="Sprites" t="Include">
+            <e p="EmojiOne Attribution.txt" t="Include" />
+          </e>
+        </e>
+        <e p="UI" t="Include">
+          <e p="AspectRatio.cs" t="Include" />
         </e>
       </e>
       <e p="La-Petite-Aventure-de-Bloup.sln" t="IncludeFlat" />
