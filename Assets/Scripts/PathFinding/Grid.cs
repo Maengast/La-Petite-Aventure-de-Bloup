@@ -34,10 +34,10 @@ namespace PathFinder
         {
 
             AreaBox = GameObject.Find("Background");
-            BoxWidth = AreaBox.GetComponent<Collider2D>().bounds.size.x;
-            BoxHeight = AreaBox.GetComponent<Collider2D>().bounds.size.y;
-            float boxX = AreaBox.GetComponent<Collider2D>().bounds.center.x - (AreaBox.GetComponent<Collider2D>().bounds.size.x / 2);
-            float boxY = AreaBox.GetComponent<Collider2D>().bounds.center.y + (AreaBox.GetComponent<Collider2D>().bounds.size.y / 2);
+            BoxWidth = AreaBox.GetComponent<SpriteRenderer>().bounds.size.x;
+            BoxHeight = AreaBox.GetComponent<SpriteRenderer>().bounds.size.y;
+            float boxX = AreaBox.GetComponent<SpriteRenderer>().bounds.center.x - (AreaBox.GetComponent<SpriteRenderer>().bounds.size.x / 2);
+            float boxY = AreaBox.GetComponent<SpriteRenderer>().bounds.center.y + (AreaBox.GetComponent<SpriteRenderer>().bounds.size.y / 2);
             BoxPosition = new Vector2(boxX, boxY);
         }
 
