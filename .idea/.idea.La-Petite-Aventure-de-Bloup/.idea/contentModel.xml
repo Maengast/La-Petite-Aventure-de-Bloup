@@ -55,8 +55,18 @@
           <e p="Character.cs" t="Include" />
           <e p="CircularSaw.cs" t="Include" />
           <e p="CircularSawAttack.cs" t="Include" />
+          <e p="Entities" t="Include">
+            <e p="Boss.cs" t="Include" />
+          </e>
           <e p="GameManager.cs" t="Include" />
           <e p="Grounded.cs" t="Include" />
+          <e p="PathFinding" t="Include">
+            <e p="Grid.cs" t="Include" />
+            <e p="LedgePoint.cs" t="Include" />
+            <e p="Link.cs" t="Include" />
+            <e p="Node.cs" t="Include" />
+            <e p="PathFinding.cs" t="Include" />
+          </e>
           <e p="Player.cs" t="Include" />
           <e p="Singleton.cs" t="Include" />
           <e p="UI" t="Include">

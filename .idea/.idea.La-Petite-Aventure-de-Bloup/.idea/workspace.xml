@@ -1,71 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="864a069d-4079-4c07-8954-692686705718" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/DirtDown.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/DirtLeftCorner.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/DirtRightCorner.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/Grass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassCliffLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassCliffMid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassCliffRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassHillLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassHillLeft2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassHillRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassHillRight2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassJoinHillLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassJoinHillLeft2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassJoinHillRight&amp;Left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassJoinHillRight&amp;Left2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassJoinHillRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/256x256/GrassJoinHillRight2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/player_fall.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/player_idle.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/player_jump.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/player_run.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/1-2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/2-2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/3-2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/4-2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/5-2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/6-2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Dirt.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/Dirt.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Environment.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Grass.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/Grass.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassCliffLeft.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffMid.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassCliffMid.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassCliffRight.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight&amp;Left.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight&amp;Left.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight2&amp;Left2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Menu/Dirt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Menu/DirtLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Menu/DirtRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Menu/GrassLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Menu/GrassMid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Menu/GrassRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" beforeDir="false" />
-    </list>
+    <list default="true" id="864a069d-4079-4c07-8954-692686705718" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -172,7 +108,7 @@
       <workItem from="1583830336149" duration="7577000" />
       <workItem from="1584800054205" duration="6364000" />
       <workItem from="1584884590993" duration="17481000" />
-      <workItem from="1584952552092" duration="1286000" />
+      <workItem from="1584952552092" duration="1906000" />
     </task>
     <servers />
   </component>
