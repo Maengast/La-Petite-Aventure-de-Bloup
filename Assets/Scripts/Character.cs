@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
     //Speed
     //Different Speed values
-    public float XSpeed = 2.0f;
+    public float Speed = 8.0f;
     public float FallSpeed = -2.0f;
     public float JumpSpeed = 5.0f;
     protected float YSpeed;
@@ -48,7 +49,8 @@ public class Character : MonoBehaviour
      */
     protected virtual void Update()
     {
-	    _movementDirection.y = (OnJump)? 1 : (IsGrounded)? 0 : -1;
+	    _movementDirection.y -= (FallSpeed * Time.deltaTime);
+	    if (IsGrounded && !OnJump) _movementDirection.y = 0;
     }
 
     protected virtual void Move()
@@ -64,8 +66,7 @@ public class Character : MonoBehaviour
     protected virtual void Move(Vector2 moveDirection)
     {
         if((moveDirection.x > 0 && !_faceRight) || (moveDirection.x < 0 && _faceRight)) Flip();
-        moveDirection.x *= XSpeed;
-        moveDirection.y *= YSpeed;
+        moveDirection.x *= Speed;
         Rigidbody.MovePosition(Rigidbody.position + moveDirection * Time.deltaTime);
     }
 	
@@ -103,40 +104,34 @@ public class Character : MonoBehaviour
     {
 	    //Set to false to prevent an other Jump
 	    CanJump = false;
-	    SwitchYMovement();
+	    _movementDirection.y = MaxJumpHeight;
+	    SwitchJumpState();
 	    StartCoroutine("Jumping");
-	    
     }
 	
     /**
      * Coroutine call when Character Jump
      * Check Character position each Frame
-     * End jump when its reached maxHeightJump
+     * End jump when starts falling
      */
     IEnumerator Jumping()
     {
 	    while (OnJump)
 	    {
-		    if (transform.position.y >= MaxJumpHeight)
+		    if (_movementDirection.y < 0 )
 		    {
-			    SwitchYMovement();
+			    SwitchJumpState();
 		    }
 		    yield return new WaitForEndOfFrame();
 	    }
     }
-    
-    /**
-     * Switch Y Movement
-     * Switch Character Jump State
-     * Set Y Speed in depending on if character is in Fall or Jump State
-     */
-    private void SwitchYMovement()
+
+    private void SwitchJumpState()
     {
 	    OnJump = !OnJump;
-	    YSpeed = (OnJump) ? JumpSpeed : FallSpeed;
 	    SetBoolAnim("OnJump",OnJump);
     }
-    
+
     protected void CalcCurrentSpeed()
     {
         float velocity = (Rigidbody.position.x - LastPos.x) / Time.fixedDeltaTime;

@@ -4,6 +4,7 @@
     <list default="true" id="864a069d-4079-4c07-8954-692686705718" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grounded.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grounded.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +40,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Grounded.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Attack.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CircularSaws.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AttackObject.cs" />
@@ -54,6 +54,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UILevelNumber.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Grounded.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Entities/Boss.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character.cs" />
       </list>
@@ -116,7 +118,7 @@
       <workItem from="1584884590993" duration="17481000" />
       <workItem from="1584952552092" duration="1906000" />
       <workItem from="1585061558058" duration="81000" />
-      <workItem from="1585061815282" duration="5308000" />
+      <workItem from="1585061815282" duration="10609000" />
     </task>
     <servers />
   </component>
