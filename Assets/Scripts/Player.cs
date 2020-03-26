@@ -15,19 +15,20 @@ public class Player : Character
     // Update is called once per frame
     protected override void Update()
     {
+	    base.Update();
+	    
 	    if (IsGrounded)
         {
-            _movementDirection.x = Input.GetAxis("Horizontal");
+	        _movementDirection.x = Input.GetAxis("Horizontal");
             SetBoolAnim("IsRunning", _movementDirection.x>0 || _movementDirection.x<0);
-        }
-
-	    if (CanJump && Input.GetButtonDown("Jump"))
-        {
-            Jump();
             
+            if (Input.GetButtonDown("Jump"))
+            {
+	            Jump();
+            }
         }
 	    
-	    base.Update();
+	    Move(_movementDirection);
         
     }
 
@@ -35,6 +36,6 @@ public class Player : Character
     {
         CalcCurrentSpeed();
         
-        Move(_movementDirection);
+        
     }
 }
