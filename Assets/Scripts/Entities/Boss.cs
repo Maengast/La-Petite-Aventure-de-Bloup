@@ -26,7 +26,7 @@ public class Boss : Character
         if (Vector3.Distance(transform.position, victim.position) > 1f)
         {
 
-
+            Move(Movement);
         }
     }
     void Update()
@@ -38,9 +38,7 @@ public class Boss : Character
             Vector3 targetposition = path[0].Position;
             if (path[0].LinkType == PathLinkType.ground && IsGrounded)
             {
-                CalcCurrentSpeed();
                 Movement.x = targetposition.x - transform.position.x;
-                Move(Movement);
                 SetBoolAnim("IsRunning", Movement.x > 0 || Movement.x < 0);
             }
             Movement.y = (OnJump) ? 1 : (IsGrounded) ? 0 : -1;
@@ -61,7 +59,7 @@ public class Boss : Character
             }
             else if (OnJump && transform.position.y >= MaxJumpHeight)
             {
-                EndJump();
+              //EndJump();
             }
         }
     }
