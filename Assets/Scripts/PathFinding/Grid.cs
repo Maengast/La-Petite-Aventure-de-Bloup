@@ -19,7 +19,7 @@ namespace PathFinder
         List<Node> Ledges = new List<Node>();
         List<Node> Corners = new List<Node>();
 
-        float JumpDistance = 4;
+        float JumpDistance = 8;
         float BoxWidth, BoxHeight;
         List<LedgePoint> LedgePoints = new List<LedgePoint>();
         [SerializeField] GameObject LedgePlateform;

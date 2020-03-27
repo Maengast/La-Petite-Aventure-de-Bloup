@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class Character : MonoBehaviour
 {
@@ -108,7 +109,7 @@ public class Character : MonoBehaviour
 	    SwitchJumpState();
 	    StartCoroutine("Jumping");
     }
-	
+
     /**
      * Coroutine call when Character Jump
      * Check Character position each Frame
@@ -116,9 +117,10 @@ public class Character : MonoBehaviour
      */
     IEnumerator Jumping()
     {
-	    while (OnJump)
+        while (OnJump)
 	    {
-		    if (_movementDirection.y < 0 )
+
+            if (_movementDirection.y < 0 )
 		    {
 			    SwitchJumpState();
 		    }

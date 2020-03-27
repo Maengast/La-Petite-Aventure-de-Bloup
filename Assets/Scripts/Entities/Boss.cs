@@ -9,9 +9,7 @@ public class Boss : Character
     // Start is called before the first frame update
     [SerializeField] Transform victim;
     private PathFinding pathFinding;
-    private float Speed = 3f;
     private List<Node> path;
-    private Vector2 Movement;
     void Start()
     {
         Init();
@@ -23,79 +21,57 @@ public class Boss : Character
 
     private void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, victim.position) > 1f)
-        {
-
-            Move(Movement);
-        }
+        CalcCurrentSpeed();
     }
     void Update()
     {
-
-        path = pathFinding.FindPath(transform.position, victim.position);
-        if (path != null && path.Count > 0)
+        Vector3 targetposition = transform.position;
+        base.Update();
+        if(IsGrounded)
         {
-            Vector3 targetposition = path[0].Position;
-            if (path[0].LinkType == PathLinkType.ground && IsGrounded)
-            {
-                Movement.x = targetposition.x - transform.position.x;
-                SetBoolAnim("IsRunning", Movement.x > 0 || Movement.x < 0);
-            }
-            Movement.y = (OnJump) ? 1 : (IsGrounded) ? 0 : -1;
-            if (path[0].LinkType == PathLinkType.fall)
-            {
-                Movement.x = targetposition.x - transform.position.x;
-            }
+            SetBoolAnim("IsRunning", _movementDirection.x > 0 || _movementDirection.x < 0);
 
-            else if (CanJump && path[0].LinkType == PathLinkType.jump || path[0].LinkType == PathLinkType.runoff)
-            {
-                JumpAndFollow(targetposition, YSpeed) ;
-                //Debug.Log("jump");
-                //int direction = movedir.x > 0 ? 1 : -1;
-                //Vector3 finalPosition = pathFinding.GetGrid().GetGridObject(path[0].GridX + direction, path[0].GridY).Position;
+            path = pathFinding.FindPath(transform.position, victim.position);
 
-                //StartCoroutine(JumpAndFollow(finalPosition, 1f));
-
-            }
-            else if (OnJump && transform.position.y >= MaxJumpHeight)
+            if (path != null && path.Count > 0)
             {
-              //EndJump();
+                targetposition = path[0].Position;
+
+                if (path[0].LinkType == PathLinkType.jump || path[0].LinkType == PathLinkType.runoff)
+                {
+                    StartCoroutine(JumpAndFollow(targetposition));
+
+                }
+
             }
         }
+        Move(targetposition);
+
     }
 
-
-    private IEnumerator JumpAndFollow(Vector3 targetPosition, float timeToJump)
+    private IEnumerator JumpAndFollow(Vector3 targetPosition)
     {
-        var startPosition = transform.position;
-        var lastTargetPosition = targetPosition;
-        var initialVelocity = getInitialVelocity(lastTargetPosition - startPosition, timeToJump);
+        
+        Vector3 startPosition = transform.position;
+
+        // Time = Distance / Velocity
+        float timeToJump = Vector3.Distance(transform.position, targetPosition) / JumpSpeed;
 
         var progress = 0f;
-        while (progress < timeToJump)
+        while (progress < 1.0f)
         {
-            progress += Time.deltaTime;
-            if (targetPosition != lastTargetPosition)
-            {
-                lastTargetPosition = targetPosition;
-                initialVelocity = getInitialVelocity(lastTargetPosition - startPosition, timeToJump);
-            }
-
-            transform.position = startPosition + (progress * initialVelocity) + (0.5f * Mathf.Pow(progress, 2) * Physics.gravity);
+            progress += Time.deltaTime / timeToJump;
+          
+            float height = Mathf.Sin(Mathf.PI * progress) * Mathf.Abs(targetPosition.y - startPosition.y);
+            transform.position = Vector3.Lerp(startPosition, targetPosition, progress) + Vector3.up * height;
             yield return null;
         }
-    }
-
-    private Vector3 getInitialVelocity(Vector3 toTarget, float timeToJump)
-    {
-        return (toTarget - (0.5f * Mathf.Pow(timeToJump, 2) * Physics.gravity)) / timeToJump;
     }
 
     private void OnDrawGizmos()
     {
         if (path!=null)
         {
-            Debug.Log("ondraw");
             Gizmos.DrawWireCube(pathFinding.transform.position, new Vector3(pathFinding.GetGrid().GetWidth(), pathFinding.GetGrid().GetHeight(), 1));//Draw a wire cube with the given dimensions from the Unity inspector
 
             if (pathFinding.GetGrid() != null)//If the grid is not empty
