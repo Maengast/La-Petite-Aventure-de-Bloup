@@ -53,13 +53,13 @@
           <e p="Attack.cs" t="Include" />
           <e p="AttackObject.cs" t="Include" />
           <e p="Character.cs" t="Include" />
+          <e p="CharacterCollisions.cs" t="Include" />
           <e p="CircularSaw.cs" t="Include" />
           <e p="CircularSawAttack.cs" t="Include" />
           <e p="Entities" t="Include">
             <e p="Boss.cs" t="Include" />
           </e>
           <e p="GameManager.cs" t="Include" />
-          <e p="Grounded.cs" t="Include" />
           <e p="PathFinding" t="Include">
             <e p="Grid.cs" t="Include" />
             <e p="LedgePoint.cs" t="Include" />
