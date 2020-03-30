@@ -27,8 +27,7 @@ public class Player : Character
 	            Jump();
             }
         }
-	    
-	    Move(_movementDirection);
+        Move(_movementDirection);
         
     }
 

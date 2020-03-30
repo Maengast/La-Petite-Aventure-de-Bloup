@@ -12,7 +12,6 @@ namespace PathFinder
         private void Start()
         {
             Grid = GetComponent<Grid>();
-           //Grid = new Grid(GridWorldSize, CellSize, StartPosition, Wall);
         }
 
         public Grid GetGrid()
@@ -45,8 +44,7 @@ namespace PathFinder
 
         public List<Node> FindPath(Vector3 startPos, Vector3 targetPos)
         {
-            if (!IsGrounded(startPos) || !IsGrounded(targetPos)) return null;
-            
+           // if (!IsGrounded(startPos) || !IsGrounded(targetPos)) return null;
             Node startNode = Grid.NodeFromWorldPoint(LedgeCheck(startPos).point);
             Node targetNode = Grid.NodeFromWorldPoint(LedgeCheck(targetPos).point);
 

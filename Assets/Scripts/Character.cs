@@ -29,6 +29,8 @@ public class Character : MonoBehaviour
     protected bool CanJump = true;
     protected bool OnJump = false;
 
+    public HealthBar HealthBar;
+
     protected Rigidbody2D Rigidbody;
     protected Animator CharacterAnimator;
     
@@ -42,6 +44,9 @@ public class Character : MonoBehaviour
         CharacterAnimator = GetComponent<Animator>();
         YSpeed = FallSpeed;
         LastPos = Rigidbody.position;
+
+        Life = MaxLife;
+        HealthBar.SetMaxHealth(MaxLife);
     }
 
     /**
@@ -128,7 +133,7 @@ public class Character : MonoBehaviour
 	    }
     }
 
-    private void SwitchJumpState()
+    protected void SwitchJumpState()
     {
 	    OnJump = !OnJump;
 	    SetBoolAnim("OnJump",OnJump);
@@ -150,7 +155,9 @@ public class Character : MonoBehaviour
 
     public virtual void TakeDamages(float damages)
     {
-        
+        Life -= damages;
+
+        HealthBar.SetHealth(Life);
     }
 
     protected virtual void Die()
