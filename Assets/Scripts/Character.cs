@@ -10,24 +10,23 @@ public class Character : MonoBehaviour
     //Speed
     //Different Speed values
     public float Speed = 8.0f;
-    public float FallSpeed = -2.0f;
-    public float JumpSpeed = 5.0f;
-    protected float YSpeed;
-    protected float XCurrentSpeed = 0.0f;
-    protected Vector2 LastPos;
+    public float Gravity = 9.5f;
+    public float MaxFallSpeed = 15.0f;
+    
     protected Vector2 _movementDirection;
+    private float currentYSpeed;
     
     //Life
     public float MaxLife = 50;
     protected float Life = 0;
 
     private bool _faceRight = true;
-    public bool IsGrounded = false;
+    public bool OnGround = false;
     
     //Jump
-    public float MaxJumpHeight = 8.0f;
+    public float JumpHeight = 5.0f;
     protected bool CanJump = true;
-    protected bool OnJump = false;
+    protected bool InJump = false;
 
     public HealthBar HealthBar;
 
@@ -42,21 +41,17 @@ public class Character : MonoBehaviour
     {
         Rigidbody = GetComponent<Rigidbody2D>();
         CharacterAnimator = GetComponent<Animator>();
-        YSpeed = FallSpeed;
-        LastPos = Rigidbody.position;
-
         Life = MaxLife;
         HealthBar.SetMaxHealth(MaxLife);
     }
 
     /**
-     * Update fonction to override for all Character Child
+     * FixedUpdate fonction to override for all Character Child
      * Set Y movement direction to manage movement on Jump, Fall and Grounded state 
      */
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
-	    _movementDirection.y -= (FallSpeed * Time.deltaTime);
-	    if (IsGrounded && !OnJump) _movementDirection.y = 0;
+	    Move(_movementDirection);
     }
 
     protected virtual void Move()
@@ -64,6 +59,7 @@ public class Character : MonoBehaviour
         
     }
     
+	
     /**
      * Main function Move
      * Move Character along a directions vector multiply by speed
@@ -71,11 +67,19 @@ public class Character : MonoBehaviour
      */
     protected virtual void Move(Vector2 moveDirection)
     {
-        if((moveDirection.x > 0 && !_faceRight) || (moveDirection.x < 0 && _faceRight)) Flip();
-        moveDirection.x *= Speed;
-        Rigidbody.MovePosition(Rigidbody.position + moveDirection * Time.deltaTime);
+	    if((moveDirection.x > 0 && !_faceRight) || (moveDirection.x < 0 && _faceRight)) Flip();
+	    Vector2 positionOffset = Vector2.zero;
+	    positionOffset.x = _movementDirection.x * Speed;
+	    currentYSpeed = (OnGround)? 0 : IncrementSpeed(currentYSpeed, MaxFallSpeed, Gravity);
+	    if (InJump)
+	    {
+		    positionOffset.y += Mathf.Sqrt(2 * Gravity * JumpHeight);
+	    }
+	    positionOffset.y -= 1 * currentYSpeed;
+	    _movementDirection.y = Mathf.Sign(positionOffset.y);
+	    Rigidbody.MovePosition(Rigidbody.position + positionOffset * Time.deltaTime);
     }
-	
+    
     /**
      * Move Character to target position
      */
@@ -86,21 +90,24 @@ public class Character : MonoBehaviour
 	    Move(_movementDirection);
     }
 	
+    private float IncrementSpeed(float currentSpeed, float targetSpeed, float acceleration)
+    {
+	    if (currentSpeed >= targetSpeed)
+	    {
+		    return targetSpeed;
+	    }
+	    currentSpeed += acceleration * Time.deltaTime;
+	    return (currentSpeed >= targetSpeed)? targetSpeed : currentSpeed;
+    }
+    
     /**
      * Flip Character Sprite
      */
     protected void Flip()
     {
-	    if (_faceRight)
-        {
-            transform.eulerAngles = new Vector3(0, 180, 0);
-        }
-        else
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-
-        _faceRight = !_faceRight;
+	    float angle = (_faceRight) ? 180 : 0;
+		transform.eulerAngles = new Vector3(0, angle, 0);
+		_faceRight = !_faceRight;
     }
 	
     /**
@@ -108,21 +115,27 @@ public class Character : MonoBehaviour
      */
     protected virtual void Jump()
     {
-	    //Set to false to prevent an other Jump
-	    CanJump = false;
-	    _movementDirection.y = MaxJumpHeight;
 	    SwitchJumpState();
 	    StartCoroutine("Jumping");
     }
 
     /**
-     * Coroutine call when Character Jump
-     * Check Character position each Frame
+     * Change current jump state
+     * Switch animation consequently 
+     */
+    public void SwitchJumpState()
+    {
+	    InJump = !InJump;
+	    SetBoolAnim("InJump",InJump);
+    }
+    
+    /**
+     * Coroutine called when Character Jump
      * End jump when starts falling
      */
     IEnumerator Jumping()
     {
-        while (OnJump)
+	    while (InJump)
 	    {
 
             if (_movementDirection.y < 0 )
@@ -131,26 +144,20 @@ public class Character : MonoBehaviour
 		    }
 		    yield return new WaitForEndOfFrame();
 	    }
+	    //Reset Y speed to avoid a fall too fast
+	    currentYSpeed = 0;
     }
-
-    protected void SwitchJumpState()
+    
+    public void SetOnGround(bool value)
     {
-	    OnJump = !OnJump;
-	    SetBoolAnim("OnJump",OnJump);
-    }
-
-    protected void CalcCurrentSpeed()
-    {
-        float velocity = (Rigidbody.position.x - LastPos.x) / Time.fixedDeltaTime;
-        LastPos = Rigidbody.position;
-        XCurrentSpeed = (velocity<0) ? velocity * -1 : velocity;
-    }
-
-    public void SetIsGrounded(bool value)
-    {
-        IsGrounded = value;
+        OnGround = value;
         CanJump = value;
-        SetBoolAnim("IsGrounded",value);
+        SetBoolAnim("OnGround",value);
+    }
+    
+    public bool IsJumping()
+    {
+	    return InJump;
     }
 
     public virtual void TakeDamages(float damages)
