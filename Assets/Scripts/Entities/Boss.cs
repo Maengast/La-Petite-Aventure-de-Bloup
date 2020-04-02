@@ -11,6 +11,7 @@ public class Boss : Character
     private PathFinding pathFinding;
     private List<Node> path;
     public StaminaBar staminaBar;
+    private int currentPoint;
     [SerializeField] float _currentStamina = 100;
     private float _maxStamina = 100;
     void Start()
@@ -18,73 +19,80 @@ public class Boss : Character
         base.Init();
         pathFinding = FindObjectOfType<PathFinding>();
         staminaBar.SetMaxStamina(_maxStamina);
-        StartCoroutine("UpdateStamina");
+
+        InvokeRepeating("UpdateStamina", 0f, 3f);
+
     }
 
-    // Update is called once per frame
-
-
-    private void FixedUpdate()
-    {
-        CalcCurrentSpeed();
-    }
     void Update()
     {
-        Vector3 targetposition = transform.position;
-        base.Update();
-        if(IsGrounded)
+        if (path == null || currentPoint >= path.Count)
         {
-            SetBoolAnim("IsRunning", _movementDirection.x > 0 || _movementDirection.x < 0);
+            SetBoolAnim("IsRunning", false);
+            return;
+        }
+      
+        if (OnGround)
+        {
+            SetBoolAnim("IsRunning", true);
 
-            path = pathFinding.FindPath(transform.position, victim.position);
-            if (path != null && path.Count > 0)
+            float distance = Vector2.Distance(transform.position, path[currentPoint].Position);
+            if (distance < 1f)
             {
-                targetposition = path[0].Position;
-
-                if (path[0].LinkType == PathLinkType.jump || path[0].LinkType == PathLinkType.runoff)
-                {
-                    StartCoroutine(JumpToTarget(targetposition));
-
-                }
-
+                currentPoint++;
             }
         }
-        Move(targetposition);
+
 
     }
 
-    private IEnumerator JumpToTarget(Vector3 targetPosition)
+    public Node GetPath()
     {
-        
-        Vector3 startPosition = transform.position;
-
-        // Time = Distance / Velocity
-        float timeToJump = Vector3.Distance(transform.position, targetPosition) / JumpSpeed;
-        var progress = 0f;
-        base.SwitchJumpState();
-        while (progress < 1.0f)
-        {
-            progress += Time.deltaTime / timeToJump;         
-            float height = Mathf.Sin(Mathf.PI * progress) * Mathf.Abs(targetPosition.y - startPosition.y);
-            //if (Mathf.Cos(Mathf.PI * progress) < 0)
-            //{
-            //    base.SwitchJumpState();
-            //}
-            transform.position = Vector3.Lerp(startPosition, targetPosition, progress) + Vector3.up * height;
-            yield return null;
-        }
+        return path[currentPoint];
     }
 
-    IEnumerator UpdateStamina()
+    public override void Jump()
     {
-        while (true)
+        SwitchJumpState();
+        currentPoint++;
+        Vector2 movement = path[currentPoint].Position - transform.position;
+        JumpHeight = movement.y + 2f;
+        Rigidbody.velocity = CalculateJumpVelocity(movement);
+        StartCoroutine("Jumping");
+    }
+
+    Vector2 CalculateJumpVelocity(Vector2 movement)
+    {
+        float time = Mathf.Sqrt(Mathf.Abs(2 * JumpHeight / Gravity)) + Mathf.Sqrt(Mathf.Abs(-2*(movement.y - JumpHeight) /Gravity));
+        float velocityY =  Mathf.Sqrt(Mathf.Abs(2 * Gravity * JumpHeight));
+        float velocityX = movement.x / time;
+        Vector2 velocity = new Vector2(velocityX , velocityY);
+        return velocity;
+    }
+
+    public void StartSearchPathToPlayer()
+    {
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
+    }
+    void UpdatePath()
+    {
+        if(pathFinding.IsDone)
+            pathFinding.FindPath(transform.position, victim.position, OnPathComplete);
+    }
+
+    void OnPathComplete(List<Node> path)
+    {
+        this.path = path;
+        currentPoint = 0;
+    }
+
+
+    void UpdateStamina()
+    {
+        if (_currentStamina < _maxStamina)
         {
-            yield return new WaitForSeconds(3f);
-            if (_currentStamina < _maxStamina)
-            {
-                _currentStamina += 3;
-                staminaBar.SetStamina(_currentStamina);
-            }
+            _currentStamina += 3;
+            staminaBar.SetStamina(_currentStamina);
         }
     }
 
@@ -94,30 +102,9 @@ public class Boss : Character
         staminaBar.SetStamina(_currentStamina);
     }
 
-    private void OnDrawGizmos()
+    public Attack GetBestBossAttack()
     {
-        if (path != null)
-        {
-            Gizmos.DrawWireCube(pathFinding.transform.position, new Vector3(pathFinding.GetGrid().GetWidth(), pathFinding.GetGrid().GetHeight(), 1));//Draw a wire cube with the given dimensions from the Unity inspector
-
-            if (pathFinding.GetGrid() != null)//If the grid is not empty
-            {
-                foreach (Node n in path)//Loop through every node in the grid
-                {
-                    if (n.IsWalkable)//If the current node is a wall node
-                    {
-                        Gizmos.color = Color.white;//Set the color of the node
-                    }
-                    else
-                    {
-                        Gizmos.color = Color.red;//Set the color of the node
-                    }
-
-                    Gizmos.DrawCube(n.Position, Vector3.one * (pathFinding.GetGrid().CellSize / 2));//Draw the node at the position of the node.
-                }
-            }
-        }
-
+        return new Attack();
     }
 
 

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class Character : MonoBehaviour
 {
@@ -51,7 +50,7 @@ public class Character : MonoBehaviour
      */
     protected virtual void FixedUpdate()
     {
-	    Move(_movementDirection);
+
     }
 
     protected virtual void Move()
@@ -65,7 +64,7 @@ public class Character : MonoBehaviour
      * Move Character along a directions vector multiply by speed
      * Flip sprite in function of X movement direction
      */
-    protected virtual void Move(Vector2 moveDirection)
+    public virtual void Move(Vector2 moveDirection)
     {
 	    if((moveDirection.x > 0 && !_faceRight) || (moveDirection.x < 0 && _faceRight)) Flip();
 	    Vector2 positionOffset = Vector2.zero;
@@ -79,15 +78,15 @@ public class Character : MonoBehaviour
 	    _movementDirection.y = Mathf.Sign(positionOffset.y);
 	    Rigidbody.MovePosition(Rigidbody.position + positionOffset * Time.deltaTime);
     }
-    
+
     /**
      * Move Character to target position
      */
-    protected virtual void Move(Vector3 target)
+    public virtual void Move(Vector3 target)
     {
 	    Vector2 direction = (target - transform.position).normalized;
 	    _movementDirection.x = direction.x;
-	    Move(_movementDirection);
+        Move(_movementDirection);
     }
 	
     private float IncrementSpeed(float currentSpeed, float targetSpeed, float acceleration)
@@ -113,7 +112,7 @@ public class Character : MonoBehaviour
     /**
      * Start Character Jump
      */
-    protected virtual void Jump()
+    public virtual void Jump()
     {
 	    SwitchJumpState();
 	    StartCoroutine("Jumping");
@@ -133,12 +132,12 @@ public class Character : MonoBehaviour
      * Coroutine called when Character Jump
      * End jump when starts falling
      */
-    IEnumerator Jumping()
+    protected virtual IEnumerator Jumping()
     {
+
 	    while (InJump)
 	    {
-
-            if (_movementDirection.y < 0 )
+            if (Rigidbody.velocity.y < 0)
 		    {
 			    SwitchJumpState();
 		    }
@@ -163,13 +162,14 @@ public class Character : MonoBehaviour
     public virtual void TakeDamages(float damages)
     {
         Life -= damages;
-
         HealthBar.SetHealth(Life);
+        if (Life <= 0)
+            Die();
     }
 
     protected virtual void Die()
     {
-        
+        SetTriggerAnim("Die");
     }
     
     //Animation

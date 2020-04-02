@@ -145,13 +145,13 @@ namespace PathFinder
             {
                 for (int y = 0; y < GridSizeY; y++)
                 {
-                    Node tile = GetGridObject(x, y);
-                    if (tile.IsWalkable && Blocked(x, y + 1) && y + 1 < GridSizeY)
+                    Node node = GetGridObject(x, y);
+                    if (node.IsWalkable && Blocked(x, y + 1) && y + 1 < GridSizeY)
                     {   // If the bottom ledge is blocked or bottom of y axis
-                        tile.Ledge = true;
-                        Ledges.Add(tile);
+                        node.Ledge = true;
+                        Ledges.Add(node);
                         if (!Blocked(x - 1, y + 1) || !Blocked(x + 1, y + 1))
-                            Corners.Add(tile);
+                            Corners.Add(node);
                     }
                 }
             }
@@ -203,11 +203,10 @@ namespace PathFinder
                 // If we hit something add a fall link at the hit target
                 if (hit.collider)
                 {
-                    Node tileTarget = NodeFromWorldPoint(hit.point);
-                    int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, tileTarget.Position));
-                    corner.AddLink(tileTarget, distance, PathLinkType.fall);
+                    Node node = NodeFromWorldPoint(hit.point);
+                    int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
+                    corner.AddLink(node, distance, PathLinkType.fall);
                 }
-
                 // Find corner runoff point
                 hit = Physics2D.Raycast(
                     overhang.Position,
@@ -219,10 +218,10 @@ namespace PathFinder
                 // If valid create a 2 way link
                 if (hit.collider)
                 {
-                    Node tileTarget = NodeFromWorldPoint(hit.point);
-                    int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, tileTarget.Position));
-                    corner.AddLink(tileTarget, distance, PathLinkType.runoff);
-                    tileTarget.AddLink(corner, distance, PathLinkType.runoff);
+                    Node node = NodeFromWorldPoint(hit.point);
+                    int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
+                    corner.AddLink(node, distance, PathLinkType.runoff);
+                    node.AddLink(corner, distance, PathLinkType.runoff);
                 }
 
 

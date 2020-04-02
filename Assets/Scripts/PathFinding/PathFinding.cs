@@ -8,10 +8,13 @@ namespace PathFinder
     public class PathFinding : MonoBehaviour
     {
         private Grid Grid;
+        public delegate void OnPathCompleteDelegate(List<Node> path);
+        public bool IsDone;
 
         private void Start()
         {
             Grid = GetComponent<Grid>();
+            IsDone = true;
         }
 
         public Grid GetGrid()
@@ -23,7 +26,7 @@ namespace PathFinder
             RaycastHit2D ledgeHit = Physics2D.Raycast(
                 pos,
                 -Vector2.up,
-                10,
+                8,
                 Grid.UnwalkableMask);
 
             return ledgeHit;
@@ -42,9 +45,14 @@ namespace PathFinder
             return true;
         }
 
-        public List<Node> FindPath(Vector3 startPos, Vector3 targetPos)
+        public void FindPath(Vector3 startPos, Vector3 targetPos, OnPathCompleteDelegate pathComplete )
         {
-           // if (!IsGrounded(startPos) || !IsGrounded(targetPos)) return null;
+            IsDone = false;
+            if (!IsGrounded(startPos) || !IsGrounded(targetPos))
+            {
+                IsDone = true;
+                return;
+            };
             Node startNode = Grid.NodeFromWorldPoint(LedgeCheck(startPos).point);
             Node targetNode = Grid.NodeFromWorldPoint(LedgeCheck(targetPos).point);
 
@@ -56,14 +64,15 @@ namespace PathFinder
                 Node node = GetLowestFCostNode(openList);
                 if (node == targetNode) // check if actual node correspond to target node
                 {
+                    IsDone = true;
                     // if yes, build final path
-                    return RetracePath(startNode, targetNode);
-
+                    pathComplete(RetracePath(startNode, targetNode));
                 }
 
                 openList.Remove(node); // Remove actual node from the open set
                 closedSet.Add(node); // And then add it to the closed set
                 List<Link> links = node.Links;
+    
                 foreach (Link nodeLink in links)
                 {
                     // Check if node is a wall or if closed Set already contains this node
@@ -86,7 +95,7 @@ namespace PathFinder
                 }
 
             }
-            return null;
+            IsDone = true;
         }
 
         List<Node> RetracePath(Node startNode, Node endNode)
