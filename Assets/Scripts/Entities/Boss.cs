@@ -7,20 +7,22 @@ using UnityEngine.UIElements;
 public class Boss : Character
 {
     // Start is called before the first frame update
-    [SerializeField] Transform victim;
+    Player player;
     private PathFinding pathFinding;
     private List<Node> path;
-    public StaminaBar staminaBar;
+    public StaminaBar StaminaBar;
     private int currentPoint;
-    [SerializeField] float _currentStamina = 100;
-    private float _maxStamina = 100;
+    float _currentStamina = 100;
+    public  float MaxStamina = 100;
+
     void Start()
     {
         base.Init();
+        player = FindObjectOfType<Player>();
         pathFinding = FindObjectOfType<PathFinding>();
-        staminaBar.SetMaxStamina(_maxStamina);
-
+        StaminaBar.SetMaxStamina(MaxStamina);
         InvokeRepeating("UpdateStamina", 0f, 3f);
+        StartSearchPathToPlayer();
 
     }
 
@@ -43,12 +45,15 @@ public class Boss : Character
             }
         }
 
-
     }
 
-    public Node GetPath()
+    public Node GetNodeToFollow()
     {
         return path[currentPoint];
+    }
+    public List<Node> GetPath()
+    {
+        return path;
     }
 
     public override void Jump()
@@ -56,15 +61,23 @@ public class Boss : Character
         SwitchJumpState();
         currentPoint++;
         Vector2 movement = path[currentPoint].Position - transform.position;
-        JumpHeight = movement.y + 2f;
-        Rigidbody.velocity = CalculateJumpVelocity(movement);
+        JumpHeight = Mathf.Abs(movement.y )+ 2f;
         StartCoroutine("Jumping");
+        // Apply new velocity to rigibody
+        Rigidbody.velocity = CalculateJumpVelocity(movement);
+
     }
 
     Vector2 CalculateJumpVelocity(Vector2 movement)
     {
+        // Calculate jump time
+        // timeup = Square of 2time multiply by maxjumpheight diveded by gravity 
+        // timedown timeup = Square of minus 2 time multiply by distancey divided by gravity
+        // time = timeup + timedown
         float time = Mathf.Sqrt(Mathf.Abs(2 * JumpHeight / Gravity)) + Mathf.Sqrt(Mathf.Abs(-2*(movement.y - JumpHeight) /Gravity));
+        // Velocity = Square of 2 times gravity multiply by maxjumpHeight
         float velocityY =  Mathf.Sqrt(Mathf.Abs(2 * Gravity * JumpHeight));
+        // Velocity x = DistanceX divided by time
         float velocityX = movement.x / time;
         Vector2 velocity = new Vector2(velocityX , velocityY);
         return velocity;
@@ -76,8 +89,8 @@ public class Boss : Character
     }
     void UpdatePath()
     {
-        if(pathFinding.IsDone)
-            pathFinding.FindPath(transform.position, victim.position, OnPathComplete);
+        if (pathFinding.IsDone && !InJump && OnGround)
+            pathFinding.FindPath(transform.position, player.transform.position, OnPathComplete);
     }
 
     void OnPathComplete(List<Node> path)
@@ -89,24 +102,24 @@ public class Boss : Character
 
     void UpdateStamina()
     {
-        if (_currentStamina < _maxStamina)
+        if (_currentStamina < MaxStamina)
         {
             _currentStamina += 3;
-            staminaBar.SetStamina(_currentStamina);
+            StaminaBar.SetStamina(_currentStamina);
         }
     }
 
     public void UseStamina(float stamina)
     {
         _currentStamina = _currentStamina - stamina > 0 ? _currentStamina - stamina : 0;
-        staminaBar.SetStamina(_currentStamina);
+        StaminaBar.SetStamina(_currentStamina);
     }
 
-    public Attack GetBestBossAttack()
+    public void Attack(IAttack attack)
     {
-        return new Attack();
+      
+        attack.Lauch(this);
     }
-
 
 
 }

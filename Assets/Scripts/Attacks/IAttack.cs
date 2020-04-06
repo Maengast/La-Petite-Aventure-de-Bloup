@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player: Character
+public interface IAttack
 {
-
+    void Lauch(Character character);
 }

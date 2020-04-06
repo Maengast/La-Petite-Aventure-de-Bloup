@@ -28,6 +28,10 @@ public class Character : MonoBehaviour
     protected bool InJump = false;
 
     public HealthBar HealthBar;
+    public String Name;
+    public List<Attack> Attacks;
+    public int Attack_Multiplier;
+    public int Id;
 
     protected Rigidbody2D Rigidbody;
     protected Animator CharacterAnimator;
@@ -79,6 +83,7 @@ public class Character : MonoBehaviour
 	    Rigidbody.MovePosition(Rigidbody.position + positionOffset * Time.deltaTime);
     }
 
+
     /**
      * Move Character to target position
      */
@@ -98,7 +103,7 @@ public class Character : MonoBehaviour
 	    currentSpeed += acceleration * Time.deltaTime;
 	    return (currentSpeed >= targetSpeed)? targetSpeed : currentSpeed;
     }
-    
+
     /**
      * Flip Character Sprite
      */

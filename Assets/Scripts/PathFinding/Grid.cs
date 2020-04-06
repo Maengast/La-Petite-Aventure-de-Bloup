@@ -215,13 +215,20 @@ namespace PathFinder
                     UnwalkableMask
                     );
 
+
                 // If valid create a 2 way link
                 if (hit.collider)
                 {
                     Node node = NodeFromWorldPoint(hit.point);
-                    int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
-                    corner.AddLink(node, distance, PathLinkType.runoff);
-                    node.AddLink(corner, distance, PathLinkType.runoff);
+                    float high = overhang.Position.y - node.Position.y;
+                    if(high < JumpDistance)
+                    {
+                        GameObject gameObject = new GameObject("runOff");
+                        gameObject.transform.position = node.Position;
+                        int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
+                        corner.AddLink(node, distance, PathLinkType.runoff);
+                        node.AddLink(corner, distance, PathLinkType.runoff);
+                    }
                 }
 
 

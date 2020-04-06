@@ -114,7 +114,7 @@ namespace DataBase
 
         private static Attack ReadAttack(IDataReader reader)
         {
-            Attack attack = new Attack();
+            Attack attack = new CircularSawAttack();
             attack.Name = reader.GetString(1);
             attack.Damage = reader.GetInt32(2);
             attack.Level = reader.GetInt32(3);

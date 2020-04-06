@@ -42,8 +42,8 @@ namespace DataBase
 
                 + "VALUES ( '"
                 + boss.Name + "', '"
-                + boss.Life_Point + "', '"
-                + boss.Stamina + "', '"
+                + boss.MaxLife + "', '"
+                + boss.MaxStamina + "', '"
                 + boss.Attack_Multiplier + "' )";
             dbcmd.ExecuteNonQuery();
         }
@@ -86,8 +86,8 @@ namespace DataBase
             boss.Id = reader.GetInt32(0);
             boss.Name = reader.GetString(1);
             boss.Attack_Multiplier = reader.GetInt32(2);
-            boss.Life_Point = reader.GetInt32(3);
-            boss.Stamina = reader.GetFloat(4);
+            boss.MaxLife = reader.GetInt32(3);
+            boss.MaxStamina = reader.GetFloat(4);
             boss.Attacks = AttackDb.GetAttacksByIDCharacter(boss.Id);
             return boss;
         }

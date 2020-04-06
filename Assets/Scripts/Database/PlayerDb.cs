@@ -40,7 +40,7 @@ namespace DataBase
 
                 + "VALUES ( '"
                 + player.Name + "', '"
-                + player.Life_Point + "', '"
+                + player.MaxLife + "', '"
                 + player.Attack_Multiplier + "' )";
             dbcmd.ExecuteNonQuery();
         }
@@ -82,7 +82,7 @@ namespace DataBase
             Player player = new Player();
             player.Id = reader.GetInt32(0);
             player.Name = reader.GetString(1);
-            player.Life_Point = reader.GetInt32(2);
+            player.MaxLife = reader.GetInt32(2);
             player.Attack_Multiplier = reader.GetInt32(3);
             player.Attacks = AttackDb.GetAttacksByIDCharacter(player.Id);
             return player;
