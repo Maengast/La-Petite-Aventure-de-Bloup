@@ -7,47 +7,63 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-	private GameManager gameManager;
-	private GameObject currentPanel;
-	private List<GameObject> panels = new List<GameObject>();
+	private GameManager _gameManager;
+	private GameObject _currentPanel;
+	private List<GameObject> _panels = new List<GameObject>();
 	
 	public void Start()
 	{
-		gameManager = GameManager.Instance;
+		_gameManager = GameManager.Instance;
 		foreach (Transform child in transform)
 		{
-			panels.Add(child.gameObject);
+			_panels.Add(child.gameObject);
 		}
 	}
 
 	public void InitUI(String currentGameState)
 	{
-		panels.ForEach(p => p.SetActive(false));
-		currentPanel = panels.Find(o => o.name == currentGameState);
-		currentPanel.SetActive(true);
+		_panels.ForEach(p => p.SetActive(false));
+		_currentPanel = _panels.Find(o => o.name == currentGameState);
+		_currentPanel.SetActive(true);
 	}
 	
 	public void SwitchPanel(String panelName)
 	{
-		GameObject newPanel = panels.Find(o => o.name == panelName);
+		GameObject newPanel = _panels.Find(o => o.name == panelName);
 		newPanel.SetActive(true);
-		currentPanel.SetActive(false);
-		currentPanel = newPanel;
+		_currentPanel.SetActive(false);
+		_currentPanel = newPanel;
+	}
+
+	public void DisplayGameResults(String panelName)
+	{
+		foreach (Transform child in _currentPanel.transform)
+		{
+			if (child.name == panelName)
+			{
+				child.gameObject.SetActive(true);
+			}
+			else
+			{
+				child.gameObject.SetActive(false);
+			}
+		}
 	}
 	
 	public void Play()
 	{
-		gameManager.SwitchGameState(GameManager.GameState.LevelSelection);
+		_gameManager.SwitchGameState(GameManager.GameState.LevelSelection);
 	}
 
 	public void ReplayLevel()
 	{
-		gameManager.SwitchGameState(GameManager.GameState.LoadLevel);
+		Debug.Log("Replay");
+		_gameManager.SwitchGameState(GameManager.GameState.LoadLevel);
 	}
 	
 	public void NextLevel()
 	{
-		gameManager.LoadLevel(gameManager.GetCurrentLevel()+1);
+		_gameManager.LoadLevel(_gameManager.GetCurrentLevel()+1);
 	}
 	
 }

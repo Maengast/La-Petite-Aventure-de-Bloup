@@ -35,7 +35,8 @@ public class Character : MonoBehaviour
 
     protected Rigidbody2D Rigidbody;
     protected Animator CharacterAnimator;
-    
+
+    protected GameManager _gameManager;
     /**
      * Initialise Character Instance
      * Get references of main components
@@ -44,6 +45,7 @@ public class Character : MonoBehaviour
     {
         Rigidbody = GetComponent<Rigidbody2D>();
         CharacterAnimator = GetComponent<Animator>();
+        _gameManager = GameManager.Instance;
         Life = MaxLife;
         HealthBar.SetMaxHealth(MaxLife);
     }
