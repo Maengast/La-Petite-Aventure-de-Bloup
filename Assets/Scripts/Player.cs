@@ -15,6 +15,11 @@ public class Player : Character
     // Update is called once per frame
     private void Update()
     {
+	    if (_gameManager.GetCurrentGameState() == GameManager.GameState.GameResult)
+	    {
+		    return;
+	    }
+	    
 	    _movementDirection.x = Input.GetAxis("Horizontal");
 	    if (OnGround)
         {
@@ -25,5 +30,16 @@ public class Player : Character
 	            Jump();
             }
         }
+
+	    if (Input.GetKeyDown(KeyCode.A))
+	    {
+		    Die();
+	    }
+    }
+
+    protected override void Die()
+    {
+	    _gameManager.EndGame(true);
+	    base.Die();
     }
 }
