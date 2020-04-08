@@ -5,6 +5,8 @@ using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
+[RequireComponent(typeof(CharacterCollisions))]
+
 public class Character : MonoBehaviour
 {
     //Speed
@@ -32,14 +34,16 @@ public class Character : MonoBehaviour
     protected Animator CharacterAnimator;
 
     protected GameManager _gameManager;
+    protected LevelManager _levelManager;
+    
     /**
      * Initialise Character Instance
      * Get references of main components
      */
     protected virtual void Init()
     {
-        Rigidbody = GetComponent<Rigidbody2D>();
-        CharacterAnimator = GetComponent<Animator>();
+        if(!Rigidbody)Rigidbody = GetComponent<Rigidbody2D>();
+        if(!CharacterAnimator)CharacterAnimator = GetComponent<Animator>();
         _gameManager = GameManager.Instance;
     }
 
@@ -186,5 +190,10 @@ public class Character : MonoBehaviour
     protected void SetIntAnim(string name, int value)
     {
         if(CharacterAnimator) CharacterAnimator.SetInteger(name, value);
+    }
+
+    public void SetLevelManager(LevelManager levelManager)
+    {
+	    _levelManager = levelManager;
     }
 }

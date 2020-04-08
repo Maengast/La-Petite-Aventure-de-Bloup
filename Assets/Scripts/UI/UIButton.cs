@@ -5,11 +5,13 @@ using UnityEditor.Sprites;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
+[RequireComponent(typeof(BoxCollider2D))]
 
 public class UIButton : MonoBehaviour
 {
 
 	public ButtonSpriteState SpriteState;
+	public SpriteRenderer SpriteRenderer;
 
 	protected UIManager uiManager;
 	public UnityEvent ButtonEvent;
@@ -17,24 +19,29 @@ public class UIButton : MonoBehaviour
 	private void Start()
 	{
 		uiManager = UIManager.Instance;
+		if(!SpriteRenderer)SpriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 	// Start is called before the first frame update
     private void OnMouseOver()
     {
-
+	    SpriteRenderer.sprite = SpriteState.HighlightSprite;
     }
 
     private void OnMouseExit()
     {
-	    
+	    SpriteRenderer.sprite = SpriteState.DefaultSprite;
+    }
+
+    private void OnMouseDown()
+    {
+	    SpriteRenderer.sprite = SpriteState.DefaultSprite;
     }
 
     private void OnMouseUpAsButton()
     {
 	    ButtonEvent.Invoke();
     }
-
 }
 
 [Serializable]
@@ -42,5 +49,4 @@ public class ButtonSpriteState
 {
 	public Sprite DefaultSprite;
 	public Sprite HighlightSprite;
-	public Sprite PressedSprite;
 }

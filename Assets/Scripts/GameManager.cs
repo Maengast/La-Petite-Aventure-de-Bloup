@@ -10,15 +10,13 @@ public class GameManager : Singleton<GameManager>
 	
 	private int _currentLevelNumber = 0;
 	private int _nextLevelNumber = 1;
-	private int _maxLevelNumber;
+	private Dictionary<int, LevelState> _levelStates = new Dictionary<int, LevelState>();
+	private int _maxLevelNumber=3;
 	
-	private void Start()
-	{
-		_uiManager = UIManager.Instance;
-		_currentGameState = GameState.MainMenu;
-		_uiManager.InitUI(_currentGameState.ToString());
-	}
 	
+	/**
+	 * Enum for game states
+	 */
 	public enum GameState
 	{
 		MainMenu,
@@ -27,7 +25,10 @@ public class GameManager : Singleton<GameManager>
 		InGame,
 		GameResult
 	}
-	  
+	 
+	/**
+	 * Enum for level states
+	 */
 	public enum LevelState
 	{
 		Close,
@@ -35,16 +36,43 @@ public class GameManager : Singleton<GameManager>
 		Played
 	}
 	
+	/**
+	 * Enum for game results
+	 */
 	public enum GameResults
 	{
-		None,
 		Win,
 		Lose
 	}
 
 	private GameState _currentGameState;
-	private GameResults _gameResult = GameResults.None;
 	
+	private void Start()
+	{
+		_uiManager = UIManager.Instance;
+		_currentGameState = GameState.MainMenu;
+		_uiManager.InitUI();
+		InitLevelState();
+	}
+
+	private void InitLevelState()
+	{
+		for (int i = 1; i <= _maxLevelNumber; i++)
+		{
+			if (i < _nextLevelNumber)
+			{
+				_levelStates[i] = LevelState.Played;
+			}
+			else if (i > _nextLevelNumber)
+			{
+				_levelStates[i] = LevelState.Close;
+			}
+			else
+			{
+				_levelStates[i] = LevelState.New;
+			}
+		}
+	}
 	/**
 	 * Switch between game state
 	 */
@@ -65,13 +93,6 @@ public class GameManager : Singleton<GameManager>
 				SceneManager.LoadScene("Game", LoadSceneMode.Single);
 				break;
 		}
-		
-		//Reset game result if game isn't in GameResults state anymore
-		if (_currentGameState == GameState.GameResult)
-		{
-			_gameResult = GameResults.None;
-		}
-		
 		_currentGameState = newGameState;
 		_uiManager.SwitchPanel(_currentGameState.ToString());
 	}
@@ -80,35 +101,15 @@ public class GameManager : Singleton<GameManager>
 	{
 		return _currentGameState;
 	}
-	
-	public GameResults GetGameResult()
-	{
-		return _gameResult;
-	}
 
 	public int GetCurrentLevel()
 	{
 		return _currentLevelNumber;
 	}
 
-	public void InstantiatePlayer()
-	{
-		
-	}
-
 	public LevelState GetLevelState(int levelNumber)
 	{
-		if (levelNumber <= _currentLevelNumber)
-		{
-			return LevelState.Played;
-		}
-
-		if (levelNumber == _nextLevelNumber)
-		{
-			return LevelState.New;
-		}
-
-		return LevelState.Close;
+		return _levelStates[levelNumber];
 	}
 
 	public void LoadLevel(int levelNumber)
@@ -124,9 +125,9 @@ public class GameManager : Singleton<GameManager>
 	
 	public void EndGame(bool gameOver)
 	{
-		_gameResult = (gameOver) ? GameResults.Lose : GameResults.Win;
+		GameResults gameResult = (gameOver) ? GameResults.Lose : GameResults.Win;
 		SwitchGameState(GameState.GameResult);
-		_uiManager.DisplayGameResults(_gameResult.ToString());
+		_uiManager.DisplayGameResults(gameResult.ToString());
 	}
 	
 }

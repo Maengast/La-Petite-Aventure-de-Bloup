@@ -4,19 +4,36 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+	public GameObject PlayerPrefab;
+	
+    public float LoadingWaitTime = 2.0f;
+    private bool _isLoad = false;
+    
     void Start()
     {
-        //Create level
-        //find player spawn
-        //End load game
-        //instantiate player
-        GameManager.Instance.EndLoadLevel();
+	    StartCoroutine("LoadingLevel");
+	    //Create level
+	    //find player spawn
+	    //End load game
+	    //instantiate player
+	    _isLoad = true;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void InstantiateCharacter(GameObject characterPrefab,Vector2 position)
     {
-        
+	    GameObject character = Instantiate(characterPrefab, position, Quaternion.identity);
+	    character.GetComponent<Character>().SetLevelManager(this);
     }
+    
+    IEnumerator LoadingLevel()
+    {
+	    while (!_isLoad)
+	    {
+		    yield return new WaitForSecondsRealtime(LoadingWaitTime);
+	    }
+	    GameManager.Instance.EndLoadLevel();
+    }
+    
+    
 }

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UILevel_New
+  m_Name: UILevel_Played
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -30,35 +30,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.3
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Chest/OpenChest
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.5
+        time: 0.2
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -78,7 +50,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -97,7 +69,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -115,15 +87,7 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: 3f955918f8795fe4ab34e024b6ff23b8, type: 3}
-    - time: 0.1
-      value: {fileID: 21300000, guid: 24bbe4d642b75104799efa47393346be, type: 3}
     - time: 0.2
-      value: {fileID: 21300000, guid: ca1a6620048c2724aa63ea1e8667746a, type: 3}
-    - time: 0.3
-      value: {fileID: 21300000, guid: efd9076d804ce8b4692612f5b4e33aac, type: 3}
-    - time: 0.4
-      value: {fileID: 21300000, guid: 0af8c7fd01401624ab2b1fa6810704c8, type: 3}
-    - time: 0.5
       value: {fileID: 21300000, guid: bc63fdef8affd814597c43543e154f82, type: 3}
     attribute: m_Sprite
     path: Chest
@@ -136,13 +100,6 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
-    - serializedVersion: 2
-      path: 3118005017
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
     - serializedVersion: 2
       path: 2203902600
       attribute: 2086281974
@@ -173,17 +130,13 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 21300000, guid: 3f955918f8795fe4ab34e024b6ff23b8, type: 3}
-    - {fileID: 21300000, guid: 24bbe4d642b75104799efa47393346be, type: 3}
-    - {fileID: 21300000, guid: ca1a6620048c2724aa63ea1e8667746a, type: 3}
-    - {fileID: 21300000, guid: efd9076d804ce8b4692612f5b4e33aac, type: 3}
-    - {fileID: 21300000, guid: 0af8c7fd01401624ab2b1fa6810704c8, type: 3}
     - {fileID: 21300000, guid: bc63fdef8affd814597c43543e154f82, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6
+    m_StopTime: 0.3
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -212,35 +165,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.3
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Chest/OpenChest
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.5
+        time: 0.2
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -260,7 +185,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -279,7 +204,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103

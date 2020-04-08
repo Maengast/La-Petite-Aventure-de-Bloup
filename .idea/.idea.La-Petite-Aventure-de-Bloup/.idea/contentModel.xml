@@ -72,9 +72,11 @@
           <e p="Singleton.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="UIButton.cs" t="Include" />
+            <e p="UIComponent.cs" t="Include" />
             <e p="UILevel.cs" t="Include" />
-            <e p="UILoadLevel.cs" t="Include" />
+            <e p="UILevelNumber.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
+            <e p="UIPanel.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">

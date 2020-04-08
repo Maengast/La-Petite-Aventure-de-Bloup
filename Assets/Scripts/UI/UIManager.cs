@@ -8,30 +8,34 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
 	private GameManager _gameManager;
-	private GameObject _currentPanel;
-	private List<GameObject> _panels = new List<GameObject>();
+	private UIPanel _currentPanel;
+	private List<UIPanel> _panels = new List<UIPanel>();
 	
 	public void Start()
 	{
 		_gameManager = GameManager.Instance;
 		foreach (Transform child in transform)
 		{
-			_panels.Add(child.gameObject);
+			if(Enum.IsDefined(typeof(GameManager.GameState), child.name))
+			{
+				UIPanel uiPanel = child.GetComponent<UIPanel>();
+				if (!uiPanel) child.gameObject.AddComponent<UIPanel>();
+				_panels.Add(child.GetComponent<UIPanel>());
+			}
 		}
 	}
 
-	public void InitUI(String currentGameState)
+	public void InitUI()
 	{
-		_panels.ForEach(p => p.SetActive(false));
-		_currentPanel = _panels.Find(o => o.name == currentGameState);
-		_currentPanel.SetActive(true);
+		_panels.ForEach(p => p.gameObject.SetActive(false));
+		SwitchPanel(_gameManager.GetCurrentGameState().ToString());
 	}
 	
 	public void SwitchPanel(String panelName)
 	{
-		GameObject newPanel = _panels.Find(o => o.name == panelName);
-		newPanel.SetActive(true);
-		_currentPanel.SetActive(false);
+		UIPanel newPanel = _panels.Find(p => p.gameObject.name == panelName);
+		newPanel.Init();
+		if(_currentPanel)_currentPanel.Disable();
 		_currentPanel = newPanel;
 	}
 
@@ -39,13 +43,16 @@ public class UIManager : Singleton<UIManager>
 	{
 		foreach (Transform child in _currentPanel.transform)
 		{
-			if (child.name == panelName)
+			if(Enum.IsDefined(typeof(GameManager.GameResults), child.name))
 			{
-				child.gameObject.SetActive(true);
-			}
-			else
-			{
-				child.gameObject.SetActive(false);
+				if (child.name == panelName)
+				{
+					child.gameObject.SetActive(true);
+				}
+				else
+				{
+					child.gameObject.SetActive(false);
+				}
 			}
 		}
 	}
@@ -57,7 +64,6 @@ public class UIManager : Singleton<UIManager>
 
 	public void ReplayLevel()
 	{
-		Debug.Log("Replay");
 		_gameManager.SwitchGameState(GameManager.GameState.LoadLevel);
 	}
 	
@@ -65,5 +71,9 @@ public class UIManager : Singleton<UIManager>
 	{
 		_gameManager.LoadLevel(_gameManager.GetCurrentLevel()+1);
 	}
-	
+
+	public void Quit()
+	{
+		Application.Quit();
+	}
 }
