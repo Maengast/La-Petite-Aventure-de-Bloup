@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 4723107735738678597, guid: 74e9ccfdeec13774586877fa541babbc,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -119,11 +119,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 8
-  Gravity: 9.5
-  MaxFallSpeed: 40
+  FallSpeed: 6
+  JumpSpeed: 6
+  _movementDirection: {x: 0, y: 0}
   MaxLife: 50
   OnGround: 0
   JumpHeight: 15
+  HealthBar: {fileID: 0}
 --- !u!61 &8079908237650858118
 BoxCollider2D:
   m_ObjectHideFlags: 0
