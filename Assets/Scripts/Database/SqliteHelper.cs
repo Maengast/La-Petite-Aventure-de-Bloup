@@ -15,10 +15,9 @@ namespace DataBase
 
         private static IDbConnection db_connection;
 
-
-        public SqliteHelper()
+        private static SqliteHelper instance;
+        SqliteHelper()
         {
-            Debug.Log("Connection");
             DbConnection connection = DbConnection.DbConnectionInstance;
             db_connection = connection.SqlConnetionFactory;
             db_connection.Open();
@@ -28,7 +27,19 @@ namespace DataBase
         {
             db_connection.Close();
         }
+        public static SqliteHelper Instance
+        {
+            get
+            {
+               if (instance == null)
+               {
+                 instance = new SqliteHelper();
+               }
+              return instance;
+                
+            }
 
+        }
         public IDbCommand GetDbCommand()
         {
             return db_connection.CreateCommand();

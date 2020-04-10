@@ -8,7 +8,7 @@ namespace DataBase
     public class AttackDb
     {
         private const string Tag = "Bloup: AttackDb:\t";
-        private static SqliteHelper sqliteHelper = new SqliteHelper();
+        private static SqliteHelper sqliteHelper = SqliteHelper.Instance;
         private const string TABLE_NAME = "Attack";
         private const string KEY_ID = "id";
         private const string KEY_NAME = "name";
@@ -24,7 +24,6 @@ namespace DataBase
         static AttackDb()
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
-            Debug.Log(dbcmd.CommandText);
             dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( " +
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_NAME + " TEXT, " +
@@ -38,7 +37,7 @@ namespace DataBase
         }
 
 
-        public static void AddAttack(Attack attack)
+        public static void AddAttack(AttackModel attack)
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
             dbcmd.CommandText =
@@ -49,8 +48,7 @@ namespace DataBase
                 + KEY_LEVEL + ", "
                 + KEY_DESCRIPTION + ", " 
                 + KEY_TYPE + ", "
-                + KEY_COOL_DOWN + ", "
-                + ID_CHARACTER + " ) "
+                + KEY_COOL_DOWN + " ) "
 
                 + "VALUES ( '"
                 + attack.Name + "', '"
@@ -58,37 +56,34 @@ namespace DataBase
                 + attack.Level + "', '"
                 + attack.Description + "', '"
                 + attack.Type + "', '"
-                + attack.Cool_Down + "', '"
-                + attack.Id_Character + "' )";
+                + attack.Cool_Down + "' )";
             dbcmd.ExecuteNonQuery();
         }
 
-        public static Attack GetAttackById(int id)
+        public static List<AttackModel> GetAllAttacks()
         {
-            IDbCommand dbcmd = sqliteHelper.GetDbCommand();
-            dbcmd.CommandText =
-                "SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID + " = '" + id + "'";
-            IDataReader reader = dbcmd.ExecuteReader();
+       
+            IDataReader reader = sqliteHelper.GetAllData(TABLE_NAME);
+            List<AttackModel> attacks = new List<AttackModel>();
             while (reader.Read())
             {
-                Attack attack = ReadAttack(reader);
-                reader.Close();
-                return attack;
+                AttackModel attack = ReadAttack(reader);
+                attacks.Add(attack);
             }
-            throw new KeyNotFoundException();
+            reader.Close();
+            return attacks;
 
         }
-
-        public static List<Attack> GetAttacksByIDCharacter(int id_character)
+        public static List<AttackModel> GetAttacksByIDCharacter(int id_character)
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
             dbcmd.CommandText =
                 "SELECT * FROM " + TABLE_NAME + " WHERE " + ID_CHARACTER + " = '" + id_character + "'";
             IDataReader reader = dbcmd.ExecuteReader();
-            List<Attack> attacks = new List<Attack>();
+            List<AttackModel> attacks = new List<AttackModel>();
             while (reader.Read())
             {
-                Attack attack = ReadAttack(reader);
+                AttackModel attack = ReadAttack(reader);
                 attacks.Add(attack);
             }
             reader.Close();
@@ -96,7 +91,7 @@ namespace DataBase
 
         }
 
-        public static Attack GetAttackByName(string name)
+        public static AttackModel GetAttackByName(string name)
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
             dbcmd.CommandText =
@@ -104,7 +99,7 @@ namespace DataBase
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
             {
-                Attack attack = ReadAttack(reader);
+                AttackModel attack = ReadAttack(reader);
                 reader.Close();
                 return attack;
             }
@@ -112,14 +107,14 @@ namespace DataBase
         }
 
 
-        private static Attack ReadAttack(IDataReader reader)
+        private static AttackModel ReadAttack(IDataReader reader)
         {
-            Attack attack = new CircularSawAttack();
+            AttackModel attack = new AttackModel();
             attack.Name = reader.GetString(1);
             attack.Damage = reader.GetInt32(2);
             attack.Level = reader.GetInt32(3);
             attack.Description = reader.GetString(4);
-            attack.Type = reader.GetString(5);
+            //attack.Type = reader.GetString(5);
             attack.Cool_Down = reader.GetFloat(6);
             return attack;
         }

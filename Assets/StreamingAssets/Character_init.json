@@ -1,0 +1,25 @@
+{
+  "Player": {
+    "Attack_Multiplier": 1,
+    "MaxLife": 100,
+    "Name": "Bloup",
+    "Speed": 5
+  },
+
+  "Boss": [
+    {
+      "Name": "Le Malin",
+      "MaxLife": 200,
+      "Attack_Multiplier": 1,
+      "Speed": 6,
+      "MaxStamina":  100
+    },
+    {
+      "Name": "Flambi",
+      "MaxLife": 400,
+      "Attack_Multiplier": 2,
+      "Speed": 3,
+      "MaxStamina": 150
+    }
+  ]
+}

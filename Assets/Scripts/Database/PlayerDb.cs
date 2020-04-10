@@ -9,13 +9,14 @@ namespace DataBase
     public class PlayerDb
     {
         private const string Tag = "Bloup: PlayersDb:\t";
-        private static SqliteHelper sqliteHelper = new SqliteHelper();
+        private static SqliteHelper sqliteHelper = SqliteHelper.Instance;
         private const string TABLE_NAME = "Player";
         private const string KEY_ID = "id";
         private const string KEY_NAME = "name";
         private const string KEY_LIFE_POINTS = "life_points";
         private const string KEY_ATTACK_MULTIPLIER = "attack_multiplier";
-        private string[] COLUMNS = new string[] { KEY_ID, KEY_NAME, KEY_LIFE_POINTS, KEY_ATTACK_MULTIPLIER };
+        private const string KEY_SPEED = "speed";
+        private string[] COLUMNS = new string[] { KEY_ID, KEY_NAME, KEY_LIFE_POINTS, KEY_ATTACK_MULTIPLIER, KEY_SPEED };
 
         static PlayerDb()
         {
@@ -24,11 +25,12 @@ namespace DataBase
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_NAME + " TEXT, " +
                 KEY_LIFE_POINTS + " INTEGER, " +
-                KEY_ATTACK_MULTIPLIER + " INTEGER ) ";
+                KEY_ATTACK_MULTIPLIER + " NUMERIC, " +
+                KEY_SPEED + " NUMERIC ) ";
             dbcmd.ExecuteNonQuery();
         }
 
-        public void AddPlayer(Player player)
+        public static void AddPlayer(PlayerInfo player)
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
             dbcmd.CommandText =
@@ -36,32 +38,32 @@ namespace DataBase
                 + " ( "
                 + KEY_NAME + ", "
                 + KEY_LIFE_POINTS + ", "
-                + KEY_ATTACK_MULTIPLIER + " ) "
+                + KEY_ATTACK_MULTIPLIER + ", "
+                + KEY_SPEED + " ) "
 
                 + "VALUES ( '"
                 + player.Name + "', '"
                 + player.MaxLife + "', '"
-                + player.Attack_Multiplier + "' )";
+                + player.Attack_Multiplier + "', '"
+                + player.Speed + "' )";
             dbcmd.ExecuteNonQuery();
         }
 
-        public Player GetPlayerById(int id)
+        public static List<PlayerInfo> GetPlayers()
         {
-            IDbCommand dbcmd = sqliteHelper.GetDbCommand();
-            dbcmd.CommandText =
-                "SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID + " = '" + id + "'";
-            IDataReader reader = dbcmd.ExecuteReader();
+            IDataReader reader = sqliteHelper.GetAllData(TABLE_NAME);
+            List<PlayerInfo> players = new List<PlayerInfo>();
             while (reader.Read())
             {
-                Player player = ReadPlayer(reader);
-                reader.Close();
-                return player;
-            }
-            throw new KeyNotFoundException();
+                PlayerInfo player = ReadPlayer(reader);
 
+                players.Add(player);
+            }
+            reader.Close();
+            return players;
         }
 
-        public Player GetPlayerByName(string name)
+        public static PlayerInfo GetPlayerByName(string name)
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
             dbcmd.CommandText =
@@ -69,7 +71,7 @@ namespace DataBase
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
             {
-                Player player = ReadPlayer(reader);
+                PlayerInfo player = ReadPlayer(reader);
                 reader.Close();
                 return player;
             }
@@ -77,14 +79,13 @@ namespace DataBase
         }
 
 
-        private Player ReadPlayer(IDataReader reader)
+        private static PlayerInfo ReadPlayer(IDataReader reader)
         {
-            Player player = new Player();
-            player.Id = reader.GetInt32(0);
+            PlayerInfo player = new PlayerInfo();
             player.Name = reader.GetString(1);
             player.MaxLife = reader.GetInt32(2);
-            player.Attack_Multiplier = reader.GetInt32(3);
-            player.Attacks = AttackDb.GetAttacksByIDCharacter(player.Id);
+            player.Attack_Multiplier = reader.GetFloat(3);
+            player.Speed = reader.GetFloat(4);
             return player;
         }
     }

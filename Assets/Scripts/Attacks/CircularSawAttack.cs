@@ -4,29 +4,23 @@ using UnityEngine;
 
 public class CircularSawAttack : Attack
 {
-    GameObject sawPrefab;
     Transform firePoint;
     int numberOfCircleSaw;
     private void Awake()
     {
-        sawPrefab = Resources.Load("CircleSaw") as GameObject;
         numberOfCircleSaw = 2;
-    }
-    public CircularSawAttack()
-    {
-        Damage = 10;
-        Name = "CircularSaw";
+        Name = "CircleSaw";
     }
     public override void Lauch(Character character)
     {
-        Damage = character.Attack_Multiplier * Damage;
+        float damages = character.AttackMultiplier * AttackModel.Damage;
         firePoint = character.transform.Find("FirePoint");
 
         for(int i = 0; i<numberOfCircleSaw; i++)
         {
-            GameObject circleSaw = Instantiate(sawPrefab, firePoint.position, firePoint.rotation) as GameObject;
-            circleSaw.name = Name;
-            circleSaw.GetComponent<CircularSaw>().SetDammages(Damage / numberOfCircleSaw);
+            GameObject circleSaw = Instantiate(AttackModel.ObjectPrefab, firePoint.position, firePoint.rotation) as GameObject;
+            circleSaw.name = AttackModel.Name;
+            circleSaw.GetComponent<CircularSaw>().SetDammages(damages / numberOfCircleSaw);
             circleSaw.GetComponent<CircularSaw>().SetLaucher(character);
         }
 

@@ -19,7 +19,7 @@ namespace PathFinder
         List<Node> Ledges = new List<Node>();
         List<Node> Corners = new List<Node>();
 
-        float JumpDistance = 8;
+        public float JumpDistance = 5;
         float BoxWidth, BoxHeight;
         List<LedgePoint> LedgePoints = new List<LedgePoint>();
         [SerializeField] GameObject LedgePlateform;
@@ -220,15 +220,16 @@ namespace PathFinder
                 if (hit.collider)
                 {
                     Node node = NodeFromWorldPoint(hit.point);
-                    float high = overhang.Position.y - node.Position.y;
+                    float high = Math.Abs(overhang.Position.y) - Math.Abs(node.Position.y);
                     if(high < JumpDistance)
                     {
-                        GameObject gameObject = new GameObject("runOff");
-                        gameObject.transform.position = node.Position;
                         int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
+                        // platform corner to node link
                         corner.AddLink(node, distance, PathLinkType.runoff);
+                        // current nose to platform corner
                         node.AddLink(corner, distance, PathLinkType.runoff);
                     }
+                    
                 }
 
 
@@ -332,10 +333,10 @@ namespace PathFinder
             return neighbours;
         }
 
-        public Node NodeFromWorldPoint(Vector3 _worldPosition)
+        public Node NodeFromWorldPoint(Vector3 worldPosition)
         {
-            float percentX = Mathf.Abs(BoxPosition.x - _worldPosition.x) / CellSize;
-            float percentY = Mathf.Abs(BoxPosition.y - _worldPosition.y) / CellSize;
+            float percentX = Mathf.Abs(BoxPosition.x - worldPosition.x) / CellSize;
+            float percentY = Mathf.Abs(BoxPosition.y - worldPosition.y) / CellSize;
             percentX = Mathf.Floor(percentX);
             percentY = Mathf.Floor(percentY);
             int x = Mathf.RoundToInt(percentX);

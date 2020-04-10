@@ -26,7 +26,7 @@ namespace PathFinder
             RaycastHit2D ledgeHit = Physics2D.Raycast(
                 pos,
                 -Vector2.up,
-                8,
+                10,
                 Grid.UnwalkableMask);
 
             return ledgeHit;
@@ -48,11 +48,7 @@ namespace PathFinder
         public void FindPath(Vector3 startPos, Vector3 targetPos, OnPathCompleteDelegate pathComplete )
         {
             IsDone = false;
-            if (!IsGrounded(startPos) || !IsGrounded(targetPos))
-            {
-                IsDone = true;
-                return;
-            };
+
             Node startNode = Grid.NodeFromWorldPoint(LedgeCheck(startPos).point);
             Node targetNode = Grid.NodeFromWorldPoint(LedgeCheck(targetPos).point);
 
@@ -72,7 +68,7 @@ namespace PathFinder
                 openList.Remove(node); // Remove actual node from the open set
                 closedSet.Add(node); // And then add it to the closed set
                 List<Link> links = node.Links;
-    
+
                 foreach (Link nodeLink in links)
                 {
                     // Check if node is a wall or if closed Set already contains this node

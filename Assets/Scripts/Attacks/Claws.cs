@@ -9,9 +9,9 @@ public class Claws : AttackObject
     {
         AreOut = false;
     }
-    protected override void OnTriggerEnter2D(Collider2D other)
+    protected override void OnCollisionEnter2D(Collision2D other)
     {
-        Character character = other.GetComponent<Character>();
+        Character character = other.collider.GetComponent<Character>();
         if (character && AreOut)
         {
             character.TakeDamages(Dammages);
