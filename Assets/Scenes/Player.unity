@@ -1666,6 +1666,11 @@ PrefabInstance:
       propertyPath: JumpHeight
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8079908237650858119, guid: 6a371d3f0e3a87c4d899379b5fc4f379,
+        type: 3}
+      propertyPath: Speed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8079908237650858138, guid: 6a371d3f0e3a87c4d899379b5fc4f379,
         type: 3}
       propertyPath: m_LocalPosition.x

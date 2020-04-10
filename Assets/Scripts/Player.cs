@@ -15,10 +15,10 @@ public class Player : Character
     // Update is called once per frame
     private void Update()
     {
-	    if (_gameManager.GetCurrentGameState() == GameManager.GameState.GameResult)
-	    {
-		    return;
-	    }
+	    // if (_gameManager.GetCurrentGameState() == GameManager.GameState.GameResult)
+	    // {
+		   //  return;
+	    // }
 	    
 	    _movementDirection.x = Input.GetAxis("Horizontal");
 	    if (OnGround)

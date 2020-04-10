@@ -1,4 +1,5 @@
-﻿using PathFinder;
+﻿using System;
+using PathFinder;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,8 @@ public class Boss : Character
     private int currentPoint;
     float _currentStamina = 100;
     public  float MaxStamina = 100;
-
+    float maxDistanceToTarget; 
+    float maxTimeToTarget; 
     void Start()
     {
         base.Init();
@@ -23,7 +25,6 @@ public class Boss : Character
         StaminaBar.SetMaxStamina(MaxStamina);
         InvokeRepeating("UpdateStamina", 0f, 3f);
         StartSearchPathToPlayer();
-
     }
 
     void Update()
@@ -44,8 +45,25 @@ public class Boss : Character
                 currentPoint++;
             }
         }
-
+        
+        MoveTo(GetNodeToFollow().Position);
     }
+    
+    /**
+     * Move Character to target position
+     */
+    public virtual void MoveTo(Vector3 target)
+    {
+	    Vector2 distance = (target - transform.position);
+	    if (!OnGround)
+	    {
+		    float time = (Mathf.Abs(distance.x )+3.0f) / currentXSpeed;
+		    speedMultiplier = time / maxTimeToTarget;
+		    currentXSpeed *= speedMultiplier;
+	    }
+	    _movementDirection.x = distance.normalized.x;
+    }
+    
 
     public Node GetNodeToFollow()
     {
@@ -58,29 +76,12 @@ public class Boss : Character
 
     public override void Jump()
     {
-        SwitchJumpState();
-        currentPoint++;
+	    maxDistanceToTarget = 2 * Mathf.Pow(XSpeed, 2) / Gravity;
+	    maxTimeToTarget = 2 * XSpeed / Gravity;
+	    currentPoint++;
         Vector2 movement = path[currentPoint].Position - transform.position;
-        JumpHeight = Mathf.Abs(movement.y )+ 2f;
-        StartCoroutine("Jumping");
-        // Apply new velocity to rigibody
-        Rigidbody.velocity = CalculateJumpVelocity(movement);
-
-    }
-
-    Vector2 CalculateJumpVelocity(Vector2 movement)
-    {
-        // Calculate jump time
-        // timeup = Square of 2time multiply by maxjumpheight diveded by gravity 
-        // timedown timeup = Square of minus 2 time multiply by distancey divided by gravity
-        // time = timeup + timedown
-        float time = Mathf.Sqrt(Mathf.Abs(2 * JumpHeight / Gravity)) + Mathf.Sqrt(Mathf.Abs(-2*(movement.y - JumpHeight) /Gravity));
-        // Velocity = Square of 2 times gravity multiply by maxjumpHeight
-        float velocityY =  Mathf.Sqrt(Mathf.Abs(2 * Gravity * JumpHeight));
-        // Velocity x = DistanceX divided by time
-        float velocityX = movement.x / time;
-        Vector2 velocity = new Vector2(velocityX , velocityY);
-        return velocity;
+        JumpHeight = Mathf.Abs(movement.y)+ 2f;
+        base.Jump();
     }
 
     public void StartSearchPathToPlayer()

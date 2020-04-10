@@ -3,19 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 [RequireComponent(typeof(CharacterCollisions))]
 
 public class Character : MonoBehaviour
 {
-    //Speed
-    //Different Speed values
-    public float Speed = 8.0f;
+    //XSpeed
+    //Different XSpeed values
+    public float XSpeed = 8.0f;
     public float Gravity = 9.5f;
     public float MaxFallSpeed = 15.0f;
     
     protected Vector2 _movementDirection;
-    private float currentYSpeed;
+    private float currentFallSpeed;
+    protected float currentXSpeed;
+    protected float speedMultiplier = 1;
     
     //Life
     public float MaxLife = 50;
@@ -51,7 +54,8 @@ public class Character : MonoBehaviour
         if(!CharacterAnimator)CharacterAnimator = GetComponent<Animator>();
         _gameManager = GameManager.Instance;
         Life = MaxLife;
-        HealthBar.SetMaxHealth(MaxLife);
+        if(HealthBar)HealthBar.SetMaxHealth(MaxLife);
+        currentXSpeed = XSpeed;
     }
 
     /**
@@ -60,46 +64,29 @@ public class Character : MonoBehaviour
      */
     protected virtual void FixedUpdate()
     {
-
-    }
-
-    protected virtual void Move()
-    {
-        
+	    Move();
     }
     
-	
     /**
      * Main function Move
      * Move Character along a directions vector multiply by speed
      * Flip sprite in function of X movement direction
      */
-    public virtual void Move(Vector2 moveDirection)
+    public virtual void Move()
     {
-	    if((moveDirection.x > 0 && !_faceRight) || (moveDirection.x < 0 && _faceRight)) Flip();
+	    if((_movementDirection.x > 0 && !_faceRight) || (_movementDirection.x < 0 && _faceRight)) Flip();
 	    Vector2 positionOffset = Vector2.zero;
-	    positionOffset.x = _movementDirection.x * Speed;
-	    currentYSpeed = (OnGround)? 0 : IncrementSpeed(currentYSpeed, MaxFallSpeed, Gravity);
+	    positionOffset.x = _movementDirection.x * currentXSpeed;
+	    currentFallSpeed = (OnGround)? 0 : IncrementSpeed(currentFallSpeed, MaxFallSpeed, Gravity);
 	    if (InJump)
 	    {
 		    positionOffset.y += Mathf.Sqrt(2 * Gravity * JumpHeight);
 	    }
-	    positionOffset.y -= 1 * currentYSpeed;
+	    positionOffset.y -= 1 * currentFallSpeed;
 	    _movementDirection.y = Mathf.Sign(positionOffset.y);
 	    Rigidbody.MovePosition(Rigidbody.position + positionOffset * Time.deltaTime);
     }
 
-
-    /**
-     * Move Character to target position
-     */
-    public virtual void Move(Vector3 target)
-    {
-	    Vector2 direction = (target - transform.position).normalized;
-	    _movementDirection.x = direction.x;
-        Move(_movementDirection);
-    }
-	
     private float IncrementSpeed(float currentSpeed, float targetSpeed, float acceleration)
     {
 	    if (currentSpeed >= targetSpeed)
@@ -145,17 +132,16 @@ public class Character : MonoBehaviour
      */
     protected virtual IEnumerator Jumping()
     {
-
 	    while (InJump)
 	    {
-            if (Rigidbody.velocity.y < 0)
+            if (_movementDirection.y < 0)
 		    {
 			    SwitchJumpState();
 		    }
 		    yield return new WaitForEndOfFrame();
 	    }
 	    //Reset Y speed to avoid a fall too fast
-	    currentYSpeed = 0;
+	    currentFallSpeed = 0;
     }
     
     public void SetOnGround(bool value)
@@ -163,6 +149,7 @@ public class Character : MonoBehaviour
         OnGround = value;
         CanJump = value;
         SetBoolAnim("OnGround",value);
+        if (value) currentXSpeed = XSpeed;
     }
     
     public bool IsJumping()

@@ -20,19 +20,9 @@ public class Boss_run : StateMachineBehaviour
     {
         if(boss.GetPath() != null && boss.OnGround)
         {
-            Vector3 targetPosition = boss.GetNodeToFollow().Position;
-            if (boss.GetNodeToFollow().LinkType == PathLinkType.jump || boss.GetNodeToFollow().LinkType == PathLinkType.runoff)
-            {
-                boss.Jump();
-            }
+            
 
-            else if(boss.GetNodeToFollow().LinkType == PathLinkType.fall)
-            {
-                targetPosition.y = boss.transform.position.y;
-
-            }
-
-            boss.Move(targetPosition);
+            //boss.Move(targetPosition);
 
             //if (Vector2.Distance(boss.transform.position, player.transform.position) <= 10f)
             //{

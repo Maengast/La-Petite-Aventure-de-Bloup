@@ -46,21 +46,42 @@
             </e>
           </e>
         </e>
-        <e p="Prefabs" t="Include">
-          <e p="prefab.txt" t="Include" />
-        </e>
         <e p="Scripts" t="Include">
-          <e p="Attack.cs" t="Include" />
-          <e p="AttackObject.cs" t="Include" />
+          <e p="Attacks" t="Include">
+            <e p="Attack.cs" t="Include" />
+            <e p="AttackFactory.cs" t="Include" />
+            <e p="AttackObject.cs" t="Include" />
+            <e p="CircularSaw.cs" t="Include" />
+            <e p="CircularSawAttack.cs" t="Include" />
+            <e p="Claws.cs" t="Include" />
+            <e p="ClawsAttack.cs" t="Include" />
+            <e p="IAttack.cs" t="Include" />
+          </e>
+          <e p="Boss_run.cs" t="Include" />
           <e p="Character.cs" t="Include" />
           <e p="CharacterCollisions.cs" t="Include" />
-          <e p="CircularSaw.cs" t="Include" />
-          <e p="CircularSawAttack.cs" t="Include" />
+          <e p="Database" t="Include">
+            <e p="AttackDb.cs" t="Include" />
+            <e p="BonusDb.cs" t="Include" />
+            <e p="BossDb.cs" t="Include" />
+            <e p="DbConnection.cs" t="Include" />
+            <e p="LevelDb.cs" t="Include" />
+            <e p="ObstacleDb.cs" t="Include" />
+            <e p="PlayerDb.cs" t="Include" />
+            <e p="SqliteHelper.cs" t="Include" />
+          </e>
           <e p="Entities" t="Include">
+            <e p="Bonus.cs" t="Include" />
             <e p="Boss.cs" t="Include" />
+            <e p="Level.cs" t="Include" />
+            <e p="Obstacle.cs" t="Include" />
           </e>
           <e p="GameManager.cs" t="Include" />
+          <e p="HealthBar.cs" t="Include" />
           <e p="LevelManager.cs" t="Include" />
+          <e p="New Folder" t="Include">
+            <e p="Testing.cs" t="Include" />
+          </e>
           <e p="PathFinding" t="Include">
             <e p="Grid.cs" t="Include" />
             <e p="LedgePoint.cs" t="Include" />
@@ -70,6 +91,7 @@
           </e>
           <e p="Player.cs" t="Include" />
           <e p="Singleton.cs" t="Include" />
+          <e p="StaminaBar.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="UIButton.cs" t="Include" />
             <e p="UIComponent.cs" t="Include" />
