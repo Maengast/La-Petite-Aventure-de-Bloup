@@ -6,17 +6,15 @@ public class ClawsAttack : Attack
 {
     public ClawsAttack()
     {
-        Damage = 3;
-        Name = "Claws";
-        AttackRange = 1;
+        AttackModel.Name = "Claws";
     }
     public override void Lauch(Character character)
     {
-        Damage = character.Attack_Multiplier * Damage;
+        float damages = character.AttackMultiplier * AttackModel.Damage;
         Claws claws = character.gameObject.GetComponentInChildren<Claws>();
         if (claws != null)
         {
-            claws.SetDammages(Damage);
+            claws.SetDammages(damages);
         }
     }
 }

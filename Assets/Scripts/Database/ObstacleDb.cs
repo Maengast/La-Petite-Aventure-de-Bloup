@@ -11,7 +11,7 @@ namespace DataBase
     public class ObstaclesDb
     {
         private const String Tag = "Bloup: ObstaclesDb:\t";
-        private static SqliteHelper sqliteHelper = new SqliteHelper();
+        private static SqliteHelper sqliteHelper = SqliteHelper.Instance;
         private const String TABLE_NAME = "Obstacle";
         private const String KEY_ID = "id";
         private const String KEY_IS_TRAP = "is_trap";

@@ -9,7 +9,7 @@ namespace DataBase
     public class LevelDb
     {
         private const String Tag = "Bloup: LevelDb:\t";
-        private static SqliteHelper sqliteHelper = new SqliteHelper();
+        private static SqliteHelper sqliteHelper = SqliteHelper.Instance;
         private const String TABLE_NAME = "Level";
         private const String KEY_ID = "id";
         private const String KEY_NUMBER = "number";
@@ -21,7 +21,6 @@ namespace DataBase
 
         static LevelDb()
         {
-            Debug.Log("Level db called");
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
             dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( " +
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -29,7 +28,7 @@ namespace DataBase
                 KEY_TRAPS_COUNT + " INTEGER, " +
                 KEY_ENEMIES_COUNT + " INTEGER, " +
                 KEY_CHESTS_COUNT + " INTEGER, " +
-                KEY_MAP_SIZE + " FLOAT ) ";
+                KEY_MAP_SIZE + " REAL ) ";
             dbcmd.ExecuteNonQuery();
         }
 

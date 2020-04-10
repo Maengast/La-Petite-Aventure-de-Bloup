@@ -14,9 +14,9 @@ public class Character : MonoBehaviour
     
     protected Vector2 _movementDirection;
     private float currentYSpeed;
-    
+
     //Life
-    public float MaxLife = 50;
+    protected float MaxLife = 100;
     protected float Life = 0;
 
     private bool _faceRight = true;
@@ -28,13 +28,13 @@ public class Character : MonoBehaviour
     protected bool InJump = false;
 
     public HealthBar HealthBar;
-    public String Name;
-    public List<Attack> Attacks;
-    public int Attack_Multiplier;
-    public int Id;
 
     protected Rigidbody2D Rigidbody;
     protected Animator CharacterAnimator;
+
+    public AttackInventory AttackInventory;
+
+    public float AttackMultiplier;
 
     protected GameManager _gameManager;
     /**

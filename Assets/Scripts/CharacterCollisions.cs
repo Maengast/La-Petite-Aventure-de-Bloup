@@ -7,7 +7,7 @@ public class CharacterCollisions : MonoBehaviour
 {
 	public Character CharacterInstance;
 	public LayerMask GroundLayerMask;
-	public BoxCollider2D CharacterCollider;
+	public Collider2D CharacterCollider;
 
 	private Bounds _colliderBounds;
 	private float  _collisionCheckOffset = 0.1f;
@@ -15,7 +15,7 @@ public class CharacterCollisions : MonoBehaviour
 	void Start()
     {
 	    CharacterInstance = GetComponent<Character>();
-	    CharacterCollider = GetComponent<BoxCollider2D>();
+	    CharacterCollider = GetComponent<Collider2D>();
     }
     
     void Update()

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87f62a3a2add24d9404cec4a675389, type: 3}
+  m_Name: CircleSaw
+  m_EditorClassIdentifier: 
+  Name: CircleSaw
+  Damage: 20
+  Cost: 30
+  Level: 1
+  Type: 0
+  Cool_Down: 10
+  Description: "Des scies en acier tremp\xE9es aussi tranchantes que l'\xE9p\xE9e
+    la plus aiguis\xE9e"
+  AttackRange: 10
+  ObjectPrefab: {fileID: 8104836880802134410, guid: 6c362c1f186b7b842b4e41cdcde812c2,
+    type: 3}

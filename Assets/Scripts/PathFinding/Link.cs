@@ -18,9 +18,9 @@ namespace PathFinder
         public int distance;
         public PathLinkType type = PathLinkType.ground;
 
-        public Link(Node linkTarget, PathLinkType linkType, int linkDistance)
+        public Link(Node targetLink, PathLinkType linkType, int linkDistance)
         {
-            target = linkTarget;
+            target = targetLink;
             type = linkType;
             distance = linkDistance;
         }
