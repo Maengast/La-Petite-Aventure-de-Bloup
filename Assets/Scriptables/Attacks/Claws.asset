@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Claws
   m_EditorClassIdentifier: 
   Name: Claws
-  Damage: 10
+  Damage: 25
   Cost: 10
   Level: 1
   Type: 1
   Cool_Down: 5
   Description: "Gare \xE0 celui qui verra mes griffes ac\xE9r\xE9es"
-  AttackRange: 1
+  AttackRange: 2
+  ObjectPrefab: {fileID: 0}

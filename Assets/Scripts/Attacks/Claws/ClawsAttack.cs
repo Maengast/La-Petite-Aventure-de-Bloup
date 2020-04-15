@@ -6,9 +6,9 @@ public class ClawsAttack : Attack
 {
     public ClawsAttack()
     {
-        AttackModel.Name = "Claws";
+        Name = "Claws";
     }
-    public override void Lauch(Character character)
+    public override void Launch(Character character)
     {
         float damages = character.AttackMultiplier * AttackModel.Damage;
         Claws claws = character.gameObject.GetComponentInChildren<Claws>();

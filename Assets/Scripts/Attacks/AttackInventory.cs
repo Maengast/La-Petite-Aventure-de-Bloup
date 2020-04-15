@@ -23,4 +23,5 @@ public class AttackInventory : ScriptableObject
     {
         Attacks.Add(attack);
     }
+
 }

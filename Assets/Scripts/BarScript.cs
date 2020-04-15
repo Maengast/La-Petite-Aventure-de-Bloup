@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StaminaBar : MonoBehaviour
+public class BarScript: MonoBehaviour
 {
     private Slider slider;
     public Gradient Gradient;
@@ -20,16 +20,16 @@ public class StaminaBar : MonoBehaviour
         
     }
 
-    public void SetMaxStamina(float stamina)
+    public void SetMaxValue(float stamina)
     {
         slider.maxValue = stamina;
         slider.value = stamina;
         Fill.color = Gradient.Evaluate(1.0f);
     }
 
-    public void SetStamina(float health)
+    public void SetValue(float value)
     {
-        slider.value = health;
+        slider.value = value;
         Fill.color = Gradient.Evaluate(slider.normalizedValue);
     }
 }

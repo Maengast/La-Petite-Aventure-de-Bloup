@@ -30,14 +30,14 @@ public static class AttackFactory
         }
 
     }
-    public static Attack GetAttack(string attackName)
+    public static Attack GetAttack(AttackModel attackModel)
     {
         InitFactory();
-        if (_attacksTypeByName.ContainsKey(attackName) && _attacksModel.ContainsKey(attackName))
+        if (_attacksTypeByName.ContainsKey(attackModel.Name))
         {
-            Type type = _attacksTypeByName[attackName];
-            AttackModel model = _attacksModel[attackName];
+            Type type = _attacksTypeByName[attackModel.Name];
             Attack attack = Activator.CreateInstance(type) as Attack;
+            attack.AttackModel = attackModel;
             return attack;    
         }
         return null;

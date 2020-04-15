@@ -7,9 +7,8 @@ namespace PathFinder
     public enum PathLinkType: int
     {
         ground = 0, 
-        runoff = 2,
         fall = 1,
-        jump = 3
+        jump = 2
     }
     public class Link
     {

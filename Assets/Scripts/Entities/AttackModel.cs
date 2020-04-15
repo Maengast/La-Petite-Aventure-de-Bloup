@@ -19,6 +19,6 @@ public class AttackModel : ScriptableObject
 
 public enum AttackType
 {
-    Distance,
-    Rapproché
+    Distance = 6,
+    Rapproché = 5
 }

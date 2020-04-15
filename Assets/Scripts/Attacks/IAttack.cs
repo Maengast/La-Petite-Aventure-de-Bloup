@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAttack
 {
-    void Lauch(Character character);
+    void Launch(Character character);
 }

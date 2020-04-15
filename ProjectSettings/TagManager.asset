@@ -16,14 +16,10 @@ TagManager:
   - PostProcessing
   - Ground
   - Detection
-  - 
+  - Player
   - UnWalkable
   - Obstacle
   - Jump
-
-  - 
-  - 
-  - 
   - 
   - 
   - 

@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
 	[Header("Character Components")]
 	public Rigidbody2D Rigidbody;
 	public Animator CharacterAnimator;
-	public HealthBar HealthBar;
+	public BarScript HealthBar;
 	
 	[Header("Jump Values")]
 	public float JumpHeight = 5.0f;
@@ -56,7 +56,7 @@ public class Character : MonoBehaviour
         if(!CharacterAnimator)CharacterAnimator = GetComponent<Animator>();
         _gameManager = GameManager.Instance;
         Life = MaxLife;
-        if(HealthBar)HealthBar.SetMaxHealth(MaxLife);
+        if(HealthBar) HealthBar.SetMaxValue(MaxLife);
         currentSpeed = Speed;
     }
 
@@ -180,7 +180,7 @@ public class Character : MonoBehaviour
     public virtual void TakeDamages(float damages)
     {
         Life -= damages;
-        HealthBar.SetHealth(Life);
+        HealthBar.SetValue(Life);
         if (Life <= 0)
             Die();
     }

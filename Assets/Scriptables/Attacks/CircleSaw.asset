@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: CircleSaw
   Damage: 20
-  Cost: 30
+  Cost: 40
   Level: 1
   Type: 0
   Cool_Down: 10
