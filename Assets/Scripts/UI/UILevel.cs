@@ -8,7 +8,7 @@ public class UILevel : UIComponent
 {
 	public Animator UILevelAnimator;
 	public int LevelNumber;
-	private GameManager.LevelState _levelState;
+	private LevelState _levelState;
 
 
 	private void Start()
@@ -20,7 +20,7 @@ public class UILevel : UIComponent
     {
 	    _levelState = GameManager.Instance.GetLevelState(LevelNumber);
 
-	    if (_levelState != GameManager.LevelState.Close)
+	    if (_levelState != LevelState.Close)
 	    {
 		    UILevelAnimator.SetBool("Wait",false);
 		    UILevelAnimator.SetBool(_levelState.ToString(), true);

@@ -39,11 +39,6 @@ namespace PathFinder
             Link link = new Link(target, type, distance);
             Links.Add(link);
         }
-
-
-
-
-
     }
 }
 

@@ -16,8 +16,9 @@ namespace DataBase
         private const String KEY_TRAPS_COUNT = "traps_count";
         private const String KEY_ENEMIES_COUNT = "enemies_count";
         private const String KEY_CHESTS_COUNT = "chests_count";
-        private const String KEY_MAP_SIZE = "map_size";
-        private String[] COLUMNS = new String[] { KEY_ID, KEY_NUMBER, KEY_TRAPS_COUNT, KEY_ENEMIES_COUNT, KEY_CHESTS_COUNT, KEY_MAP_SIZE };
+        private const String KEY_WIDTH = "width";
+        private const String KEY_HEIGHT = "height";
+        private String[] COLUMNS = new String[] { KEY_ID, KEY_NUMBER, KEY_TRAPS_COUNT, KEY_ENEMIES_COUNT, KEY_CHESTS_COUNT, KEY_WIDTH, KEY_HEIGHT };
 
         static LevelDb()
         {
@@ -28,7 +29,8 @@ namespace DataBase
                 KEY_TRAPS_COUNT + " INTEGER, " +
                 KEY_ENEMIES_COUNT + " INTEGER, " +
                 KEY_CHESTS_COUNT + " INTEGER, " +
-                KEY_MAP_SIZE + " REAL ) ";
+                KEY_WIDTH + " INTEGER, " +
+                KEY_HEIGHT + " INTEGER ) ";
             dbcmd.ExecuteNonQuery();
         }
 
@@ -43,14 +45,15 @@ namespace DataBase
                 + KEY_TRAPS_COUNT + ", "
                 + KEY_ENEMIES_COUNT + ", "
                 + KEY_CHESTS_COUNT + ", "
-                + KEY_MAP_SIZE + " ) "
+                + KEY_WIDTH + ", "
+                + KEY_HEIGHT + " ) "
 
                 + "VALUES ( '"
                 + level.Number + "', '"
-                + level.Traps_Count + "', '"
-                + level.Enemies_Count + "', '"
-                + level.Chests_Count + "', '"
-                + level.Map_Size + "' )";
+                + level.TrapsCount + "', '"
+                + level.BonusCount + "', '"
+                + level.Width + "', '"
+                + level.Height + "' )";
             dbcmd.ExecuteNonQuery();
             Debug.Log("Niveau ajouté!");
         }
@@ -108,10 +111,10 @@ namespace DataBase
         {
             Level level = new Level();
             level.Number = reader.GetInt32(1);
-            level.Traps_Count = reader.GetInt32(2);
-            level.Enemies_Count = reader.GetInt32(3);
-            level.Chests_Count = reader.GetInt32(4);
-            level.Map_Size = reader.GetFloat(5);
+            level.TrapsCount = reader.GetInt32(2);
+            level.BonusCount = reader.GetInt32(3);
+            level.Width = reader.GetInt32(4);
+            level.Height = reader.GetInt32(5);
             return level;
         }
 

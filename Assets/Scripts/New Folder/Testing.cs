@@ -13,7 +13,7 @@ public class Testing : MonoBehaviour
             Debug.Log(l.Number);
         }
         Level o = LevelDb.GetLevelByNumber(12);
-        Debug.Log("Récupération du niveau "+ o.Chests_Count);
+        Debug.Log("Récupération du niveau "+ o.BonusCount);
         
     }
 

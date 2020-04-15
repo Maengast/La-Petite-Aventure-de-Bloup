@@ -8,111 +8,181 @@ using UnityEngine.UIElements;
 
 public class Boss : Character
 {
-    // Start is called before the first frame update
-    Player player;
-    private PathFinding pathFinding;
-    private List<Node> path;
-    public StaminaBar StaminaBar;
+	[Header("Character Components")]
+	public StaminaBar StaminaBar;
+	
+	//Boss Pathfinding
+    private Player _player;
+    private PathFinding _pathFinding;
+    private List<Node> _path;
     private int currentPoint;
-    float _currentStamina = 100;
-    float maxDistanceToTarget; 
-    float maxTimeToTarget; 
-    float MaxStamina = 100;
+    
+    //Boss Stamina
+    private float _currentStamina = 100;
+    private float _maxStamina = 100;
    
-    public BossInfo BossInfo;
+    private BossInfo _info;
+    private float trajectoryTime;
+    /**
+     * Called when Object and components are fully instantiated
+     * Start is called before the first frame update
+     */ 
     void Start()
     {
-        BossInfo characterInfo = BossDb.GetAllBoss()[0];
-        Speed = characterInfo.Speed;
-        AttackMultiplier = characterInfo.Attack_Multiplier;
-        MaxStamina = characterInfo.MaxStamina;
-        MaxLife = characterInfo.MaxLife;
-        base.Init();
-        player = FindObjectOfType<Player>();
-        pathFinding = FindObjectOfType<PathFinding>();
-        StaminaBar.SetMaxStamina(characterInfo.MaxStamina);
+	    //Set Boss Stats
+	    BossInfo _info = BossDb.GetAllBoss()[0];
+        SetBossStats(_info);
+        Init(); //Init Boss
+        
+        //Find required components
+        _player = FindObjectOfType<Player>();
+        _pathFinding = FindObjectOfType<PathFinding>();
+        
         InvokeRepeating("UpdateStamina", 0f, 3f);
-        StartSearchPathToPlayer();
+        //Update path if _player exist
+        if(_player) UpdatePath();
     }
-
+	
+    /**
+     * Set stats of boss
+     */
+    private void SetBossStats(BossInfo _info)
+    {
+	    SetCharacterStats(_info);
+	    _maxStamina = _info.MaxStamina;
+	    trajectoryTime = 2 * Speed / Gravity;
+    }
+	
+    /**
+     * Called every frame
+     */
     void Update()
     {
-        if (path == null || currentPoint >= path.Count)
+	    //No _path , no move
+	    if (_path == null || currentPoint >= _path.Count)
         {
             SetBoolAnim("IsRunning", false);
+            _movementDirection.x = 0;
             return;
         }
-      
-        if (OnGround)
+	    
+	    //Get target node of _path
+	    Node targetNode = _path[currentPoint];
+	    Vector2 targetPos = targetNode.Position;
+	    
+	    if (OnGround)
         {
             ChooseBestAttack();
             SetBoolAnim("IsRunning", true);
+			
+            //Jump if is on jump node
+            if (targetNode.LinkType == PathLinkType.jump || targetNode.LinkType == PathLinkType.runoff)
+            {
+	            Jump();
+            }
 
-            float distance = Vector2.Distance(transform.position, path[currentPoint].Position);
-            if (distance < 1f)
+            if (targetNode.LinkType == PathLinkType.fall)
+            {
+	            
+            }
+            
+            //Change node target if boss has reached the target
+            float distance = Vector2.Distance(transform.position, _path[currentPoint].Position);
+            if (distance < 0.1f)
             {
                 currentPoint++;
             }
         }
         
-        MoveTo(GetNodeToFollow().Position);
+	    //Move Boss
+        MoveTo(targetPos);
     }
-    
+	
+    /**
+     * Called every fixed frame-rate frame
+     * Do physics calculations
+     */
+    protected override void FixedUpdate()
+    {
+	    //Update path to take if to reach the player
+	    if(_player) UpdatePath();
+	    base.FixedUpdate();
+    }
+
     /**
      * Move Character to target position
      */
-    public virtual void MoveTo(Vector3 target)
+    public virtual void MoveTo(Vector3 targetPos)
     {
-	    Vector2 distance = (target - transform.position);
+	    Vector2 distance = (targetPos - transform.position);
 	    if (!OnGround)
 	    {
-		    float time = (Mathf.Abs(distance.x )+3.0f) / currentXSpeed;
-		    speedMultiplier = time / maxTimeToTarget;
-		    currentXSpeed *= speedMultiplier;
+		    float time = (Mathf.Abs(distance.x )+2.0f)/currentSpeed;
+		    float speedMultiplier = time / trajectoryTime;
+		    currentSpeed *= speedMultiplier;
 	    }
+
 	    _movementDirection.x = distance.normalized.x;
     }
-    
-
-    public int GetCurrentPoint()
+	
+    /**
+     * Override Character.Jump()
+     * Define boss jump behavior
+     */
+    protected override void Jump()
     {
-        return currentPoint;
-    }
-    public List<Node> GetPath()
-    {
-        return path;
-    }
-
-    public override void Jump()
-    {
-	    maxDistanceToTarget = 2 * Mathf.Pow(XSpeed, 2) / Gravity;
-	    maxTimeToTarget = 2 * XSpeed / Gravity;
+	    
 	    currentPoint++;
-        Vector2 movement = path[currentPoint].Position - transform.position;
-        JumpHeight = Mathf.Abs(movement.y)+ 2f;
-        base.Jump();
+	    CalcJumpHeigth();
+	    base.Jump();
+	    // Vector2 pos = transform.position;
+	    // Vector2 targPos = _path[currentPoint].Position;
+	    // float velocity = Mathf.Sqrt(2 * Gravity * JumpHeight + Mathf.Pow(currentSpeed, 2));
+	    // float jumpAngle = Mathf.Atan(Mathf.Pow(velocity, 2) +
+	    //                              Mathf.Sqrt(Mathf.Pow(velocity, 4) - Gravity *
+	    //                                         (Gravity * Mathf.Pow(targPos.x-pos.x, 2) +
+	    //                                          2 * targPos.y-pos.y * Mathf.Pow(velocity, 2))) / (Gravity * targPos.x-pos.x));
+	    // Debug.Log(jumpAngle);
+	    // _movementDirection.x = Mathf.Cos(jumpAngle);
+	    // _movementDirection.y = Mathf.Sin(jumpAngle);
     }
 
-    public void StartSearchPathToPlayer()
+    private void CalcJumpHeigth()
     {
-        InvokeRepeating("UpdatePath", 0f, 0.5f);
+	    Vector2 distanceToTarget = _path[currentPoint].Position - transform.position;
+	    if (Mathf.Sign(distanceToTarget.y) < 0)
+	    {
+		    JumpHeight = 0;
+	    }
+	    else
+	    {
+		    JumpHeight = Mathf.Abs(distanceToTarget.y)+ 2f;
+	    }
     }
+
+    public override void SetOnGround(bool value)
+    {
+	    base.SetOnGround(value);
+	    if(value)currentSpeed = Speed;
+    }
+
+
     void UpdatePath()
     {
-        if (pathFinding.IsDone && !InJump && OnGround)
-            pathFinding.FindPath(transform.position, player.transform.position, OnPathComplete);
+        if (_pathFinding.IsDone && !IsJumping() && OnGround)
+            _pathFinding.FindPath(transform.position, _player.transform.position, OnPathComplete);
     }
 
-    void OnPathComplete(List<Node> path)
+    void OnPathComplete(List<Node> _path)
     {
-        this.path = path;
+        this._path = _path;
         currentPoint = 0;
     }
 
 
     void UpdateStamina()
     {
-        if (_currentStamina < MaxStamina)
+        if (_currentStamina < _maxStamina)
         {
             _currentStamina += 3;
             StaminaBar.SetStamina(_currentStamina);
@@ -143,13 +213,13 @@ public class Boss : Character
 
     private void OnDrawGizmos()
     {
-        if (path != null)
+        if (_path != null)
         {
-            Gizmos.DrawWireCube(pathFinding.transform.position, new Vector3(pathFinding.GetGrid().GetWidth(), pathFinding.GetGrid().GetHeight(), 1));//Draw a wire cube with the given dimensions from the Unity inspector
+            Gizmos.DrawWireCube(_pathFinding.transform.position, new Vector3(_pathFinding.GetGrid().GetWidth(), _pathFinding.GetGrid().GetHeight(), 1));//Draw a wire cube with the given dimensions from the Unity inspector
 
-            if (pathFinding.GetGrid() != null)//If the grid is not empty
+            if (_pathFinding.GetGrid() != null)//If the grid is not empty
             {
-                foreach (Node n in path)//Loop through every node in the grid
+                foreach (Node n in _path)//Loop through every node in the grid
                 {
                     if (n.IsWalkable)//If the current node is a wall node
                     {
@@ -160,7 +230,7 @@ public class Boss : Character
                         Gizmos.color = Color.red;//Set the color of the node
                     }
 
-                    Gizmos.DrawCube(n.Position, Vector3.one * (pathFinding.GetGrid().CellSize / 2));//Draw the node at the position of the node.
+                    Gizmos.DrawCube(n.Position, Vector3.one * (_pathFinding.GetGrid().CellSize / 2));//Draw the node at the position of the node.
                 }
             }
         }

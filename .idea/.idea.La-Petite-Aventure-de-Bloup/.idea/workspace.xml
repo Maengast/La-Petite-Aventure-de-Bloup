@@ -3,14 +3,92 @@
   <component name="ChangeListManager">
     <list default="true" id="864a069d-4079-4c07-8954-692686705718" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Boss/Boss.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Boss/Boss.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Player.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Player.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Dirt.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/Dirt.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Dirt.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/Dirt.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Grass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Grass.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffLeft.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffMid.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffMid.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffRight.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight&amp;Left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight&amp;Left.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight&amp;Left2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight&amp;Left2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PathFinding.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PathFinding.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSaw.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSaw.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSawAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSawAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSawAttack.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSawAttack.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/Claws.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/Claws.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/ClawsAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/ClawsAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/ClawsAttack.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/ClawsAttack.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boss_run.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boss_run.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Character.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Character.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CharacterCollisions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterCollisions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CharacterCollisions.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterCollisions.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/DataManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Boss.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/BossInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/BossInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/BossInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/BossInfo.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/CharacterInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/CharacterInfo.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Level.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New Folder/Testing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/New Folder/Testing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Node.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Node.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Player.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Singleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/Singleton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Singleton.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UILevel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UILevel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/UIManager.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,33 +99,49 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_SpriteAnimator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/Button.png.meta" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIComponent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entities/Bonus.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F38C71C8-6AA6-4E29-9D4C-EA9FB7C715E1/62/6907b0be/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entities/Obstacle.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entities/Level.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../RTM/Assets/Script/Gestion/AspectRatio.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Attacks/Attack.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/TileManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/New Folder/Testing.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PathFinding/PathFinding.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PathFinding/Node.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PathFinding/LedgePoint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entities/AttackModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/CharacterInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Boss_run.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/BossInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entities/Boss.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Database/BossDb.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entities/Player.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UILevelNumber.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Attacks/IAttack.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entities/Character.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/UI/AspectRatio.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Singleton.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CharacterCollisions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Singleton/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7C074160-DD1A-4D91-9B45-B6E4C27A3BAC/df/7f7d3771/Int32.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Singleton/Singleton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Entities/CharacterCollisions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIButton.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Singleton/UIManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Singleton/DataManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UILevel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/Player.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../MMA3D/Assets/Script/Management/AspectRatio.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/Character.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/SawTrapt.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -62,20 +156,39 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/Buttons/PlayButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Grounded.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SceneManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UILevel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UILoadLevel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIComponent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UILevelNumber.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Boss_run.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CharacterCollisions.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UILevel.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Node.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/PathFinding.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Entities/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterCollisions.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Entities/Character.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Entities/Boss.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Boss_run.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Entities/LevelInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level/Tile.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level/TileInfos.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level/TileObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Entities/Level.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Singleton/DataManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/New Folder/Testing.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level/TileManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" />
       </list>
     </option>
   </component>
@@ -149,6 +262,16 @@
       <workItem from="1586346529514" duration="1040000" />
       <workItem from="1586421602765" duration="10180000" />
       <workItem from="1586435104729" duration="9647000" />
+      <workItem from="1586509086131" duration="15240000" />
+      <workItem from="1586534191905" duration="6528000" />
+      <workItem from="1586544994409" duration="5596000" />
+      <workItem from="1586590983060" duration="657000" />
+      <workItem from="1586591676673" duration="7523000" />
+      <workItem from="1586698855307" duration="13898000" />
+      <workItem from="1586766153888" duration="32465000" />
+      <workItem from="1586851087280" duration="32036000" />
+      <workItem from="1586889497122" duration="12874000" />
+      <workItem from="1586932738069" duration="16969000" />
     </task>
     <servers />
   </component>
@@ -171,10 +294,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1585067259057">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1586858943729">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.-115.2560.1400@0.0.1536.824" timestamp="1585067259057" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.-115.2560.1400@0.0.1536.824" timestamp="1586858943729" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

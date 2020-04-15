@@ -18,18 +18,18 @@ public class Boss_run : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        int currentPoint = boss.GetCurrentPoint();
-        if (boss.GetPath() != null &&  currentPoint < boss.GetPath().Count)
-        {
-            
-
-            //boss.Move(targetPosition);
-            Node targetNode = boss.GetPath()[currentPoint];
-            Vector3 targetPosition = targetNode.Position;
-            if (targetNode.LinkType == PathLinkType.jump || targetNode.LinkType == PathLinkType.runoff)
-            {
-                boss.Jump();
-            }
+        // int currentPoint = boss.GetCurrentPoint();
+        // if (boss.GetPath() != null &&  currentPoint < boss.GetPath().Count)
+        // {
+        //     
+        //
+        //     //boss.Move(targetPosition);
+        //     Node targetNode = boss.GetPath()[currentPoint];
+        //     Vector3 targetPosition = targetNode.Position;
+        //     if (targetNode.LinkType == PathLinkType.jump || targetNode.LinkType == PathLinkType.runoff)
+        //     {
+        //         boss.Jump();
+        //     }
 
 
             //if (Vector2.Distance(boss.transform.position, player.transform.position) <= 1f)
@@ -38,7 +38,7 @@ public class Boss_run : StateMachineBehaviour
             //    boss.Attack(test);
             //    animator.SetTrigger("Attack");
             //}
-        }
+        //}
 
     }
 
