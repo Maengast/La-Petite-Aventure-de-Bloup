@@ -9,5 +9,5 @@ public abstract class Attack : ScriptableObject, IAttack
     public string Name;
 
     public AttackModel AttackModel;
-    public abstract void Lauch(Character character);
+    public abstract void Launch(Character character);
 }

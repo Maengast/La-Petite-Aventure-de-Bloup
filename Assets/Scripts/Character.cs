@@ -27,7 +27,7 @@ public class Character : MonoBehaviour
     protected bool CanJump = true;
     protected bool InJump = false;
 
-    public HealthBar HealthBar;
+    public BarScript HealthBar;
 
     protected Rigidbody2D Rigidbody;
     protected Animator CharacterAnimator;
@@ -47,7 +47,7 @@ public class Character : MonoBehaviour
         CharacterAnimator = GetComponent<Animator>();
         _gameManager = GameManager.Instance;
         Life = MaxLife;
-        HealthBar.SetMaxHealth(MaxLife);
+        HealthBar.SetMaxValue(MaxLife);
     }
 
     /**
@@ -169,7 +169,7 @@ public class Character : MonoBehaviour
     public virtual void TakeDamages(float damages)
     {
         Life -= damages;
-        HealthBar.SetHealth(Life);
+        HealthBar.SetValue(Life);
         if (Life <= 0)
             Die();
     }

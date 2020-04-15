@@ -23,7 +23,7 @@ public class Boss_run : StateMachineBehaviour
         {
             Node targetNode = boss.GetPath()[currentPoint];
             Vector3 targetPosition = targetNode.Position;
-            if (targetNode.LinkType == PathLinkType.jump || targetNode.LinkType == PathLinkType.runoff)
+            if (targetNode.LinkType == PathLinkType.jump)
             {
                 boss.Jump();
             }

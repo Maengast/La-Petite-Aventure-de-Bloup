@@ -11,12 +11,11 @@ public class CircularSawAttack : Attack
         numberOfCircleSaw = 2;
         Name = "CircleSaw";
     }
-    public override void Lauch(Character character)
+    public override void Launch(Character character)
     {
         float damages = character.AttackMultiplier * AttackModel.Damage;
         firePoint = character.transform.Find("FirePoint");
-
-        for(int i = 0; i<numberOfCircleSaw; i++)
+        for (int i = 0; i<numberOfCircleSaw; i++)
         {
             GameObject circleSaw = Instantiate(AttackModel.ObjectPrefab, firePoint.position, firePoint.rotation) as GameObject;
             circleSaw.name = AttackModel.Name;

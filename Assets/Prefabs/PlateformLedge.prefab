@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 121082675834661192}
   - component: {fileID: 1065144184438430281}
   - component: {fileID: 8986952300096301366}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PlateformLedge
   m_TagString: Untagged
   m_Icon: {fileID: 0}

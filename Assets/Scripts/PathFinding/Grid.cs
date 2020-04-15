@@ -21,8 +21,6 @@ namespace PathFinder
 
         public float JumpDistance = 5;
         float BoxWidth, BoxHeight;
-        List<LedgePoint> LedgePoints = new List<LedgePoint>();
-        [SerializeField] GameObject LedgePlateform;
         GameObject AreaBox;
         private void Start()
         {
@@ -66,33 +64,13 @@ namespace PathFinder
             // Find ledge corner fall points
             // Raycast at specific angle to check fall point
             // If valid create a one way link
-            AddRunOffAndFallLinksToCorners();
-
-            // Get jumpoints of each leadgePoints
+            //
+            // Get jumpoints of each corners
             // Check if there are jump points
-            // Loop on jumpPoints
             // Raycast at specific angle to check jump point
             // If valid create jump link
+            AddJumpAndFallLinksToCorners();
 
-            AddJumpLinks();
-
-
-            // Cleanup leftover ledge corner colliders
-            ClearUpLedgePoint();
-
-        }
-
-        void ClearUpLedgePoint()
-        {
-            foreach ( LedgePoint ledgePoint in LedgePoints)
-            {
-                // Destroy useless ledgePoint gameobject
-                Destroy(ledgePoint.gameObject);
-            }
-        }
-        void SetJumpDistance(float jumpDistance)
-        {
-            this.JumpDistance = jumpDistance;
         }
 
         public bool OutOfBounds(int x, int y)
@@ -183,8 +161,9 @@ namespace PathFinder
 
         }
 
-        private void AddRunOffAndFallLinksToCorners()
+        private void AddJumpAndFallLinksToCorners()
         {
+           
             foreach (Node corner in Corners)
             {
                 // Discover the direction the tile is facing
@@ -207,82 +186,35 @@ namespace PathFinder
                     int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
                     corner.AddLink(node, distance, PathLinkType.fall);
                 }
-                // Find corner runoff point
-                hit = Physics2D.Raycast(
-                    overhang.Position,
-                    new Vector2(0.2f * direction, -0.5f),
-                    (GetHeight() - overhang.GridY) * CellSize,
-                    UnwalkableMask
-                    );
 
-
-                // If valid create a 2 way link
-                if (hit.collider)
+                float initialValue = 0.2f;
+                float h = initialValue;
+                /// Find all corner jump point
+                while (h <= 0.5)
                 {
-                    Node node = NodeFromWorldPoint(hit.point);
-                    float high = Math.Abs(overhang.Position.y) - Math.Abs(node.Position.y);
-                    if(high < JumpDistance)
-                    {
-                        int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
-                        // platform corner to node link
-                        corner.AddLink(node, distance, PathLinkType.runoff);
-                        // current nose to platform corner
-                        node.AddLink(corner, distance, PathLinkType.runoff);
-                    }
-                    
-                }
 
+                    hit = Physics2D.Raycast(
+                        overhang.Position,
+                        new Vector2( h*direction, -(initialValue + 0.5f) +h ),
+                        JumpDistance,
+                        JumpMask
+                        );
 
-
-                // Creata a ledge point for evaluating corner jumps
-
-                GameObject pointObj = (GameObject)Instantiate(LedgePlateform);
-                LedgePoint point = pointObj.GetComponent<LedgePoint>();
-                pointObj.transform.position = GetGridObject(corner.GridX, corner.GridY).Position;
-                LedgePoints.Add(point);
-                point.X = corner.GridX;
-                point.Y = corner.GridY;
-                point.Direction = direction;
-                point.Position = GetGridObject(corner.GridX, corner.GridY).Position;
-                LedgePoints.Add(point);
-
-            }
-        }
-
-        private void AddJumpLinks() {
-            // Loop through all ledge corners
-            foreach (LedgePoint ledgePoint in LedgePoints)
-            {
-                // Get ledge Point corresponding node
-                Node node = GetGridObject(ledgePoint.X, ledgePoint.Y);
-
-                RaycastHit2D[] jumpPoints = Physics2D.BoxCastAll(
-                    ledgePoint.Position,
-                    new Vector2(1, JumpDistance),
-                    0,
-                    new Vector2(JumpDistance * ledgePoint.Direction, 0),
-                    JumpDistance,
-                    JumpMask);
-
-                foreach (RaycastHit2D jumpPoint in jumpPoints)
-                {
-                    int distance = (int)Mathf.Floor(Vector3.Distance(ledgePoint.Position, jumpPoint.transform.position));
-
-                    RaycastHit2D hit = Physics2D.Raycast(
-                        ledgePoint.Position,
-                        (jumpPoint.transform.position - ledgePoint.Position).normalized,
-                        Vector3.Distance(ledgePoint.Position, jumpPoint.transform.position),
-                        UnwalkableMask);
-
+                    h += 0.1f;
                     if (hit.collider)
                     {
-                        continue;
+                        Node node = NodeFromWorldPoint(hit.point);
+                        int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
+                        // platform corner to node link
+                        corner.AddLink(node, distance, PathLinkType.jump);
+                        // current node to platform corner
+                        node.AddLink(corner, distance, PathLinkType.jump);
                     }
 
-                    LedgePoint targetLedgePoint = jumpPoint.collider.GetComponent<LedgePoint>();
-                    // Add jump link on node
-                    node.AddLink(GetGridObject(targetLedgePoint.X, targetLedgePoint.Y), distance, PathLinkType.jump);
                 }
+
+
+
             }
         }
 
@@ -305,34 +237,6 @@ namespace PathFinder
             return GridArray[x, y];
         }
 
-        public List<Node> GetNeighbours(Node node)
-        {
-            // Create new cell neighbours list
-            List<Node> neighbours = new List<Node>();
-
-            // Check Est and West cells
-            for (int x = -1; x <= 1; x++)
-            {
-                // Check north and South cells
-                for (int y = -1; y <= 1; y++)
-                {
-                    // Check if examining current cell
-                    if (x == 0 && y == 0)
-                        continue;
-
-                    int checkX = node.GridX + x;
-                    int checkY = node.GridY + y;
-
-                    if (!OutOfBounds(checkX, checkY))
-                    {
-                        neighbours.Add(GetGridObject(checkX, checkY));
-                    }
-                }
-            }
-
-            return neighbours;
-        }
-
         public Node NodeFromWorldPoint(Vector3 worldPosition)
         {
             float percentX = Mathf.Abs(BoxPosition.x - worldPosition.x) / CellSize;
@@ -346,7 +250,18 @@ namespace PathFinder
 
         }
 
+        private void OnDrawGizmos()
+        {
+ 
+                foreach (Node n in Corners)//Loop through every node in the grid
+                {
+                Gizmos.DrawLine(n.Position, new Vector3(0,0,0));//Draw the node at the position of the node.
+                }
+        }
 
     }
+
+
 }
+
 
