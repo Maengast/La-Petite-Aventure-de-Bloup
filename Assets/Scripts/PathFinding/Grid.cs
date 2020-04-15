@@ -22,10 +22,7 @@ namespace PathFinder
         public float JumpDistance = 5;
         public float CornerOffset = 2;
         private float _boxWidth, _boxHeight;
-        private List<LedgePoint> _ledgePoints = new List<LedgePoint>();
-        
-        public GameObject LedgePlateform;
-        
+
         private GameObject _areaBox;
         
         private void Start()
@@ -249,15 +246,6 @@ namespace PathFinder
 
             return _gridArray[x, y];
 
-        }
-
-        private void OnDrawGizmos()
-        {
- 
-                foreach (Node n in Corners)//Loop through every node in the grid
-                {
-                Gizmos.DrawLine(n.Position, new Vector3(0,0,0));//Draw the node at the position of the node.
-                }
         }
 
     }

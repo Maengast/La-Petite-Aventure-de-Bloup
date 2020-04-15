@@ -65,6 +65,7 @@
             </e>
             <e p="IAttack.cs" t="Include" />
           </e>
+          <e p="BarScript.cs" t="Include" />
           <e p="Boss_run.cs" t="Include" />
           <e p="Database" t="Include">
             <e p="AttackDb.cs" t="Include" />
@@ -114,7 +115,6 @@
             <e p="Singleton.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
           </e>
-          <e p="StaminaBar.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="UIButton.cs" t="Include" />
             <e p="UIComponent.cs" t="Include" />

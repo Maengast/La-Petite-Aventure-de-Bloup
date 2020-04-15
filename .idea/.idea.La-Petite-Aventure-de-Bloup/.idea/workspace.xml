@@ -4,91 +4,12 @@
     <list default="true" id="864a069d-4079-4c07-8954-692686705718" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Dirt.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/Dirt.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Dirt.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/Dirt.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Grass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Grass.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffLeft.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffMid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffMid.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassCliffRight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillLeft2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassHillRight2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillLeft2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight&amp;Left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight&amp;Left.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight&amp;Left2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight&amp;Left2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassJoinHillRight2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PathFinding.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PathFinding.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSaw.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSaw.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSawAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSawAttack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSawAttack.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSawAttack.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/Claws.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/Claws.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/ClawsAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/ClawsAttack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/ClawsAttack.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/ClawsAttack.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boss_run.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boss_run.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Character.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Character.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CharacterCollisions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterCollisions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CharacterCollisions.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterCollisions.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/DataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/New Sprite Atlas.spriteatlas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/New Sprite Atlas.spriteatlas.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlateformLedge.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlateformLedge.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Boss.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/BossInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/BossInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/BossInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/BossInfo.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/CharacterInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/CharacterInfo.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Level.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New Folder/Testing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/New Folder/Testing.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Node.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Node.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Entities/Player.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Singleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/Singleton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Singleton.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UILevel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UILevel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/UIManager.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,8 +97,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Entities/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterCollisions.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Entities/Character.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Entities/Boss.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Entities/LevelInfo.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/Tile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/TileInfos.cs" />
@@ -189,6 +108,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/New Folder/Testing.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/TileManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Entities/Boss.cs" />
       </list>
     </option>
   </component>
@@ -271,7 +192,7 @@
       <workItem from="1586766153888" duration="32465000" />
       <workItem from="1586851087280" duration="32036000" />
       <workItem from="1586889497122" duration="12874000" />
-      <workItem from="1586932738069" duration="16969000" />
+      <workItem from="1586932738069" duration="18991000" />
     </task>
     <servers />
   </component>
@@ -294,10 +215,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1586858943729">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1586954421320">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.-115.2560.1400@0.0.1536.824" timestamp="1586858943729" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.-115.2560.1400@0.0.1536.824" timestamp="1586954421320" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

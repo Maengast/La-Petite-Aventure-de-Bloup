@@ -41,7 +41,7 @@ public class Boss : Character
         _pathFinding = FindObjectOfType<PathFinding>();
         
         _firePoint = transform.Find("FirePoint");
-        StaminaBar.SetMaxValue(characterInfo.MaxStamina);
+        StaminaBar.SetMaxValue(_info.MaxStamina);
         StartCoroutine("UpdateStamina");
         //Update path if _player exist
         if(_player) UpdatePath();
@@ -79,7 +79,7 @@ public class Boss : Character
             SetBoolAnim("IsRunning", true);
 			
             //Jump if is on jump node
-            if (targetNode.LinkType == PathLinkType.jump || targetNode.LinkType == PathLinkType.runoff)
+            if (targetNode.LinkType == PathLinkType.jump)
             {
 	            Jump();
             }
@@ -147,7 +147,7 @@ public class Boss : Character
      */
     protected override void Jump()
     {
-	    
+	    Debug.Log("Jump");
 	    currentPoint++;
 	    CalcJumpHeigth();
 	    base.Jump();
@@ -169,6 +169,7 @@ public class Boss : Character
 	    if (Mathf.Sign(distanceToTarget.y) < 0)
 	    {
 		    JumpHeight = 0;
+		    Debug.Log("jumpheight");
 	    }
 	    else
 	    {
@@ -202,9 +203,9 @@ public class Boss : Character
         {
             // update stamina every 3seconds
             yield return new WaitForSeconds(3f);
-            if (_currentStamina < MaxStamina)
+            if (_currentStamina < _maxStamina)
             {
-                _currentStamina += (MaxStamina /10);
+                _currentStamina += (_maxStamina /10);
                 StaminaBar.SetValue(_currentStamina);
             }
         }
@@ -302,7 +303,7 @@ public class Boss : Character
 
     bool IsInRange(AttackModel attack)
     {
-        float distance = Mathf.Abs(player.transform.position.x - transform.position.x);
+        float distance = Mathf.Abs(_player.transform.position.x - transform.position.x);
         if (attack.Type == AttackType.Distance && distance <= (int)AttackType.Distance)
         {
             return false;
@@ -315,31 +316,31 @@ public class Boss : Character
         return attack.Cost < _currentStamina;
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    if (path != null)
-    //    {
-    //        Gizmos.DrawWireCube(pathFinding.transform.position, new Vector3(pathFinding.GetGrid().GetWidth(), pathFinding.GetGrid().GetHeight(), 1));//Draw a wire cube with the given dimensions from the Unity inspector
+    private void OnDrawGizmos()
+    {
+        if (_path != null)
+        {
+            Gizmos.DrawWireCube(_pathFinding.transform.position, new Vector3(_pathFinding.GetGrid().GetWidth(), _pathFinding.GetGrid().GetHeight(), 1));//Draw a wire cube with the given dimensions from the Unity inspector
 
-    //        if (pathFinding.GetGrid() != null)//If the grid is not empty
-    //        {
-    //            foreach (Node n in path)//Loop through every node in the grid
-    //            {
-    //                if (n.IsWalkable)//If the current node is a wall node
-    //                {
-    //                    Gizmos.color = Color.white;//Set the color of the node
-    //                }
-    //                else
-    //                {
-    //                    Gizmos.color = Color.red;//Set the color of the node
-    //                }
+            if (_pathFinding.GetGrid() != null)//If the grid is not empty
+            {
+                foreach (Node n in _path)//Loop through every node in the grid
+                {
+                    if (n.IsWalkable)//If the current node is a wall node
+                    {
+                        Gizmos.color = Color.white;//Set the color of the node
+                    }
+                    else
+                    {
+                        Gizmos.color = Color.red;//Set the color of the node
+                    }
 
-    //                Gizmos.DrawCube(n.Position, Vector3.one * (pathFinding.GetGrid().CellSize / 2));//Draw the node at the position of the node.
-    //            }
-    //        }
-    //    }
+                    Gizmos.DrawCube(n.Position, Vector3.one * (_pathFinding.GetGrid().CellSize / 2));//Draw the node at the position of the node.
+                }
+            }
+        }
 
-    //}
+    }
 
 
 }
