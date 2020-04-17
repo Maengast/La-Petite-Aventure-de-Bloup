@@ -66,7 +66,7 @@ public class LevelGenerator : MonoBehaviour
 		TileManager.LevelTileSprites = LevelTileSprites;
 		//Instantiate and upgrades tiles
 		UpgradeTiles(InstantiateTiles());
-		
+
 		//Tell the level is generated end give end and start tile
 		levelGenerated(_endTile, _startTile,complete);
 	}
@@ -296,7 +296,7 @@ public class LevelGenerator : MonoBehaviour
 		int areaSizeY = area.Size.y;
 		
 		//Get always an offset between tile bounds and Map bounds
-		if (areaOriginX + areaSizeX > (_level.Width) || areaOriginY + areaSizeY >= (_level.Height) || areaOriginX <= 1)
+		if (areaOriginX + areaSizeX >= (_level.Width) || areaOriginY + areaSizeY >= (_level.Height) || areaOriginX <= 1)
 		{
 			return null;
 		}

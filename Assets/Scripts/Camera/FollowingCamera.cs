@@ -58,7 +58,7 @@ public class FollowingCamera : MonoBehaviour
 		    newPos.x = playerPos.x;
 	    }
 
-	    if (playerPos.y <= _levelHeight - _sizeY / 2 && playerPos.y >= _sizeY / 2)
+	    if (/*playerPos.y <= _levelHeight - _sizeY / 2 &&*/ playerPos.y >= _sizeY / 2)
 	    {
 		    newPos.y = playerPos.y;
 	    }

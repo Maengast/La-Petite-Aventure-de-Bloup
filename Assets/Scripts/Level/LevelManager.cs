@@ -90,12 +90,11 @@ public class LevelManager : MonoBehaviour
 	    GameObject pathfinding = Instantiate(PathFinding);
 	    pathfinding.transform.position = Vector3.zero;
 	    //create grid Area
-	    Area gridArea = new Area();
-	    gridArea.Origin = new Coordinate(0,0);
-	    gridArea.Size = new Coordinate(_levelInfos.Width, _levelInfos.Height);
+	    Vector2 origin = new Vector2(0,_levelInfos.Height-1);
+	    Vector2 size = new Vector2(_levelInfos.Width, _levelInfos.Height);
 	    //init grid
 	    //Take max jump distance to setup path finding
-	    pathfinding.GetComponent<Grid>().InitGrid(gridArea,BossSize,Mathf.Max(_levelInfos.MaxJumpDistance.x,_levelInfos.MaxJumpDistance.x));
+	    pathfinding.GetComponent<Grid>().InitGrid(origin,size,BossSize,Mathf.Max(_levelInfos.MaxJumpDistance.x,_levelInfos.MaxJumpDistance.x)+3);
     }
     
     /**

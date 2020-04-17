@@ -21,44 +21,39 @@ namespace PathFinder
         {
             return Grid;
         }
-
-        Node GetLedge(Vector3 position)
+        
+        RaycastHit2D LedgeCheck(Vector3 pos)
         {
             RaycastHit2D ledgeHit = Physics2D.Raycast(
-                position,
-                Vector2.down,
+                pos,
+                -Vector2.up,
                 10,
                 Grid.UnwalkableMask);
 
-            if (ledgeHit.collider)
-            {
-                Node node = Grid.NodeFromWorldPoint(ledgeHit.point);
-                if (node.Ledge) {
-                    return node;
-                };
-             
-                node = Grid.GetGridObject(node.GridX, node.GridY + 1);
-
-                if (node.Ledge)
-                {
-                    return node;
-                }
-
-                node = Grid.GetGridObject(node.GridX, node.GridY - 1);
-                if(node.Ledge)
-                {
-                    return node;
-                }
-            }
-            return Grid.NodeFromWorldPoint(position);
-
+            return ledgeHit;
         }
+
+        bool IsGrounded(Vector3 pos)
+        {
+            RaycastHit2D hit = LedgeCheck(pos);
+            if (!hit.collider) return false;
+
+            // Get the current node
+            Node node = Grid.NodeFromWorldPoint(hit.point);
+            //return false if object position is not grounded
+            if (!node.Ledge) return false;
+
+            return true;
+        }
+
         public void FindPath(Vector3 startPos, Vector3 targetPos, OnPathCompleteDelegate pathComplete )
         {
             IsDone = false;
-					    
-            Node startNode = GetLedge(startPos);
-            Node targetNode = GetLedge(targetPos);
+
+            Node startNode = Grid.NodeFromWorldPoint(LedgeCheck(startPos).point);
+            Debug.Log(startNode.Ledge);
+            Node targetNode = Grid.NodeFromWorldPoint(LedgeCheck(targetPos).point);
+            Debug.Log(targetNode.Ledge);
 
             List<Node> openList = new List<Node> { startNode };
             HashSet<Node> closedSet = new HashSet<Node>();
@@ -141,4 +136,3 @@ namespace PathFinder
 
     }
 }
-

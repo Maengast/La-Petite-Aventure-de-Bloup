@@ -16,7 +16,7 @@ MonoBehaviour:
   Damage: 25
   Cost: 10
   Level: 1
-  Type: 1
+  Type: 5
   Cool_Down: 5
   Description: "Gare \xE0 celui qui verra mes griffes ac\xE9r\xE9es"
   AttackRange: 2

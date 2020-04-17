@@ -35,7 +35,7 @@ public class Character : MonoBehaviour
     protected Vector2 _movementDirection;
     private bool _faceRight = true;
     public bool OnGround = false;
-    
+
     //Character Life
     protected float MaxLife = 100;
     protected float Life = 0;
@@ -108,7 +108,7 @@ public class Character : MonoBehaviour
 		    positionOffset.y += /*_movementDirection.y*/ Mathf.Sqrt(2 * Gravity * JumpHeight);
 		    if (Mathf.Sign(positionOffset.y) < 0)
 		    {
-			    SwitchJumpState();
+			    SwitchJumpState(false);
 		    }
 	    }
 	    Rigidbody.MovePosition(Rigidbody.position + positionOffset * Time.deltaTime);
@@ -139,16 +139,16 @@ public class Character : MonoBehaviour
      */
     protected virtual void Jump()
     {
-	    SwitchJumpState();
+	    SwitchJumpState(true);
     }
 
     /**
      * Change current jump state
      * Switch animation consequently 
      */
-    public void SwitchJumpState()
+    public void SwitchJumpState(bool onJump)
     {
-	    _inJump = !_inJump;
+	    _inJump = onJump;
 	    SetBoolAnim("InJump",_inJump);
 	    if (!_inJump)
 	    {
@@ -161,10 +161,14 @@ public class Character : MonoBehaviour
      */
     public virtual void SetOnGround(bool value)
     {
-        OnGround = value;
+	    OnGround = value;
+	    if (OnGround)
+	    {
+		    SwitchJumpState(!value);
+	    }
         SetBoolAnim("OnGround",value);
     }
-    
+
     public bool IsJumping()
     {
 	    return _inJump;
@@ -176,7 +180,10 @@ public class Character : MonoBehaviour
         attack.Launch(this);
     }
     
-    public virtual void TakeDamages(float damages)
+    /**
+     * Take amount of damages until character Die
+     */
+    public void TakeDamages(float damages)
     {
         Life -= damages;
         if(HealthBar)HealthBar.SetValue(Life);

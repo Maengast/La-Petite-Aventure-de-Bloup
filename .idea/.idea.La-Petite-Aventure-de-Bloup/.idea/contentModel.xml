@@ -63,7 +63,6 @@
               <e p="ClawsAttack.cs" t="Include" />
             </e>
           </e>
-          <e p="Boss_run.cs" t="Include" />
           <e p="Camera" t="Include">
             <e p="AspectRatio.cs" t="Include" />
             <e p="FollowingCamera.cs" t="Include" />
