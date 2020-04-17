@@ -35,6 +35,7 @@ public class Character : MonoBehaviour
     protected Vector2 _movementDirection;
     private bool _faceRight = true;
     public bool OnGround = false;
+    public bool ObstacleOnSides = false;
     
     //Character Life
     protected float MaxLife = 100;
@@ -108,7 +109,7 @@ public class Character : MonoBehaviour
 		    positionOffset.y += /*_movementDirection.y*/ Mathf.Sqrt(2 * Gravity * JumpHeight);
 		    if (Mathf.Sign(positionOffset.y) < 0)
 		    {
-			    SwitchJumpState();
+			    SwitchJumpState(false);
 		    }
 	    }
 	    Rigidbody.MovePosition(Rigidbody.position + positionOffset * Time.deltaTime);
@@ -139,16 +140,16 @@ public class Character : MonoBehaviour
      */
     protected virtual void Jump()
     {
-	    SwitchJumpState();
+	    SwitchJumpState(true);
     }
 
     /**
      * Change current jump state
      * Switch animation consequently 
      */
-    public void SwitchJumpState()
+    public void SwitchJumpState(bool onJump)
     {
-	    _inJump = !_inJump;
+	    _inJump = onJump;
 	    SetBoolAnim("InJump",_inJump);
 	    if (!_inJump)
 	    {
@@ -161,8 +162,29 @@ public class Character : MonoBehaviour
      */
     public virtual void SetOnGround(bool value)
     {
-        OnGround = value;
+	    OnGround = value;
+	    if (OnGround)
+	    {
+		    SwitchJumpState(!value);
+	    }
         SetBoolAnim("OnGround",value);
+    }
+    
+    /**
+     * Stop character movement in X when it collide with ground on its sides
+     */
+    public void CollisionOnSides(int dir)
+    {
+	    float currentDir = Mathf.Sign(_movementDirection.x);
+	    if ((dir < 0 && currentDir < 0) || (dir > 0 && currentDir > 0))
+	    {
+		    _movementDirection.x = 0;
+		    ObstacleOnSides = true;
+		    return;
+	    }
+	    
+	    ObstacleOnSides = false;
+	    
     }
     
     public bool IsJumping()
@@ -176,7 +198,10 @@ public class Character : MonoBehaviour
         attack.Launch(this);
     }
     
-    public virtual void TakeDamages(float damages)
+    /**
+     * Take amount of damages until character Die
+     */
+    public void TakeDamages(float damages)
     {
         Life -= damages;
         if(HealthBar)HealthBar.SetValue(Life);

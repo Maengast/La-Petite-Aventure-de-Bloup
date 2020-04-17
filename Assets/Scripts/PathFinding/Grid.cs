@@ -37,7 +37,7 @@ namespace PathFinder
         {
 	        _areaBox = area;
             _boxWidth = area.Size.x;
-            _boxHeight = area.Size.y;
+            _boxHeight = area.Size.y + JumpDistance; //To avoid out of grid bounds when jump
             float boxX = area.Origin.x;
 	        float boxY = area.Origin.y;
             _boxPosition = new Vector2(boxX, boxY);

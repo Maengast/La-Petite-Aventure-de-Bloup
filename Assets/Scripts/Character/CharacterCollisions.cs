@@ -20,24 +20,22 @@ public class CharacterCollisions : MonoBehaviour
 	    if(!CharacterInstance)CharacterInstance = GetComponent<Character>();
 	    if(!CharacterCollider)CharacterCollider = GetComponent<BoxCollider2D>();
 	    GroundLayerMask = LayerMask.GetMask("Ground");
-	    _widthOffset = CharacterCollider.bounds.size.x / 2;
+	    _widthOffset = CharacterCollider.bounds.size.x / 3;
     }
     
     void Update()
     {
 	    _colliderBounds = CharacterCollider.bounds;
-	    CheckBottomCollision();
-	    CheckTopCollision();
+	    CheckTopAndBottomCollisions();
+	    //CheckSideCollisions();
     }
 	
     /**
      * Draw an area to detect any collision with the ground
      */
-    private bool CheckCollisionWithGround(Vector2 originPoint, int dir)
+    private bool CheckCollisionWithGround(Vector2 originPoint, int dirY, float sizeX, float sizeY)
     {
-	    float colliderXSize = _colliderBounds.size.x - _widthOffset;
-	    originPoint.x += _widthOffset / 2;
-	    Vector2 targetPoint = new Vector2(originPoint.x + colliderXSize, originPoint.y + (dir * _heightOffset));
+	    Vector2 targetPoint = new Vector2(originPoint.x + sizeX, originPoint.y + (dirY * sizeY));
 	    Collider2D hitCollider = Physics2D.OverlapArea(originPoint, targetPoint,GroundLayerMask);
 	    
 	    //Debug
@@ -51,11 +49,17 @@ public class CharacterCollisions : MonoBehaviour
     
     /**
      * Check Collision with platforms under character
+     * Check collision with platforms above character
      */
-    private void CheckBottomCollision()
+    private void CheckTopAndBottomCollisions()
     {
-	    bool hit = CheckCollisionWithGround(_colliderBounds.min, -1);
-	    if (hit && !CharacterInstance.OnGround && !CharacterInstance.IsJumping())
+	    float sizeX = _colliderBounds.size.x;
+	    Vector2 origin = _colliderBounds.min;
+	    //origin.x += _widthOffset / 2;
+	    
+	    //Bottom
+	    bool hit = CheckCollisionWithGround(origin, -1, sizeX,_heightOffset );
+	    if (hit && !CharacterInstance.OnGround)
 	    {
 		    CharacterInstance.SetOnGround(true);
 	    }
@@ -63,17 +67,42 @@ public class CharacterCollisions : MonoBehaviour
 	    {
 		    CharacterInstance.SetOnGround(false);
 	    }
-    }
-	
-    /**
-     * Check collision with platform above character
-     */
-    private void CheckTopCollision()
-    {
-	    bool hit = CheckCollisionWithGround(new Vector2(_colliderBounds.min.x,_colliderBounds.max.y), 1);
+	    
+	    //top
+	    origin.y = _colliderBounds.max.y;
+	    hit = CheckCollisionWithGround(origin, 1, sizeX,_heightOffset);
 	    if (hit && CharacterInstance.IsJumping())
 	    {
-		    CharacterInstance.SwitchJumpState();
+		    CharacterInstance.SwitchJumpState(false);
+	    }
+    }
+    
+    /**
+     * Check collisions with platforms on each side of character
+     */
+    private void CheckSideCollisions()
+    {
+	    float sizeY = _colliderBounds.size.y - _heightOffset;
+	    Vector2 origin = _colliderBounds.min;
+	    origin.y += _heightOffset / 2;
+	    
+	    //Left
+	    int dirX = 0;
+	    bool hit = CheckCollisionWithGround(origin, 1, -_widthOffset,sizeY);
+	    if (hit) dirX = -1;
+	    else
+	    {
+		    //Right
+		    origin.x = _colliderBounds.max.x;
+		    hit = CheckCollisionWithGround(origin, 1, _widthOffset,sizeY);
+		    if(hit)  dirX = 1;
+	    }
+	    
+	    
+	    CharacterInstance.CollisionOnSides(dirX);
+	    if (hit && CharacterInstance.IsJumping())
+	    {
+		    CharacterInstance.SwitchJumpState(false);
 	    }
     }
 }

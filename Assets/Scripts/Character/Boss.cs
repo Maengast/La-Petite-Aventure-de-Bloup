@@ -196,14 +196,8 @@ public class Boss : Character
     private void CalcJumpHeigth()
     {
         Vector2 distanceToTarget = _path[currentPoint].Position - transform.position;
-	    if (Mathf.Sign(distanceToTarget.y) < 0)
-	    {
-		    JumpHeight = 0;
-	    }
-	    else
-	    {
-		    JumpHeight = Mathf.Abs(distanceToTarget.y)+ 2f;
-	    }
+        JumpHeight = distanceToTarget.y + 2f;
+        if (JumpHeight < 0) JumpHeight = 0;
     }
 
     public override void SetOnGround(bool value)
