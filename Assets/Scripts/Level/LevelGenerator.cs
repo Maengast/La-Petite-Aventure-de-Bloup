@@ -66,7 +66,7 @@ public class LevelGenerator : MonoBehaviour
 		TileManager.LevelTileSprites = LevelTileSprites;
 		//Instantiate and upgrades tiles
 		UpgradeTiles(InstantiateTiles());
-		
+
 		//Tell the level is generated end give end and start tile
 		levelGenerated(_endTile, _startTile,complete);
 	}

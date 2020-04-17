@@ -93,22 +93,25 @@ public class Boss : Character
                 Dodge(attackObject);
                 return;
             }
-            //Change node target if boss has reached the target
-            float distance = Vector2.Distance(transform.position, targetPos);
-            if (distance < 1f)
-            {
-	            currentPoint++;
-            }
+            
             //Jump if is on jump node
             if (targetNode.LinkType == PathLinkType.jump && !IsJumping())
             {
                 Jump();
             }
             
+            //Change node target if boss has reached the target
+            float distance = Vector2.Distance(transform.position, targetPos);
+            if (distance < 1f)
+            {
+	            currentPoint++;
+            }
+            
+            //Move Boss
+            MoveTo(targetPos);
         }
 
-        //Move Boss
-        MoveTo(targetPos);
+        
 
     }
 
