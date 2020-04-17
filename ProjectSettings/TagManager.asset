@@ -17,11 +17,11 @@ TagManager:
   - Ground
   - Detection
   - Player
-  - UnWalkable
   - Obstacle
   - Jump
   - Background
-  - 
+  - Boss
+  - AttackObject
   - 
   - 
   - 

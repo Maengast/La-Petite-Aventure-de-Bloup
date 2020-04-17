@@ -92,8 +92,9 @@ public class Character : MonoBehaviour
      */
     public void Move()
     {
-	    //flip sprite with character direction
-	    if((_movementDirection.x > 0 && !_faceRight) || (_movementDirection.x < 0 && _faceRight)) Flip();
+        //Debug.Log(_movementDirection.x);
+        //flip sprite with character direction
+        if ((_movementDirection.x > 0 && !_faceRight) || (_movementDirection.x < 0 && _faceRight)) Flip();
 	    
 	    Vector2 positionOffset = Vector2.zero;
 	    //calc X movement
@@ -149,7 +150,7 @@ public class Character : MonoBehaviour
     public void SwitchJumpState()
     {
 	    _inJump = !_inJump;
-	    SetBoolAnim("_inJump",_inJump);
+	    SetBoolAnim("InJump",_inJump);
 	    if (!_inJump)
 	    {
 		    currentFallSpeed = 0;
@@ -169,12 +170,14 @@ public class Character : MonoBehaviour
     {
 	    return _inJump;
     }
-	
-    /**
-     * Call when character hit something mean
-     * Take some damages until he die
-     */
-    public void TakeDamages(float damages)
+
+    public void Attack(Attack attack)
+    {
+
+        attack.Launch(this);
+    }
+    
+    public virtual void TakeDamages(float damages)
     {
         Life -= damages;
         if(HealthBar)HealthBar.SetValue(Life);

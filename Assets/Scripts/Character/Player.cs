@@ -34,10 +34,16 @@ public class Player : Character
             }
         }
 
-	    if (Input.GetKeyDown(KeyCode.A))
-	    {
-		    Die();
-	    }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            AttackModel attackModel = AttackInventory.GetAttackByName("CircleSaw");
+            if (attackModel != null)
+            {
+                Attack attack = AttackFactory.GetAttack(attackModel);
+                Attack(attack);
+            }
+        }
+
     }
 
     protected override void Die()

@@ -25,7 +25,7 @@ public static class AttackFactory
         // Get attacks names and put them into Dictionnary
         foreach(var type in attackTypes)
         {
-            Attack attack = Activator.CreateInstance(type) as Attack;
+            Attack attack = ScriptableObject.CreateInstance(type) as Attack;
             _attacksTypeByName.Add(attack.Name, type);
         }
 
@@ -36,7 +36,7 @@ public static class AttackFactory
         if (_attacksTypeByName.ContainsKey(attackModel.Name))
         {
             Type type = _attacksTypeByName[attackModel.Name];
-            Attack attack = Activator.CreateInstance(type) as Attack;
+            Attack attack = ScriptableObject.CreateInstance(type) as Attack;
             attack.AttackModel = attackModel;
             return attack;    
         }

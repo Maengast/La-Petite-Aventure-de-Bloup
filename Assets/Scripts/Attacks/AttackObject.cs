@@ -5,35 +5,15 @@ using UnityEngine;
 
 public class AttackObject : MonoBehaviour
 {
-    protected float Damages;
-    private Vector2 screenBounds;
-    protected Character Launcher;
+    protected float _damages;
+    public Character Launcher;
+    public Vector3 Direction;
 
-    // protected void Start()
-    // {
-	   //  screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-    // }
-    //
-    // protected virtual void Init()
-    // {
-	   //  
-    // }
-    //
-    // private void Update()
-    // {
-    //     if (transform.position.x > screenBounds.x *-2f || transform.position.x < screenBounds.x * 2f)
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    // }
-    public void SetDamages(float value)
-    {
-        Damages = value;
-    }
 
-    public void SetLauncher(Character character)
+
+    public void SetDammages(float value)
     {
-        Launcher = character;
+        _damages = value;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D other)
@@ -41,7 +21,7 @@ public class AttackObject : MonoBehaviour
         Character character = other.collider.GetComponent<Character>();
         if (character && character != Launcher)
         {
-            character.TakeDamages(Damages);
+            character.TakeDamages(_damages);
             Destroy(gameObject);
         }
     }

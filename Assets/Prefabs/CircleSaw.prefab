@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6746311181302494982}
   - component: {fileID: 2940883270137765240}
   - component: {fileID: 1332749887126588024}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: CircleSaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}

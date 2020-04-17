@@ -49,6 +49,12 @@ namespace PathFinder
         {
             IsDone = false;
 
+            if(!IsGrounded(startPos) || !IsGrounded(targetPos))
+            {
+                IsDone = true;
+                return;
+            }
+
             Node startNode = Grid.NodeFromWorldPoint(LedgeCheck(startPos).point);
             Node targetNode = Grid.NodeFromWorldPoint(LedgeCheck(targetPos).point);
 
