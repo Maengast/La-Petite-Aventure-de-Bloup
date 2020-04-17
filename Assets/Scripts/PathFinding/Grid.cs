@@ -136,8 +136,6 @@ namespace PathFinder
                         if (!Blocked(x - 1, y + 1) || !Blocked(x + 1, y + 1))
                         {
 	                        Corners.Add(node);
-	                        GameObject test = new GameObject("corner");
-	                        test.transform.position = node.Position;
                         }
                     }
                 }
@@ -203,8 +201,6 @@ namespace PathFinder
 		                Node node = NodeFromWorldPoint(hit.point);
 		                if (node.Ledge && !jumpPoints.Contains(node.Position))
 		                {
-			                GameObject test = new GameObject("jump");
-			                test.transform.position = node.Position;
 			                jumpPoints.Add(node.Position);
 			                int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
 			                // platform corner to node link

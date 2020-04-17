@@ -22,7 +22,9 @@ public class Boss : Character
     //Boss Stamina
     private float _currentStamina = 100;
     private float _maxStamina = 100;
+
     private BoxCollider2D _boxCollider;
+    private BoxCollider2D _playerBoxCollider;
     Transform _firePoint;
    
     private BossInfo _info;
@@ -46,10 +48,14 @@ public class Boss : Character
         _pathFinding = FindObjectOfType<PathFinding>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _firePoint = transform.Find("FirePoint");
-        // StaminaBar.SetMaxValue(_info.MaxStamina);
-        // StartCoroutine("UpdateStamina");
+        StaminaBar.SetMaxValue(_info.MaxStamina);
+        StartCoroutine("UpdateStamina");
+
+        _playerBoxCollider = _player.GetComponent<BoxCollider2D>();
         //Update path if _player exist
-        if(_player) UpdatePath();
+        if (_player) {
+            UpdatePath();
+        };
     }
 	
     /**
@@ -211,8 +217,19 @@ public class Boss : Character
     {
 	    if (_pathFinding.IsDone && OnGround)
 	    {
-		    _pathFinding.FindPath(transform.position, _player.transform.position, OnPathComplete);
+		    _pathFinding.FindPath(LedgeCheck(transform.position).point, LedgeCheck(_player.transform.position).point, OnPathComplete);
 	    }
+    }
+
+    RaycastHit2D LedgeCheck(Vector3 pos)
+    {
+        RaycastHit2D ledgeHit = Physics2D.Raycast(
+            pos,
+            Vector2.down,
+            10,
+            _pathFinding.GetGrid().UnwalkableMask);
+
+        return ledgeHit;
     }
 
     void OnPathComplete(List<Node> _path)
