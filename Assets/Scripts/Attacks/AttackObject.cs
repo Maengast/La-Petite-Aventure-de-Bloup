@@ -6,15 +6,16 @@ using UnityEngine;
 public class AttackObject : MonoBehaviour
 {
     protected float Dammages;
-    private Vector2 screenBounds;
-    protected Character Laucher;
+    private Vector2 _screenBounds;
+    public Character Launcher;
+    public Vector3 Direction;
     private void Awake()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
     private void Update()
     {
-        if (transform.position.x > screenBounds.x *-2f || transform.position.x < screenBounds.x * 2f)
+        if (transform.position.x > _screenBounds.x *-2f || transform.position.x < _screenBounds.x * 2f)
         {
             Destroy(gameObject);
         }
@@ -24,15 +25,10 @@ public class AttackObject : MonoBehaviour
         Dammages = value;
     }
 
-    public void SetLaucher(Character character)
-    {
-        Laucher = character;
-    }
-
     protected virtual void OnCollisionEnter2D(Collision2D other)
     {
         Character character = other.collider.GetComponent<Character>();
-        if (character && character != Laucher)
+        if (character && character != Launcher)
         {
             character.TakeDamages(Dammages);
             Destroy(gameObject);

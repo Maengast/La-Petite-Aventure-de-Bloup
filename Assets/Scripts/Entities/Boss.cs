@@ -11,8 +11,9 @@ public class Boss : Character
 {
 	[Header("Character Components")]
 	public BarScript StaminaBar;
-	
-	//Boss Pathfinding
+    public bool HasDetectedVictim;
+
+    //Boss Pathfinding
     private Player _player;
     private PathFinding _pathFinding;
     private List<Node> _path;
@@ -21,6 +22,7 @@ public class Boss : Character
     //Boss Stamina
     private float _currentStamina = 100;
     private float _maxStamina = 100;
+    private BoxCollider2D _boxCollider;
     Transform _firePoint;
    
     private BossInfo _info;
@@ -31,15 +33,18 @@ public class Boss : Character
      */ 
     void Start()
     {
-	    //Set Boss Stats
-	    BossInfo _info = BossDb.GetAllBoss()[0];
+        // Set if boss has detected player to false
+        HasDetectedVictim = false;
+
+        //Set Boss Stats
+        _info = BossDb.GetAllBoss()[0];
         SetBossStats(_info);
         Init(); //Init Boss
         
         //Find required components
         _player = FindObjectOfType<Player>();
         _pathFinding = FindObjectOfType<PathFinding>();
-        
+        _boxCollider = GetComponent<BoxCollider2D>();
         _firePoint = transform.Find("FirePoint");
         StaminaBar.SetMaxValue(_info.MaxStamina);
         StartCoroutine("UpdateStamina");
@@ -62,58 +67,109 @@ public class Boss : Character
      */
     void Update()
     {
-	    //No _path , no move
-	    if (_path == null || currentPoint >= _path.Count)
+        Debug.DrawRay(transform.position + transform.right * 5f, -transform.right, Color.red);
+        CheckAttack();
+        //No _path , no move
+        if (_path == null || currentPoint >= _path.Count || !HasDetectedVictim)
         {
             SetBoolAnim("IsRunning", false);
             _movementDirection.x = 0;
             return;
         }
-	    
+
 	    //Get target node of _path
 	    Node targetNode = _path[currentPoint];
 	    Vector2 targetPos = targetNode.Position;
-	    
-	    if (OnGround)
+        if (OnGround)
         {
             SetBoolAnim("IsRunning", true);
-			
+            RaycastHit2D checkDodge = Physics2D.Raycast(transform.position + transform.right * 2f, -transform.right, 10f, LayerMask.GetMask("AttackObject"));
+            // Dodge if ennemies attack object in front of him
+            if (checkDodge.collider && checkDodge.collider.GetComponent<AttackObject>().Launcher != this)
+            {
+                AttackObject attackObject = checkDodge.collider.GetComponent<AttackObject>();
+                Dodge(attackObject);
+                return;
+            }
             //Jump if is on jump node
             if (targetNode.LinkType == PathLinkType.jump)
             {
-	            Jump();
+                Jump();
             }
-
             if (targetNode.LinkType == PathLinkType.fall)
             {
-	            
+                while (!OnGround)
+                {
+                    StartCoroutine("Fall");
+                }
             }
-            
             //Change node target if boss has reached the target
             float distance = Vector2.Distance(transform.position, _path[currentPoint].Position);
             if (distance < 0.1f)
             {
                 currentPoint++;
             }
+        }
 
-            AttackModel attackModel = ChooseBestAttack();
-            if(attackModel != null)
+        //Move Boss
+        MoveTo(targetPos);
+
+    }
+
+    private void Dodge(AttackObject obj)
+    {
+        if (!Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size ,0f , Vector3.up, 5f,LayerMask.GetMask("Ground")).collider)
+        {
+            JumpHeight = 5f;
+            base.Jump();
+        }
+        else
+        {
+            Debug.Log(obj.Direction.x);
+            _movementDirection.x = obj.Direction.x;
+        }
+    }
+
+    private void CheckAttack()
+    {
+        AttackModel attackModel = ChooseBestAttack();
+        if (attackModel != null)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(_firePoint.position, transform.right, attackModel.AttackRange);
+            if (hit.collider && hit.collider.tag == "Player")
             {
-                RaycastHit2D hit = Physics2D.Raycast(_firePoint.position, transform.right, attackModel.AttackRange);
-                if (hit.collider &&  hit.collider.tag == "Player")
-                {
-                    SetTriggerAnim(attackModel.Name);
-                    Attack attack = AttackFactory.GetAttack(attackModel);
-                    UseStamina(attackModel.Cost);
-                    Attack(attack);
-                }
+                SetTriggerAnim(attackModel.Name);
+                Attack attack = AttackFactory.GetAttack(attackModel);
+                UseStamina(attackModel.Cost);
+                Attack(attack);
             }
         }
-        
-	    //Move Boss
-        MoveTo(targetPos);
     }
-	
+
+    private IEnumerator Fall()
+    {
+        Vector3 targetPosition = _path[currentPoint].Position;
+        RaycastHit2D targetPLateform = Physics2D.Raycast(_path[currentPoint].Position, -Vector3.up, Mathf.Infinity, _pathFinding.GetGrid().UnwalkableMask);
+
+        if (targetPLateform.collider)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position - transform.right * _boxCollider.bounds.extents.x, -Vector3.up, Mathf.Infinity, _pathFinding.GetGrid().UnwalkableMask);
+            while (targetPLateform.collider != hit.collider)
+            {
+                hit = Physics2D.Raycast(transform.position - transform.right * _boxCollider.bounds.extents.x, -Vector3.up, Mathf.Infinity, _pathFinding.GetGrid().UnwalkableMask);
+                Vector3 tg = targetPosition + transform.right * _boxCollider.size.x;
+                MoveTo(tg);
+                yield return null;
+            }
+        }
+    }
+
+    protected override void Die()
+    {
+        _gameManager.EndGame(false);
+        base.Die();
+    }
+
     /**
      * Called every fixed frame-rate frame
      * Do physics calculations
@@ -140,15 +196,14 @@ public class Boss : Character
 
 	    _movementDirection.x = distance.normalized.x;
     }
-	
+
+
     /**
      * Override Character.Jump()
      * Define boss jump behavior
      */
     protected override void Jump()
     {
-	    Debug.Log("Jump");
-	    currentPoint++;
 	    CalcJumpHeigth();
 	    base.Jump();
 	    // Vector2 pos = transform.position;
@@ -165,11 +220,10 @@ public class Boss : Character
 
     private void CalcJumpHeigth()
     {
-	    Vector2 distanceToTarget = _path[currentPoint].Position - transform.position;
+        Vector2 distanceToTarget = _path[currentPoint].Position - transform.position;
 	    if (Mathf.Sign(distanceToTarget.y) < 0)
 	    {
 		    JumpHeight = 0;
-		    Debug.Log("jumpheight");
 	    }
 	    else
 	    {
@@ -216,12 +270,6 @@ public class Boss : Character
     {
         _currentStamina = _currentStamina - stamina > 0 ? _currentStamina - stamina : 0;
         StaminaBar.SetValue(_currentStamina);
-    }
-
-    public void Attack(IAttack attack)
-    {
-      
-        attack.Launch(this);
     }
 
     public AttackModel ChooseBestAttack()
