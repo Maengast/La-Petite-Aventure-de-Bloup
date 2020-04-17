@@ -209,7 +209,7 @@ public class Boss : Character
 
     void UpdatePath()
     {
-	    if (_pathFinding.IsDone && !IsJumping() && OnGround)
+	    if (_pathFinding.IsDone && OnGround)
 	    {
 		    _pathFinding.FindPath(transform.position, _player.transform.position, OnPathComplete);
 	    }

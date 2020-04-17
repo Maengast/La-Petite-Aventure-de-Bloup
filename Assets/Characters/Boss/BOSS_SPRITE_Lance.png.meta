@@ -116,10 +116,10 @@ TextureImporter:
       name: BOSS_SPRITE_Lance_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 24
-        width: 119
-        height: 128
+        x: 19
+        y: 18
+        width: 118
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,10 +137,10 @@ TextureImporter:
       name: BOSS_SPRITE_Lance_1
       rect:
         serializedVersion: 2
-        x: 188
-        y: 24
-        width: 127
-        height: 128
+        x: 178
+        y: 18
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,10 +158,10 @@ TextureImporter:
       name: BOSS_SPRITE_Lance_2
       rect:
         serializedVersion: 2
-        x: 350
-        y: 24
-        width: 142
-        height: 128
+        x: 339
+        y: 18
+        width: 141
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,10 +179,10 @@ TextureImporter:
       name: BOSS_SPRITE_Lance_3
       rect:
         serializedVersion: 2
-        x: 504
-        y: 24
-        width: 147
-        height: 128
+        x: 492
+        y: 18
+        width: 145
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,10 +200,10 @@ TextureImporter:
       name: BOSS_SPRITE_Lance_4
       rect:
         serializedVersion: 2
-        x: 654
-        y: 24
-        width: 142
-        height: 128
+        x: 641
+        y: 18
+        width: 141
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,10 +221,10 @@ TextureImporter:
       name: BOSS_SPRITE_Lance_5
       rect:
         serializedVersion: 2
-        x: 816
-        y: 24
+        x: 802
+        y: 18
         width: 118
-        height: 128
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,10 +242,10 @@ TextureImporter:
       name: BOSS_SPRITE_Lance_6
       rect:
         serializedVersion: 2
-        x: 971
-        y: 24
-        width: 142
-        height: 128
+        x: 956
+        y: 18
+        width: 141
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,10 +263,10 @@ TextureImporter:
       name: BOSS_SPRITE_Lance_7
       rect:
         serializedVersion: 2
-        x: 1127
-        y: 24
-        width: 142
-        height: 128
+        x: 1112
+        y: 18
+        width: 141
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,10 +284,10 @@ TextureImporter:
       name: BOSS_SPRITE_Lance_8
       rect:
         serializedVersion: 2
-        x: 1293
-        y: 24
+        x: 1276
+        y: 18
         width: 118
-        height: 129
+        height: 127
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,7 +304,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b36a9f31d1a91b244bdc47eed2319747
+    spriteID: 95cc139b03780ea47987890c44e49f52
     internalID: 0
     vertices: []
     indices: 

@@ -21,43 +21,44 @@ namespace PathFinder
         {
             return Grid;
         }
-        RaycastHit2D LedgeCheck(Vector3 pos)
+
+        Node GetLedge(Vector3 position)
         {
             RaycastHit2D ledgeHit = Physics2D.Raycast(
-                pos,
+                position,
                 Vector2.down,
                 10,
                 Grid.UnwalkableMask);
 
-            return ledgeHit;
+            if (ledgeHit.collider)
+            {
+                Node node = Grid.NodeFromWorldPoint(ledgeHit.point);
+                if (node.Ledge) {
+                    return node;
+                };
+             
+                node = Grid.GetGridObject(node.GridX, node.GridY + 1);
+
+                if (node.Ledge)
+                {
+                    return node;
+                }
+
+                node = Grid.GetGridObject(node.GridX, node.GridY - 1);
+                if(node.Ledge)
+                {
+                    return node;
+                }
+            }
+            return Grid.NodeFromWorldPoint(position);
+
         }
-
-        bool IsGrounded(Vector3 pos)
-        {
-            RaycastHit2D hit = LedgeCheck(pos);
-            if (!hit.collider) return false;
-
-            // Get the current node
-            Node node = Grid.NodeFromWorldPoint(hit.point);
-            //return false if object position is not grounded
-            if (!node.Ledge) return false;
-
-            return true;
-        }
-
         public void FindPath(Vector3 startPos, Vector3 targetPos, OnPathCompleteDelegate pathComplete )
         {
             IsDone = false;
-		
-            if(!IsGrounded(startPos) || !IsGrounded(targetPos))
-            {
-	            IsDone = true;
-                return;
-            }
-			
-            
-            Node startNode = Grid.NodeFromWorldPoint(LedgeCheck(startPos).point);
-            Node targetNode = Grid.NodeFromWorldPoint(LedgeCheck(targetPos).point);
+					    
+            Node startNode = GetLedge(startPos);
+            Node targetNode = GetLedge(targetPos);
 
             List<Node> openList = new List<Node> { startNode };
             HashSet<Node> closedSet = new HashSet<Node>();

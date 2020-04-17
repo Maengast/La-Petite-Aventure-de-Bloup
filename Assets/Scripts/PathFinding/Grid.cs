@@ -169,50 +169,63 @@ namespace PathFinder
             {
                 // Discover the direction the tile is facing
                 int direction = Blocked(corner.GridX - 1, corner.GridY - 1) ? 1 : -1;
-
                 // Step over the facing direction 1 tile
-                Node overhang = GetGridObject(corner.GridX + direction*(int)CornerOffset, corner.GridY);
-
-                //Vector2 origin = new Vector2(overhang.Position.x + direction * CornerOffset, overhang.Position.y);
-                // Shoot a raycast straight down to the end of the boundary to look for a fall
-                RaycastHit2D hit = Physics2D.Raycast(
-                    overhang.Position,
-                    Vector2.down,
-                    overhang.Position.y,
-                    UnwalkableMask);
-
-                // If we hit something add a fall link at the hit target
-                if (hit.collider)
+                if (!OutOfBounds(corner.GridX + direction * (int)CornerOffset, corner.GridY))
                 {
-                    Node node = NodeFromWorldPoint(hit.point);
-                    int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
-                    corner.AddLink(node, distance, PathLinkType.fall);
-                }
-
-                overhang = GetGridObject(corner.GridX + direction, corner.GridY);
-                float initialValue = 0.2f;
-                float h = initialValue;
-                /// Find all corner jump point
-                while (h <= 0.5)
-                {
-	                hit = Physics2D.Raycast(
+                    Node overhang = GetGridObject(corner.GridX + direction * (int)CornerOffset, corner.GridY);
+                    //Vector2 origin = new Vector2(overhang.Position.x + direction * CornerOffset, overhang.Position.y);
+                    // Shoot a raycast straight down to the end of the boundary to look for a fall
+                    RaycastHit2D hit = Physics2D.Raycast(
                         overhang.Position,
-                        new Vector2( h*direction, -(initialValue + 0.5f) +h ),
-                        JumpDistance,
-                        JumpMask
-                        );
+                        Vector2.down,
+                        overhang.Position.y,
+                        UnwalkableMask);
 
-                    h += 0.1f;
+                    // If we hit something add a fall link at the hit target
                     if (hit.collider)
                     {
                         Node node = NodeFromWorldPoint(hit.point);
-                        GameObject test = new GameObject("jump");
-                        test.transform.position = node.Position;
                         int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
-                        // platform corner to node link
-                        corner.AddLink(node, distance, PathLinkType.jump);
-                        // current node to platform corner
-                        node.AddLink(corner, distance, PathLinkType.jump);
+                        corner.AddLink(node, distance, PathLinkType.fall);
+                    }
+
+                    overhang = GetGridObject(corner.GridX + direction, corner.GridY);
+
+
+
+                    float x = 1;
+                    float y = 0;
+                    List<Vector2> jumpPoints = new List<Vector2>();
+
+                    /// Find all corner jump point
+                    while (x > 0)
+                    {
+                        while (y > -0.5)
+                        {
+                            hit = Physics2D.Raycast(
+                            overhang.Position,
+                            new Vector2(direction * x, y),
+                            JumpDistance,
+                            JumpMask
+                            );
+                            if (hit.collider)
+                            {
+                                Node node = NodeFromWorldPoint(hit.point);
+                                if (node.Ledge && !jumpPoints.Contains(node.Position))
+                                {
+                                    jumpPoints.Add(node.Position);
+                                    int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
+                                    // platform corner to node link
+                                    corner.AddLink(node, distance, PathLinkType.jump);
+                                    // current node to platform corner
+                                    node.AddLink(corner, distance, PathLinkType.jump);
+                                }
+
+                            }
+                            y -= 0.1f;
+                        }
+                        y = 0;
+                        x -= 0.1f;
                     }
 
                 }
@@ -240,12 +253,16 @@ namespace PathFinder
 
         public Node NodeFromWorldPoint(Vector3 worldPosition)
         {
+
             float percentX = Mathf.Abs(_boxPosition.x - worldPosition.x) / CellSize;
             float percentY = Mathf.Abs(_boxPosition.y - worldPosition.y) / CellSize;
             int x = Mathf.RoundToInt(percentX);
             int y = Mathf.RoundToInt(percentY);
-
-            return _gridArray[x, y];
+            if (!OutOfBounds(x, y))
+            {
+                return _gridArray[x, y];
+            }
+            return _gridArray[0, 0];
         }
     }
 }
