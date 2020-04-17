@@ -35,8 +35,7 @@ public class Character : MonoBehaviour
     protected Vector2 _movementDirection;
     private bool _faceRight = true;
     public bool OnGround = false;
-    public bool ObstacleOnSides = false;
-    
+
     //Character Life
     protected float MaxLife = 100;
     protected float Life = 0;
@@ -169,24 +168,7 @@ public class Character : MonoBehaviour
 	    }
         SetBoolAnim("OnGround",value);
     }
-    
-    /**
-     * Stop character movement in X when it collide with ground on its sides
-     */
-    public void CollisionOnSides(int dir)
-    {
-	    float currentDir = Mathf.Sign(_movementDirection.x);
-	    if ((dir < 0 && currentDir < 0) || (dir > 0 && currentDir > 0))
-	    {
-		    _movementDirection.x = 0;
-		    ObstacleOnSides = true;
-		    return;
-	    }
-	    
-	    ObstacleOnSides = false;
-	    
-    }
-    
+
     public bool IsJumping()
     {
 	    return _inJump;

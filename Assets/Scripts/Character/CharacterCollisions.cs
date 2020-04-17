@@ -27,7 +27,6 @@ public class CharacterCollisions : MonoBehaviour
     {
 	    _colliderBounds = CharacterCollider.bounds;
 	    CheckTopAndBottomCollisions();
-	    //CheckSideCollisions();
     }
 	
     /**
@@ -46,7 +45,7 @@ public class CharacterCollisions : MonoBehaviour
 
 	    return hitCollider;
     }
-    
+
     /**
      * Check Collision with platforms under character
      * Check collision with platforms above character
@@ -55,51 +54,21 @@ public class CharacterCollisions : MonoBehaviour
     {
 	    float sizeX = _colliderBounds.size.x;
 	    Vector2 origin = _colliderBounds.min;
-	    //origin.x += _widthOffset / 2;
-	    
+
 	    //Bottom
-	    bool hit = CheckCollisionWithGround(origin, -1, sizeX,_heightOffset );
+	    bool hit = CheckCollisionWithGround(origin, -1, sizeX, _heightOffset);
 	    if (hit && !CharacterInstance.OnGround)
 	    {
 		    CharacterInstance.SetOnGround(true);
 	    }
-	    else if(!hit && CharacterInstance.OnGround)
+	    else if (!hit && CharacterInstance.OnGround)
 	    {
 		    CharacterInstance.SetOnGround(false);
 	    }
-	    
+
 	    //top
 	    origin.y = _colliderBounds.max.y;
-	    hit = CheckCollisionWithGround(origin, 1, sizeX,_heightOffset);
-	    if (hit && CharacterInstance.IsJumping())
-	    {
-		    CharacterInstance.SwitchJumpState(false);
-	    }
-    }
-    
-    /**
-     * Check collisions with platforms on each side of character
-     */
-    private void CheckSideCollisions()
-    {
-	    float sizeY = _colliderBounds.size.y - _heightOffset;
-	    Vector2 origin = _colliderBounds.min;
-	    origin.y += _heightOffset / 2;
-	    
-	    //Left
-	    int dirX = 0;
-	    bool hit = CheckCollisionWithGround(origin, 1, -_widthOffset,sizeY);
-	    if (hit) dirX = -1;
-	    else
-	    {
-		    //Right
-		    origin.x = _colliderBounds.max.x;
-		    hit = CheckCollisionWithGround(origin, 1, _widthOffset,sizeY);
-		    if(hit)  dirX = 1;
-	    }
-	    
-	    
-	    CharacterInstance.CollisionOnSides(dirX);
+	    hit = CheckCollisionWithGround(origin, 1, sizeX, _heightOffset);
 	    if (hit && CharacterInstance.IsJumping())
 	    {
 		    CharacterInstance.SwitchJumpState(false);

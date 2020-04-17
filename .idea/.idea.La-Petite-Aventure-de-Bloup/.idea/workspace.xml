@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="864a069d-4079-4c07-8954-692686705718" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CircleSaw.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CircleSaw.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/Boss/Animations/boss_Claws.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Boss/Animations/boss_Claws.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/Boss/Boss.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Boss/Boss.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Menu.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Flambi.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Flambi.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Le Malin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Le Malin.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Camera/FollowingCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/FollowingCamera.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterCollisions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterCollisions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,9 +121,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Camera/FollowingCamera.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character/CharacterCollisions.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" />
       </list>
     </option>
   </component>
@@ -215,7 +209,7 @@
       <workItem from="1586932738069" duration="36295000" />
       <workItem from="1587028169537" duration="24714000" />
       <workItem from="1587062690201" duration="12462000" />
-      <workItem from="1587113065262" duration="22240000" />
+      <workItem from="1587113065262" duration="23630000" />
     </task>
     <servers />
   </component>

@@ -176,7 +176,6 @@ MonoBehaviour:
   Speed: 10
   MaxFallSpeed: 15
   OnGround: 0
-  ObstacleOnSides: 0
   AttackInventory: {fileID: 11400000, guid: de2e832e818a49d49bc5321f22fa19e6, type: 2}
   AttackMultiplier: 0
   StaminaBar: {fileID: 0}

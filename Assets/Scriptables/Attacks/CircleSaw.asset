@@ -16,7 +16,7 @@ MonoBehaviour:
   Damage: 20
   Cost: 40
   Level: 1
-  Type: 0
+  Type: 6
   Cool_Down: 10
   Description: "Des scies en acier tremp\xE9es aussi tranchantes que l'\xE9p\xE9e
     la plus aiguis\xE9e"
