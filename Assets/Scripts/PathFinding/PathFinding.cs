@@ -51,9 +51,7 @@ namespace PathFinder
             IsDone = false;
 
             Node startNode = Grid.NodeFromWorldPoint(LedgeCheck(startPos).point);
-            Debug.Log(startNode.Ledge);
             Node targetNode = Grid.NodeFromWorldPoint(LedgeCheck(targetPos).point);
-            Debug.Log(targetNode.Ledge);
 
             List<Node> openList = new List<Node> { startNode };
             HashSet<Node> closedSet = new HashSet<Node>();

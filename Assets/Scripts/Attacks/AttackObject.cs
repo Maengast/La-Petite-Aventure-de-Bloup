@@ -16,9 +16,9 @@ public class AttackObject : MonoBehaviour
         _damages = value;
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        Character character = other.collider.GetComponent<Character>();
+        Character character = other.GetComponent<Character>();
         if (character && character != Launcher)
         {
             character.TakeDamages(_damages);

@@ -139,6 +139,7 @@ public class GameManager : Singleton<GameManager>
 	 */
 	public void EndGame(bool gameOver)
 	{
+		if(_currentGameState == GameState.GameResult) return;
 		_levelStates[_currentLevelNumber] = LevelState.Played;
 		GameResults gameResult = (gameOver) ? GameResults.Lose : GameResults.Win;
 		if (gameResult == GameResults.Win)
@@ -151,6 +152,7 @@ public class GameManager : Singleton<GameManager>
 			}
 			_levelStates[_levelUnlock] = LevelState.New;
 		}
+		
 		SwitchGameState(GameState.GameResult);
 		_uiManager.DisplayGameResults(gameResult.ToString());
 	}
