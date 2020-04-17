@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1327507762663604616}
   - component: {fileID: 7418629661412517646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4841052506837544967}
   - component: {fileID: 4841052506837544966}
   - component: {fileID: 4841052506837544965}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TilePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

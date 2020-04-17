@@ -13,12 +13,18 @@ using Random = UnityEngine.Random;
 
 public class LevelGenerator : MonoBehaviour
 {
-	public delegate void OnLevelGenerated(TileObject _bossTile, TileObject _playerTile, bool levelComplete);
+	public delegate void OnLevelGenerated(TileObject _endTile, TileObject _startTile, bool levelComplete);
 	private Level _level;
 	private int[,] _levelCoordinates;
 	private List<TileObject> _levelTiles = new List<TileObject>();
 	private TileObject _startTile;
 	private TileObject _endTile;
+	
+	//Sorting order of sprite type
+	public static readonly int GroundSortingOrder = 0;
+	public static readonly int TrapSortingOrder = -1;
+	public static readonly int OnTileSortingOrder = 1;
+	public static readonly int CharacterSortingOrder = 2;
 	
 	[Header("Level Tile")]
 	public TileSprites LevelTileSprites;
@@ -38,13 +44,13 @@ public class LevelGenerator : MonoBehaviour
 	/**
 	 * All steps to generate level
 	 */
-	public void GenerateLevel(int levelNumber, OnLevelGenerated levelGenerated)
+	public void GenerateLevel(Level levelInfo, OnLevelGenerated levelGenerated)
 	{
 		//Get level characteristics 
-		_level = DataManager.Instance.GetLevelInfo(1);
+		_level = levelInfo;
 		_levelCoordinates = new int[_level.Width,_level.Height];
 		
-		SetTileTypeInfo();//Setup tile infos
+		SetSizeAndOffset();//Setup tile infos
 		//Create start and end tile
 		_startTile = CreateBoundaryTile(GetTileSize(TileType.Floor),0);
 		_endTile = CreateBoundaryTile(GetTileSize(TileType.Floor), _level.Width-1);
@@ -66,12 +72,24 @@ public class LevelGenerator : MonoBehaviour
 	}
 	
 	/**
-	 * 
+	 * Set size of tile to adapt level size and offset to adapt level generation to character jump and size
 	 */
-	private void SetTileTypeInfo()
+	private void SetSizeAndOffset()
 	{
+		MaxJumpDistance = _level.MaxJumpDistance;
+		MinHeightOffset = LevelManager.BossSize;
+		MinWidthOffset = LevelManager.PlayerSize;
+		
+		//Set tile floor size
+		FloorInfo.MaxHeight = Mathf.CeilToInt(_level.Height / 3);
+		FloorInfo.MaxWidth = _level.Width / (_level.Width / 10);
+		
+		//Set tile offset
 		if (FloorInfo.HeightOffset < MinHeightOffset) FloorInfo.HeightOffset = MinHeightOffset;
 		if (PlatformInfo.HeightOffset < MinHeightOffset) PlatformInfo.HeightOffset = MinHeightOffset;
+		if (PlatformInfo.WidthOffset < MinWidthOffset) PlatformInfo.WidthOffset = MinWidthOffset;
+		
+		//Save tile information
 		_tileTypeInfos[TileType.Floor] = FloorInfo;
 		_tileTypeInfos[TileType.Platform] = PlatformInfo;
 	}
@@ -81,6 +99,7 @@ public class LevelGenerator : MonoBehaviour
 	 */
 	bool CompleteLevel()
 	{
+		
 		bool reachEnd = false;
 		// We will keep track of our start tile from which we do our test
 		TileObject startTile = (_levelTiles.Count < 3) ? _startTile : _levelTiles[_levelTiles.Count - 1];
@@ -90,22 +109,24 @@ public class LevelGenerator : MonoBehaviour
 		
 		// Keep trying different tiles until we find one that is valid.
 		// When all possible origins are tried, return to the parent node.
-		while (numberTileTest<originsToTry.Length)
+		while (numberTileTest< MaxTilePerLoop)
 		{
+			
 			//find an origin not already tried
 			Coordinate originIndexes = FindOriginToTryIndexes(originsToTry);
 			if(originIndexes.Equals(Coordinate.Null)) break; // If no origins are available break
-			Coordinate origin = originsToTry[originIndexes.x, originIndexes.y];
+			
 			// Choose a tile to try with given origin.
-			TileObject newTile = GetNewTile(origin);
+			TileObject newTile = GetNewTile(originsToTry[originIndexes.x, originIndexes.y]);
 			//origin is tried
 			originsToTry[originIndexes.x, originIndexes.y] = Coordinate.Null;
-			
+
 			//Force next loop iteration for each no valid origins
 			 if (newTile == null)
 			 {
 			 	continue;
 			 }
+			 
 			 _levelTiles.Add(newTile);
 			 numberTileTest++;
 			//Check to see if we can reach the new tile
@@ -113,6 +134,7 @@ public class LevelGenerator : MonoBehaviour
 			{
 				UpdateLevelTilesCoordinates();
 				numberTileAdd++;
+
 				if(numberTileAdd > MaxTilePerLoop) break;
 				//Keep going even if a tile reach the end to complete the level
 				if(reachEnd) continue;
@@ -136,20 +158,37 @@ public class LevelGenerator : MonoBehaviour
 	 */
 	private void UpdateLevelTilesCoordinates(bool boundTile = false)
 	{
+		Coordinate tileOrigin;
+		Coordinate tileSize;
+		Area area;
+		
 		foreach (TileObject tile in _levelTiles)
 		{
-			if(_levelCoordinates[tile.Origin.x,tile.Origin.y] > (int)CellType.Empty) continue;
-			TileTypeInfo tileInfo = _tileTypeInfos[tile.TileType];
-			Area area = CreateAreaAroundTile(tile.Origin, new Coordinate(tileInfo.WidthOffset, tileInfo.HeightOffset), tile.Size);
+			tileOrigin = tile.Origin;
+			tileSize = tile.Size;
+			
+			if(_levelCoordinates[tileOrigin.x,tileOrigin.y] > (int)CellType.Empty) continue;
+			//When a tile is placed place its offsets around it
+			area = tile.AreaOffsets;
 			for (int x = area.Origin.x; x < area.Origin.x + area.Size.x; x++)
 			{
-				for (int y = area.Origin.y; y > area.Origin.y - area.Size.y; y--)
+				for (int y = area.Origin.y; y < area.Origin.y + area.Size.y; y++)
 				{
-					int cellType = (int)CellType.Corpse;
-					if (y == tile.Origin.y)
+					if(_levelCoordinates[x,y] > (int)CellType.Empty) continue;
+					int cellType = (int)CellType.TileOffset;
+					if (x >= tileOrigin.x && x <= (tileOrigin.x + tileSize.x) - 1)
 					{
-						cellType = (boundTile)? (int) CellType.Bound:(int)CellType.Up;
+						if (y == (tileOrigin.y + tileSize.y) -1)
+						{
+							cellType = (boundTile)? (int) CellType.Bound:(int)CellType.Up;
+						}
+
+						if (y > tileOrigin.y && y < (tileOrigin.y + tileSize.y)-1)
+						{
+							cellType = (int)CellType.Corpse;
+						}
 					}
+					
 					_levelCoordinates[x, y] = cellType;
 				}
 			}
@@ -164,30 +203,22 @@ public class LevelGenerator : MonoBehaviour
 		//Create area of test
 		//areaHeight : height position of current platform with an offset
 		//areaWidth : width calculate with max jump distance in width and an offset
-		Area area = CreateAreaAroundTile(startTile.Origin, new Coordinate(MinWidthOffset + MaxJumpDistance.x, MinHeightOffset+MaxJumpDistance.y), startTile.Size);
-		//Adjust area
-		if (area.Origin.x > 0)
-		{
-			area.Size.x -= startTile.Origin.x - area.Origin.x;
-			area.Origin.x = startTile.Origin.x;
-		}
+		Area area = CreateAreaAroundTile(startTile.Origin, new Coordinate(2*MinWidthOffset + MaxJumpDistance.x, 2*MinHeightOffset+MaxJumpDistance.y), startTile.Size);
+		Coordinate origin = area.Origin;
+		Coordinate size = area.Size;
 
-		if (area.Origin.y == _level.Height - 1)
-		{
-			area.Origin.y = (_level.Height -1) - MinHeightOffset;
-			area.Size.y -= MinHeightOffset;
-		}
 		Coordinate[,] origins = new Coordinate[area.Size.x,area.Size.y];
 		int arrayX = 0;
 		int arrayY = 0;
+
 		//From position and size of startTile with area size , setup all origins to try
-		for (int x = area.Origin.x; x < area.Origin.x + area.Size.x; x++)
+		for (int x = origin.x; x < origin.x + size.x; x++)
 		{
-			for (int y = area.Origin.y; y > area.Origin.y-area.Size.y; y--)
+			for (int y = origin.y; y < origin.y + size.y; y++)
 			{
 				Coordinate coordinates = new Coordinate(x,y);
 				//test if coordinates are already use by another tile
-				origins[arrayX, arrayY] = _levelCoordinates[x,y] > (int)CellType.Empty ? Coordinate.Null : coordinates;
+ 				origins[arrayX, arrayY] = _levelCoordinates[x,y] > (int)CellType.Empty ? Coordinate.Null : coordinates;
 				arrayY++;
 			}
 			arrayX++;
@@ -230,10 +261,12 @@ public class LevelGenerator : MonoBehaviour
 		
 		//get size of tile
 		Coordinate size = GetTileSize(tileType);
-		//Floor tile expend until they reach the bottom of the map
+		
+		//A floor tile begin from the bottom of the map
 		if (tileType == TileType.Floor)
 		{
 			size.y = origin.y + 1;
+			origin.y = 0;
 		}
 
 		TileObject tile = VerifyTileValidity(size,origin,_tileTypeInfos[tileType]);
@@ -254,20 +287,24 @@ public class LevelGenerator : MonoBehaviour
 	[CanBeNull]
 	private TileObject VerifyTileValidity(Coordinate size, Coordinate origin, TileTypeInfo tileInfo)
 	{
-		//Check level bounds
-		if (size.y > 1 && origin.y == 0)
-		{
-			size.y = 1;
-		}
-		if (origin.x + size.x > (_level.Width) - tileInfo.WidthOffset || origin.y > (_level.Height-1) - tileInfo.HeightOffset || origin.x <= 1 + tileInfo.WidthOffset)
+		//Create area around tile with it's offset
+		Area area = CreateAreaAroundTile(origin, new Coordinate(tileInfo.WidthOffset, tileInfo.HeightOffset), size);
+
+		int areaOriginX = area.Origin.x;
+		int areaOriginY = area.Origin.y;
+		int areaSizeX = area.Size.x;
+		int areaSizeY = area.Size.y;
+		
+		//Get always an offset between tile bounds and Map bounds
+		if (areaOriginX + areaSizeX > (_level.Width) || areaOriginY + areaSizeY > (_level.Height) || areaOriginX <= 1)
 		{
 			return null;
 		}
 		
-		//Check if an other tile have the same cell of the new tile
-		for (int x = origin.x; x < origin.x + size.x; x++)
+		//Check if an other tile and its offset have the same cell of the new tile
+		for (int x = areaOriginX; x < areaOriginX + areaSizeX; x++)
 		{
-			for (int y = origin.y; y > origin.y-size.y; y--)
+			for (int y = areaOriginY; y < areaOriginY + areaSizeY; y++)
 			{
 				if (_levelCoordinates[x, y] > (int)CellType.Empty)
 				{
@@ -275,7 +312,7 @@ public class LevelGenerator : MonoBehaviour
 				}
 			}
 		}
-		return CreateTile(size, origin);
+		return CreateTile(size, origin, area);
 	}
 	
 	/**
@@ -285,9 +322,9 @@ public class LevelGenerator : MonoBehaviour
 	{
 		Area area = new Area();
 		int areaOriginX = (origin.x - offset.x < 0)? 0 : origin.x - offset.x;
-		int areaOriginY = (origin.y + offset.y> _level.Height-1 ) ? _level.Height-1 : origin.y + offset.y;
-		int areaSizeX = (areaOriginX+ size.x + 2*offset.x > _level.Width)?_level.Width - areaOriginX : (areaOriginX == 0)?size.x + offset.x : size.x + 2*offset.x;
-		int areaSizeY = (areaOriginY+1- (size.y + 2*offset.y) < 1)?areaOriginY+1: (areaOriginY == _level.Height-1)?size.y + offset.y : size.y + 2*offset.y;
+		int areaOriginY = (origin.y - offset.y< 0 ) ? 0 : origin.y - offset.y;
+		int areaSizeX = (areaOriginX+ (size.x + 2*offset.x) > _level.Width)?_level.Width - areaOriginX : (areaOriginX == 0)? size.x + offset.x : size.x + 2*offset.x;
+		int areaSizeY = (areaOriginY+ (size.y + 2*offset.y) > _level.Height)?_level.Height - areaOriginY: (areaOriginY == 0)? size.y + offset.y : size.y + 2*offset.y;
 		area.Size = new Coordinate(areaSizeX,areaSizeY);
 		area.Origin = new Coordinate(areaOriginX,areaOriginY);
 		return area;
@@ -295,12 +332,14 @@ public class LevelGenerator : MonoBehaviour
 
 	/**
 	 * Create Tile Object with given size and origin
+	 * and offsets area to test and place tile correctly
 	 */
-	private TileObject CreateTile(Coordinate size, Coordinate origin)
+	private TileObject CreateTile(Coordinate size, Coordinate origin, Area offsets)
 	{
 		TileObject tile = new TileObject();
 		tile.Origin = origin;
 		tile.Size =  size;
+		tile.AreaOffsets = offsets;
 		return tile;
 	}
 	
@@ -312,7 +351,9 @@ public class LevelGenerator : MonoBehaviour
 	private TileObject CreateBoundaryTile(Coordinate size, int originX)
 	{
 		int x = (originX <= 0) ? 0 : (originX - size.x)+1;
-		return CreateTile(size, new Coordinate(x, size.y -1));
+		Coordinate origin = new Coordinate(x, 0);
+		Area area = CreateAreaAroundTile(origin, new Coordinate(FloorInfo.WidthOffset, FloorInfo.HeightOffset), size);
+		return CreateTile(size, origin,area);
 	}
 
 	/**
@@ -338,26 +379,29 @@ public class LevelGenerator : MonoBehaviour
 		int originY = target.Origin.y;
 		int sizeX = target.Size.x;
 		int sizeY = target.Size.y;
-		TileTypeInfo tileInfo = _tileTypeInfos[target.TileType];
+		int widthOffset = _tileTypeInfos[target.TileType].WidthOffset;
+		
 		Area area = CreateAreaAroundTile(target.Origin, MaxJumpDistance, target.Size);
-		for (int x = area.Origin.x; x < area.Origin.x + area.Size.x; x++)
+		
+		for (int x = area.Origin.x; x < (area.Origin.x + area.Size.x); x++)
 		{
-			for (int y = area.Origin.y; y > area.Origin.y-area.Size.y; y--)
+			for (int y = area.Origin.y; y < (area.Origin.y+ area.Size.y); y++)
 			{
 				int cellType = _levelCoordinates[x, y];
 				if (cellType > (int) CellType.Corpse)
 				{
-					if (y > originY && y < area.Origin.y)
+
+					if (y > (originY + sizeY)-1)
 					{
-						if (cellType == (int) CellType.Bound && x < originX - tileInfo.WidthOffset) return true;
-						if (x > originX + tileInfo.WidthOffset || x < (originX + sizeX - 1) - tileInfo.WidthOffset) return true;
+						if (cellType == (int) CellType.Bound && x < (originX - widthOffset)) return true;
+						if (x > (originX + widthOffset) || x < (originX + sizeX - 1) - widthOffset) return true;
 						if (x < originX || x > (originX + sizeX - 1)) return true;
 					}
 
 					if (y < originY)
 					{
-						if (cellType == (int) CellType.Bound && x < originX - tileInfo.WidthOffset) return true;
-						if (x < originX - tileInfo.WidthOffset || x > (originX + sizeX - 1) + tileInfo.WidthOffset) return true;
+						if (cellType == (int) CellType.Bound && x < (originX - widthOffset)) return true;
+						if (x < (originX - widthOffset) || x > (originX + sizeX - 1) + widthOffset) return true;
 					}
 				}
 			}
@@ -373,14 +417,12 @@ public class LevelGenerator : MonoBehaviour
 		List<TileManager> tileManagers = new List<TileManager>();
 		foreach (TileObject tile in _levelTiles)
 		{
-			Debug.Log(_levelTiles.Count);
 			GameObject tileObj = Instantiate(TilePrefab,transform);
 			TileManager tileManager = tileObj.GetComponent<TileManager>();
 			tileManager.InitTile(new Vector2(tile.Size.x,tile.Size.y),new Vector2(tile.Origin.x, tile.Origin.y));
 			tileManager.TileType = tile.TileType;
 			tileManagers.Add(tileManager);
 		}
-
 		return tileManagers;
 	}
 	
@@ -393,37 +435,41 @@ public class LevelGenerator : MonoBehaviour
 		//Place traps
 		for (int i = 0; i < _level.TrapsCount; i++)
 		{
-			tilesNotUpgraded = tiles.FindAll(t => t.TileType < TileType.Trap);
-			TileManager tile = tilesNotUpgraded[Random.Range(0,tilesNotUpgraded.Count)];
-			//Saw on platform and spike on floor
-			if (tile.TileType == TileType.Platform)
-			{
-				tile.Upgrade(TrapType.Saw + "Trap");
-			}
-			else
-			{
-				tile.Upgrade(TrapType.Spike + "Trap");
-			}
-			
-			//This tile is now upgraded
+			tilesNotUpgraded = tiles.FindAll(t => t.TileType == TileType.Platform);
+			if(tilesNotUpgraded.Count<1) return;
+			int r = Random.Range(0, tilesNotUpgraded.Count);
+			TileManager tile = tilesNotUpgraded[r];
+			//Get the specific trap to fit to tile type
+			tile.Upgrade((TrapType)tile.TileType + "Trap");
 			tile.TileType = TileType.Trap;
 		}
 	}
 }
 
+/**
+ * Cell Type
+ */
 public enum CellType
 {
 	Empty = 0,
-	Corpse = 1,
-	Up = 2,
-	Bound = 3
+	TileOffset =1,
+	Corpse = 2,
+	Up = 3,
+	Bound = 4
 }
 
+/**
+ * Trap type define which trap are put on tile
+ */
 public enum TrapType
 {
-	Saw,
-	Spike
+	Saw = TileType.Platform,
+	Spike = TileType.Floor
 }
+
+/**
+ * Tile Type define characteristic of tile
+ */
 public enum TileType
 {
 	Floor,
@@ -432,6 +478,10 @@ public enum TileType
 	Trap
 }
 
+/**
+ * Information in function of tile type
+ * Width, Height and offsets around tile needed
+ */
 [Serializable]
 public struct TileTypeInfo
 {
@@ -443,6 +493,9 @@ public struct TileTypeInfo
 	public int WidthOffset;
 }
 
+/**
+ * Sprites to render cells of a tile
+ */
 [Serializable]
 public struct TileSprites
 {
@@ -457,6 +510,9 @@ public struct TileSprites
 	public Sprite MiddleDown;
 }
 
+/**
+ * Save coordinates 
+ */
 public struct Coordinate
 {
 	public int x;
@@ -473,13 +529,11 @@ public struct Coordinate
 	{
 		return x.Equals(coordinate.x) && y.Equals(coordinate.y);
 	}
-	
-	public bool NotEquals(Coordinate coordinate)
-	{
-		return !x.Equals(coordinate.x) && !y.Equals(coordinate.y);
-	}
 }
 
+/**
+ * Define an area of coordinates
+ */
 public struct Area
 {
 	public Coordinate Origin;
@@ -491,4 +545,5 @@ public class TileObject
 	public Coordinate Origin;
 	public Coordinate Size;
 	public TileType TileType;
+	public Area AreaOffsets;
 }

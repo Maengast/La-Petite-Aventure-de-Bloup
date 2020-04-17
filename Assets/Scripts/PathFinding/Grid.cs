@@ -23,21 +23,23 @@ namespace PathFinder
         public float CornerOffset = 2;
         private float _boxWidth, _boxHeight;
 
-        private GameObject _areaBox;
+        private Area _areaBox;
         
-        private void Start()
+        public void InitGrid(Area gridArea, float cornerOffset, float jumpDistance)
         {
-            DefineBox();
+	        JumpDistance = jumpDistance;
+	        CornerOffset = cornerOffset;
+	        DefineBox(gridArea);
             CreateGrid();
         }
 
-        void DefineBox()
+        void DefineBox(Area area)
         {
-	        _areaBox = GameObject.Find("Background");
-            _boxWidth = _areaBox.GetComponent<SpriteRenderer>().bounds.size.x;
-            _boxHeight = _areaBox.GetComponent<SpriteRenderer>().bounds.size.y;
-            float boxX = _areaBox.GetComponent<SpriteRenderer>().bounds.center.x - (_areaBox.GetComponent<SpriteRenderer>().bounds.size.x / 2);
-            float boxY = _areaBox.GetComponent<SpriteRenderer>().bounds.center.y + (_areaBox.GetComponent<SpriteRenderer>().bounds.size.y / 2);
+	        _areaBox = area;
+            _boxWidth = area.Size.x;
+            _boxHeight = area.Size.y;
+            float boxX = area.Origin.x;
+            float boxY = area.Origin.y;
             _boxPosition = new Vector2(boxX, boxY);
         }
 
@@ -95,7 +97,7 @@ namespace PathFinder
             {
                 for (int y = 0; y < _gridSizeY; y++)
                 {
-                    Vector3 nodePosition = new Vector3((x * CellSize) + _boxPosition.x + (CellSize / 2), -(y * CellSize) + _boxPosition.y + (CellSize / 2), 0);
+                    Vector3 nodePosition = new Vector3((x * CellSize) + _boxPosition.x + (CellSize / 2), /*-*/(y * CellSize) + _boxPosition.y + (CellSize / 2), 0);
 
                     // Check if there are obstacles
                     bool walkable = IsNodeWalkable(nodePosition);

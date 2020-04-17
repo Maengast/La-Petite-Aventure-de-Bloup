@@ -5,36 +5,43 @@ using UnityEngine;
 
 public class AttackObject : MonoBehaviour
 {
-    protected float Dammages;
+    protected float Damages;
     private Vector2 screenBounds;
-    protected Character Laucher;
-    private void Awake()
+    protected Character Launcher;
+
+    // protected void Start()
+    // {
+	   //  screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+    // }
+    //
+    // protected virtual void Init()
+    // {
+	   //  
+    // }
+    //
+    // private void Update()
+    // {
+    //     if (transform.position.x > screenBounds.x *-2f || transform.position.x < screenBounds.x * 2f)
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
+    public void SetDamages(float value)
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-    }
-    private void Update()
-    {
-        if (transform.position.x > screenBounds.x *-2f || transform.position.x < screenBounds.x * 2f)
-        {
-            Destroy(gameObject);
-        }
-    }
-    public void SetDammages(float value)
-    {
-        Dammages = value;
+        Damages = value;
     }
 
-    public void SetLaucher(Character character)
+    public void SetLauncher(Character character)
     {
-        Laucher = character;
+        Launcher = character;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D other)
     {
         Character character = other.collider.GetComponent<Character>();
-        if (character && character != Laucher)
+        if (character && character != Launcher)
         {
-            character.TakeDamages(Dammages);
+            character.TakeDamages(Damages);
             Destroy(gameObject);
         }
     }

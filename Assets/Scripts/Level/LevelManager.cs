@@ -1,53 +1,131 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using DataBase;
 using UnityEngine;
+using Grid = PathFinder.Grid;
 
 public class LevelManager : MonoBehaviour
 {
+	//Static field
+	public static readonly int BossSize = 2;
+	public static readonly int PlayerSize = 1;
+	
+	[Header("Prefab")]
 	public GameObject PlayerPrefab;
-	public float LoadingWaitTime = 2.0f;
-    private bool _isLoad = false;
+	public GameObject PathFinding;
+
+	[Header("Camera")] 
+	public GameObject FollowingCamera;
+	
     private int _levelNumber;
+    private Level _levelInfos;
+    
+    //Singleton
+    private GameManager _gameManager;
+    private DataManager _dataManager;
+    
+    //PlayerInfo
+    private PlayerInfo _playerInfos;
+    private BossInfo _bossInfo;
     
     void Start()
     {
-	    StartCoroutine("LoadingLevel");
-	    _levelNumber = /*GameManager.Instance.GetCurrentLevel();*/ 1;
-	    CreateLevel();
-	    //find player spawn
-	    //End load game
-	    //instantiate player
-	    //Instantiate boss
-    }
+	    _dataManager = DataManager.Instance;
+	    _gameManager = GameManager.Instance;
 
+	    //get all info needed
+	    _levelNumber = /*_gameManager.GetCurrentLevel();*/ 1;
+	    _levelInfos = _dataManager.GetLevelInfo(_levelNumber);
+	    _playerInfos = _dataManager.GetPlayerInfo();
+	    _bossInfo = _dataManager.GetBossInfo(_levelInfos.BossName);
+	    //Same jump height
+	    _bossInfo.JumpHeight = _playerInfos.JumpHeight;
+	    //Set Max jump distance rounded to smaller integer
+	    _levelInfos.MaxJumpDistance = new Coordinate(Mathf.FloorToInt(_playerInfos.Speed),Mathf.FloorToInt(_playerInfos.JumpHeight));
+	    
+	    CreateLevel(); //Create Level
+
+    }
+	
+    /**
+     * Create the level
+     */
     private void CreateLevel()
     {
 	    LevelGenerator levelGenerator = gameObject.GetComponent<LevelGenerator>();
-	    levelGenerator.GenerateLevel(_levelNumber, OnLevelGenerated);
+	    levelGenerator.GenerateLevel(_levelInfos, OnLevelGenerated);
     }
-    public void OnLevelGenerated(TileObject _bossTile, TileObject _playerTile, bool levelComplete)
+    
+    /**
+     * Callback call when level is generated complete or incomplete
+     * When its incomplete GameManager reload the level
+     */
+    private void OnLevelGenerated(TileObject endTile, TileObject startTile, bool levelComplete)
     {
 	    if (!levelComplete)
 	    {
 		    StopAllCoroutines();
-		    GameManager.Instance.LoadLevel(_levelNumber);
+		    _gameManager.LoadLevel(_levelNumber);
+		    return;
 	    }
-	    _isLoad = true;
+	    
+	    //Create grid and path finding for IA
+	    CreateIaPathfinding();
+	    //instantiate player
+	    GameObject player = InstantiateCharacter(PlayerPrefab,startTile);
+	    //instantiate Boss
+		InstantiateCharacter(Resources.Load(_levelInfos.BossName) as GameObject, endTile);
+	    
+	    //Setup Camera
+	    FollowingCamera.AddComponent<FollowingCamera>();
+	    FollowingCamera.GetComponent<FollowingCamera>().Init(player,_levelInfos.Height,_levelInfos.Width);
     }
-    private void InstantiateCharacter(GameObject characterPrefab,Vector2 position)
+	
+    /**
+     * Instantiate Object to create a grid and pathfinding for IA
+     */
+    private void CreateIaPathfinding()
     {
+	    GameObject pathfinding = Instantiate(PathFinding);
+	    //create grid Area
+	    Area gridArea = new Area();
+	    gridArea.Origin = new Coordinate(0,0);
+	    gridArea.Size = new Coordinate(_levelInfos.Width, _levelInfos.Height);
+	    //init grid
+	    //Take max jump distance to setup path finding
+	    pathfinding.GetComponent<Grid>().InitGrid(gridArea,BossSize,Mathf.Max(_levelInfos.MaxJumpDistance.x,_levelInfos.MaxJumpDistance.x));
+    }
+    
+    /**
+     * Instantiate Boss and Player function
+     */
+    private GameObject InstantiateCharacter(GameObject characterPrefab,TileObject tile)
+    {
+	    Vector2 position = new Vector2(tile.Origin.x + tile.Size.x / 2, tile.Origin.y + tile.Size.y);
 	    GameObject character = Instantiate(characterPrefab, position, Quaternion.identity);
 	    character.GetComponent<Character>().SetLevelManager(this);
+	    return character;
     }
-    
-    IEnumerator LoadingLevel()
+
+    /**
+     * Inform GameManager EndGame
+     * Game over if playerDied
+     */
+    public void CharacterDie(bool isPlayer)
     {
-	    while (!_isLoad)
-	    {
-		    yield return new WaitForSecondsRealtime(LoadingWaitTime);
-	    }
-	    if(GameManager.Instance)GameManager.Instance.EndLoadLevel();
+	    _gameManager.EndGame(isPlayer);
     }
-    
-    
+    /**
+     * Return character info for pathfinding and each Character Instance
+     */
+    public BossInfo GetBossInfo()
+    {
+	    return _bossInfo;
+    }
+
+    public PlayerInfo GetPlayerInfo()
+    {
+	    return _playerInfos;
+    }
 }

@@ -9,7 +9,7 @@ namespace DataBase
     {
         private const string Tag = "Bloup: BossDb:\t";
         private static SqliteHelper sqliteHelper = SqliteHelper.Instance;
-        private const string TABLE_NAME = "Player";
+        private const string TABLE_NAME = "Boss";
         private const string KEY_ID = "id";
         private const string KEY_NAME = "name";
         private const string KEY_LIFE_POINTS = "life_points";

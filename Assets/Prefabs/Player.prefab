@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8079908237650858116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.78, y: 5.24, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -118,14 +118,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3fdb5246972a734e88e8eae101577b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 8
-  FallSpeed: 6
-  JumpSpeed: 6
-  _movementDirection: {x: 0, y: 0}
-  MaxLife: 50
-  OnGround: 0
-  JumpHeight: 15
+  Rigidbody: {fileID: 0}
+  CharacterAnimator: {fileID: 0}
   HealthBar: {fileID: 0}
+  JumpHeight: 15
+  Speed: 8
+  MaxFallSpeed: 15
+  OnGround: 0
+  AttackInventory: {fileID: 0}
+  AttackMultiplier: 0
 --- !u!61 &8079908237650858118
 BoxCollider2D:
   m_ObjectHideFlags: 0

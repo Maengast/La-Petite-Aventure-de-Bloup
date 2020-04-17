@@ -12,9 +12,6 @@
             <e p="Readme.txt" t="Include" />
           </e>
         </e>
-        <e p="Characters" t="Include">
-          <e p="characters.txt" t="Include" />
-        </e>
         <e p="JMO Assets" t="Include">
           <e p="Cartoon FX" t="Include">
             <e p="CartoonFX Free.txt" t="Include" />
@@ -54,6 +51,7 @@
             <e p="Attack.cs" t="Include" />
             <e p="AttackFactory.cs" t="Include" />
             <e p="AttackInventory.cs" t="Include" />
+            <e p="AttackModel.cs" t="Include" />
             <e p="AttackObject.cs" t="Include" />
             <e p="CircularSaw" t="Include">
               <e p="CircularSaw.cs" t="Include" />
@@ -63,44 +61,38 @@
               <e p="Claws.cs" t="Include" />
               <e p="ClawsAttack.cs" t="Include" />
             </e>
-            <e p="IAttack.cs" t="Include" />
           </e>
-          <e p="BarScript.cs" t="Include" />
-          <e p="Boss_run.cs" t="Include" />
+          <e p="Camera" t="Include">
+            <e p="AspectRatio.cs" t="Include" />
+            <e p="FollowingCamera.cs" t="Include" />
+          </e>
+          <e p="Character" t="Include">
+            <e p="Boss.cs" t="Include" />
+            <e p="Character.cs" t="Include" />
+            <e p="CharacterCollisions.cs" t="Include" />
+            <e p="Player.cs" t="Include" />
+          </e>
           <e p="Database" t="Include">
             <e p="AttackDb.cs" t="Include" />
+            <e p="BindingDbClass" t="Include">
+              <e p="BonusInfo.cs" t="Include" />
+              <e p="BossInfo.cs" t="Include" />
+              <e p="CharacterInfo.cs" t="Include" />
+              <e p="Level.cs" t="Include" />
+              <e p="PlayerInfo.cs" t="Include" />
+            </e>
             <e p="BonusDb.cs" t="Include" />
             <e p="BossDb.cs" t="Include" />
             <e p="DbConnection.cs" t="Include" />
             <e p="LevelDb.cs" t="Include" />
-            <e p="ObstacleDb.cs" t="Include" />
             <e p="PlayerDb.cs" t="Include" />
             <e p="SqliteHelper.cs" t="Include" />
           </e>
-          <e p="Entities" t="Include">
-            <e p="AttackModel.cs" t="Include" />
-            <e p="Bonus.cs" t="Include" />
-            <e p="Boss.cs" t="Include" />
-            <e p="Character.cs" t="Include" />
-            <e p="CharacterCollisions.cs" t="Include" />
-            <e p="EntityInfos" t="Include">
-              <e p="BossInfo.cs" t="Include" />
-              <e p="CharacterInfo.cs" t="Include" />
-            </e>
-            <e p="Level.cs" t="Include" />
-            <e p="Obstacle.cs" t="Include" />
-            <e p="Player.cs" t="Include" />
-            <e p="PlayerInfo.cs" t="Include" />
-          </e>
-          <e p="HealthBar.cs" t="Include" />
           <e p="Level" t="Include">
             <e p="LevelGenerator.cs" t="Include" />
             <e p="LevelManager.cs" t="Include" />
-            <e p="SawTrapt.cs" t="Include" />
+            <e p="SawTrap.cs" t="Include" />
             <e p="TileManager.cs" t="Include" />
-          </e>
-          <e p="New Folder" t="Include">
-            <e p="Testing.cs" t="Include" />
           </e>
           <e p="PathFinding" t="Include">
             <e p="Grid.cs" t="Include" />
@@ -113,9 +105,11 @@
             <e p="DataManager.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
             <e p="Singleton.cs" t="Include" />
+            <e p="SoundManager.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
+            <e p="BarScript.cs" t="Include" />
             <e p="UIButton.cs" t="Include" />
             <e p="UIComponent.cs" t="Include" />
             <e p="UILevel.cs" t="Include" />
@@ -150,9 +144,6 @@
           <e p="Sprites" t="Include">
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
-        </e>
-        <e p="UI" t="Include">
-          <e p="AspectRatio.cs" t="Include" />
         </e>
       </e>
       <e p="La-Petite-Aventure-de-Bloup.sln" t="IncludeFlat" />

@@ -59,10 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnwalkableMask:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 512
   JumpMask:
     serializedVersion: 2
     m_Bits: 16384
   CellSize: 1
-  LedgePlateform: {fileID: 5274796033082169743, guid: 6b511e767dbc37e448b162d7605f18a9,
-    type: 3}
+  JumpDistance: 5
+  CornerOffset: 2

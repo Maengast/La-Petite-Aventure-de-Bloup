@@ -5,12 +5,13 @@ using UnityEngine;
 public class CircularSawAttack : Attack
 {
     Transform firePoint;
-    int numberOfCircleSaw;
+    int numberOfCircleSaw = 2;
     private void Awake()
     {
         numberOfCircleSaw = 2;
         Name = "CircleSaw";
     }
+    
     public override void Launch(Character character)
     {
         float damages = character.AttackMultiplier * AttackModel.Damage;
@@ -19,8 +20,8 @@ public class CircularSawAttack : Attack
         {
             GameObject circleSaw = Instantiate(AttackModel.ObjectPrefab, firePoint.position, firePoint.rotation) as GameObject;
             circleSaw.name = AttackModel.Name;
-            circleSaw.GetComponent<CircularSaw>().SetDammages(damages / numberOfCircleSaw);
-            circleSaw.GetComponent<CircularSaw>().SetLaucher(character);
+            circleSaw.GetComponent<CircularSaw>().SetDamages(damages / numberOfCircleSaw);
+            circleSaw.GetComponent<CircularSaw>().SetLauncher(character);
         }
 
     }

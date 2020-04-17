@@ -14,7 +14,7 @@ public class CircularSaw : AttackObject
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = Laucher.transform.right;
+        Vector3 direction = Launcher.transform.right;
         transform.Translate(transform.right * Time.deltaTime);                                       
         transform.Rotate(0f, 0f, direction.x *RotationSpeed *360* Time.deltaTime);
     }
