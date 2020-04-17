@@ -22,7 +22,9 @@ public class Boss : Character
     //Boss Stamina
     private float _currentStamina = 100;
     private float _maxStamina = 100;
+
     private BoxCollider2D _boxCollider;
+    private BoxCollider2D _playerBoxCollider;
     Transform _firePoint;
    
     private BossInfo _info;
@@ -47,10 +49,14 @@ public class Boss : Character
         _pathFinding = FindObjectOfType<PathFinding>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _firePoint = transform.Find("FirePoint");
-        //StaminaBar.SetMaxValue(_info.MaxStamina);
-        // StartCoroutine("UpdateStamina");
+        StaminaBar.SetMaxValue(_info.MaxStamina);
+        StartCoroutine("UpdateStamina");
+
+        _playerBoxCollider = _player.GetComponent<BoxCollider2D>();
         //Update path if _player exist
-        if(_player) UpdatePath();
+        if (_player) {
+            UpdatePath();
+        };
     }
 	
     /**
@@ -74,7 +80,7 @@ public class Boss : Character
 		
         if(_player)CheckAttack();
         //No _path , no move
-        if (_path == null || currentPoint >= _path.Count || !HasDetectedVictim)
+        if (_path == null || currentPoint >= _path.Count || !HasDetectedVictim )
         {
             SetBoolAnim("IsRunning", false);
             _movementDirection.x = 0;
@@ -115,10 +121,10 @@ public class Boss : Character
 	
     private void Dodge(AttackObject obj)
     {
-        if (!Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size ,0f , Vector3.up, 5f,LayerMask.GetMask("Ground")).collider)
+        if (!Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size ,0f , Vector3.up, 3f,LayerMask.GetMask("Ground")).collider)
         {
             JumpHeight = 5f;
-            base.Jump();
+            Jump();
         }
         else
         {
@@ -202,8 +208,20 @@ public class Boss : Character
     {
 	    if (_pathFinding.IsDone && OnGround)
 	    {
-		    _pathFinding.FindPath(transform.position, _player.transform.position, OnPathComplete);
+		    _pathFinding.FindPath(LedgeCheck(transform), LedgeCheck(_player.transform), OnPathComplete);
 	    }
+    }
+
+    Vector2 LedgeCheck(Transform transform)
+    {
+        RaycastHit2D ledgeHit = Physics2D.CircleCast(
+            transform.position,
+            transform.localScale.x,
+            Vector2.down,
+            10,
+            _pathFinding.GetGrid().UnwalkableMask);
+
+        return ledgeHit.point;
     }
 
     void OnPathComplete(List<Node> _path)

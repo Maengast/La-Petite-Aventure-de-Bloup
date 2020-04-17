@@ -22,36 +22,13 @@ namespace PathFinder
             return Grid;
         }
         
-        RaycastHit2D LedgeCheck(Vector3 pos)
-        {
-            RaycastHit2D ledgeHit = Physics2D.Raycast(
-                pos,
-                -Vector2.up,
-                10,
-                Grid.UnwalkableMask);
 
-            return ledgeHit;
-        }
-
-        bool IsGrounded(Vector3 pos)
-        {
-            RaycastHit2D hit = LedgeCheck(pos);
-            if (!hit.collider) return false;
-
-            // Get the current node
-            Node node = Grid.NodeFromWorldPoint(hit.point);
-            //return false if object position is not grounded
-            if (!node.Ledge) return false;
-
-            return true;
-        }
-
-        public void FindPath(Vector3 startPos, Vector3 targetPos, OnPathCompleteDelegate pathComplete )
+        public void FindPath(Vector3 startPos, Vector3 targetPos, OnPathCompleteDelegate pathComplete)
         {
             IsDone = false;
 
-            Node startNode = Grid.NodeFromWorldPoint(LedgeCheck(startPos).point);
-            Node targetNode = Grid.NodeFromWorldPoint(LedgeCheck(targetPos).point);
+            Node startNode = Grid.NodeFromWorldPoint(startPos);
+            Node targetNode = Grid.NodeFromWorldPoint(targetPos);
 
             List<Node> openList = new List<Node> { startNode };
             HashSet<Node> closedSet = new HashSet<Node>();

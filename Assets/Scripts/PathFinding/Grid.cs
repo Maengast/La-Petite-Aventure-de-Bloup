@@ -197,14 +197,12 @@ namespace PathFinder
 	                );
 	                x -= Mathf.Sign(direction) * 0.05f;
 	                y -= 0.05f;
-	                
-	                if (hit.collider)
-	                {
+
+                    if (hit.collider && !OutOfBounds((int)hit.point.x, (int)hit.point.y))
+	                { 
 		                Node node = NodeFromWorldPoint(hit.point);
 		                if (node.Ledge && !jumpPoints.Contains(node.Position))
 		                {
-			                GameObject test = new GameObject("jump");
-			                test.transform.position = node.Position;
 			                jumpPoints.Add(node.Position);
 			                int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
 			                // platform corner to node link
