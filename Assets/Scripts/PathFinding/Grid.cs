@@ -37,8 +37,8 @@ namespace PathFinder
         {
 
             AreaBox = GameObject.Find("Background");
-            BoxWidth = gridSize.x;
-            BoxHeight = gridSize.y;
+            BoxWidth = gridSize.x + JumpDistance;
+            BoxHeight = gridSize.y + JumpDistance;
             float boxX = gridOrigin.x;
             float boxY = gridOrigin.y;
             BoxPosition = new Vector2(boxX, boxY);

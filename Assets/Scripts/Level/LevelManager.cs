@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
     
     void Start()
     {
+
 	    _dataManager = DataManager.Instance;
 	    _gameManager = GameManager.Instance;
 
@@ -43,12 +44,13 @@ public class LevelManager : MonoBehaviour
 	    _bossInfo.JumpHeight = _playerInfos.JumpHeight;
 	    _bossInfo.Speed = _playerInfos.Speed+BossSize;
 	    //Set Max jump distance rounded to smaller integer
-	    _levelInfos.MaxJumpDistance = new Coordinate(Mathf.FloorToInt(_playerInfos.Speed)-PlayerSize,Mathf.FloorToInt(_playerInfos.JumpHeight)-PlayerSize);
+	    _levelInfos.MaxJumpDistance = new Coordinate(Mathf.FloorToInt(_playerInfos.Speed),Mathf.FloorToInt(_playerInfos.JumpHeight));
 	    
 	    CreateLevel(); //Create Level
-
+	    _gameManager.SwitchGameState(GameState.InGame);
     }
-	
+    
+    
     /**
      * Create the level
      */

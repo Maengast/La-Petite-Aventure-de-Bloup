@@ -15,9 +15,7 @@ public class GameManager : Singleton<GameManager>
 	private int _maxLevelNumber=3;
 	
 	private GameState _currentGameState;
-	
-	public float LoadingWaitTime = 2.0f;
-	
+
 	private void Start()
 	{
 		_uiManager = UIManager.Instance;
@@ -118,7 +116,6 @@ public class GameManager : Singleton<GameManager>
 	 */
 	IEnumerator LoadLevelAsync(string sceneName)
 	{
-		yield return new WaitForSecondsRealtime(LoadingWaitTime);
 		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
 		// Wait until the asynchronous scene fully loads
@@ -126,8 +123,6 @@ public class GameManager : Singleton<GameManager>
 		{
 			yield return null;
 		}
-		
-		SwitchGameState(GameState.InGame);
 	}
 
 	/**
@@ -145,7 +140,7 @@ public class GameManager : Singleton<GameManager>
 		if (gameResult == GameResults.Win)
 		{
 			_levelUnlock++;
-			if (_levelUnlock == _maxLevelNumber)
+			if (_levelUnlock > _maxLevelNumber)
 			{
 				SwitchGameState(GameState.MainMenu);
 				return;

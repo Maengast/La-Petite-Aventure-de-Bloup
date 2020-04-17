@@ -79,7 +79,8 @@ public class LevelGenerator : MonoBehaviour
 	 */
 	private void SetSizeAndOffset()
 	{
-		MaxJumpDistance = _level.MaxJumpDistance;
+		int playerSize = LevelManager.PlayerSize;
+		MaxJumpDistance = new Coordinate(_level.MaxJumpDistance.x -playerSize,_level.MaxJumpDistance.y - playerSize);;
 		MinHeightOffset = LevelManager.BossSize+1;
 		MinWidthOffset = LevelManager.BossSize;
 		
