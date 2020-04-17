@@ -78,7 +78,7 @@ public class Boss : Character
 
         CheckAttack();
         //No _path , no move
-        if (_path == null || currentPoint >= _path.Count || !HasDetectedVictim)
+        if (_path == null || currentPoint >= _path.Count || !HasDetectedVictim )
         {
             SetBoolAnim("IsRunning", false);
             _movementDirection.x = 0;
@@ -123,10 +123,10 @@ public class Boss : Character
 
     private void Dodge(AttackObject obj)
     {
-        if (!Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size ,0f , Vector3.up, 5f,LayerMask.GetMask("Ground")).collider)
+        if (!Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size ,0f , Vector3.up, 3f,LayerMask.GetMask("Ground")).collider)
         {
             JumpHeight = 5f;
-            base.Jump();
+            Jump();
         }
         else
         {

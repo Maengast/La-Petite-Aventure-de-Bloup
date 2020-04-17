@@ -195,9 +195,9 @@ namespace PathFinder
 		                JumpDistance,
 		                JumpMask
 	                );
-	                
-	                if (hit.collider)
-	                {
+
+                    if (hit.collider && !OutOfBounds((int)hit.point.x, (int)hit.point.y))
+	                { 
 		                Node node = NodeFromWorldPoint(hit.point);
 		                if (node.Ledge && !jumpPoints.Contains(node.Position))
 		                {
