@@ -217,19 +217,20 @@ public class Boss : Character
     {
 	    if (_pathFinding.IsDone && OnGround)
 	    {
-		    _pathFinding.FindPath(LedgeCheck(transform.position).point, LedgeCheck(_player.transform.position).point, OnPathComplete);
+		    _pathFinding.FindPath(LedgeCheck(transform), LedgeCheck(_player.transform), OnPathComplete);
 	    }
     }
 
-    RaycastHit2D LedgeCheck(Vector3 pos)
+    Vector2 LedgeCheck(Transform transform)
     {
-        RaycastHit2D ledgeHit = Physics2D.Raycast(
-            pos,
+        RaycastHit2D ledgeHit = Physics2D.CircleCast(
+            transform.position,
+            transform.localScale.x,
             Vector2.down,
             10,
             _pathFinding.GetGrid().UnwalkableMask);
 
-        return ledgeHit;
+        return ledgeHit.point;
     }
 
     void OnPathComplete(List<Node> _path)
