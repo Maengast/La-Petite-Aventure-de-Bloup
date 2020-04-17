@@ -88,6 +88,7 @@ public class LevelManager : MonoBehaviour
     private void CreateIaPathfinding()
     {
 	    GameObject pathfinding = Instantiate(PathFinding);
+	    pathfinding.transform.position = Vector3.zero;
 	    //create grid Area
 	    Area gridArea = new Area();
 	    gridArea.Origin = new Coordinate(0,0);

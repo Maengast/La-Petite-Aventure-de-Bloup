@@ -16,7 +16,7 @@ public class TileManager : MonoBehaviour
 	public void InitTile(Vector2 size, Vector2 origin)
 	{
 		_tileSize = size;
-		_tileSize.y -= groundOffset;
+		//_tileSize.y -= groundOffset;
 		_tileOrigin = origin;
 		//Place tile on right position
 		transform.position = _tileOrigin;
@@ -38,7 +38,7 @@ public class TileManager : MonoBehaviour
 			for (int y = 0; y < _tileSize.y; y++)
 			{
 				Sprite sprite;
-				if(y > _tileSize.y-1 )
+				if(y >= _tileSize.y-1 )
 				{
 					sprite = (x > 0) ? (x < _tileSize.x - 1) ? LevelTileSprites.MiddleUp : LevelTileSprites.RightUp : LevelTileSprites.LeftUp;
 				}

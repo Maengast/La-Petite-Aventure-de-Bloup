@@ -14,7 +14,7 @@ public class Claws : AttackObject
         Character character = other.collider.GetComponent<Character>();
         if (character && AreOut)
         {
-            character.TakeDamages(Damages);
+            character.TakeDamages(_damages);
             AreOut = false;
         }
     }

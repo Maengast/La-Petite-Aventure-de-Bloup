@@ -62,7 +62,7 @@ MonoBehaviour:
     m_Bits: 512
   JumpMask:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 8704
   CellSize: 1
   JumpDistance: 5
   CornerOffset: 2

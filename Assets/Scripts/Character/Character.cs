@@ -140,7 +140,6 @@ public class Character : MonoBehaviour
     protected virtual void Jump()
     {
 	    SwitchJumpState();
-	    //StartCoroutine("Jumping");
     }
 
     /**

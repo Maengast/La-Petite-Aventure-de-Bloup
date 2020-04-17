@@ -11,7 +11,7 @@ public class AttackObject : MonoBehaviour
 
 
 
-    public void SetDammages(float value)
+    public void SetDamages(float value)
     {
         _damages = value;
     }

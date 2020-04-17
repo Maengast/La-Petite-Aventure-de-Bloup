@@ -138,6 +138,12 @@ PrefabInstance:
       propertyPath: FollowingCamera
       value: 
       objectReference: {fileID: 1092375240}
+    - target: {fileID: 3049192689287277345, guid: 81c07eed60224da4c96d671731109ec2,
+        type: 3}
+      propertyPath: PlayerPrefab
+      value: 
+      objectReference: {fileID: 2679597197117954706, guid: 6a371d3f0e3a87c4d899379b5fc4f379,
+        type: 3}
     - target: {fileID: 3049192689287277406, guid: 81c07eed60224da4c96d671731109ec2,
         type: 3}
       propertyPath: m_LocalPosition.x

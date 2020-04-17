@@ -94,20 +94,17 @@ public class Boss : Character
                 return;
             }
             //Jump if is on jump node
-            if (targetNode.LinkType == PathLinkType.jump)
+            if (targetNode.LinkType == PathLinkType.jump && !IsJumping())
             {
                 Jump();
             }
             if (targetNode.LinkType == PathLinkType.fall)
             {
-                while (!OnGround)
-                {
-                    StartCoroutine("Fall");
-                }
+	            
             }
             //Change node target if boss has reached the target
-            float distance = Vector2.Distance(transform.position, _path[currentPoint].Position);
-            if (distance < 0.1f)
+            float distance = Vector2.Distance(transform.position, targetPos);
+            if (distance < 1f)
             {
                 currentPoint++;
             }
@@ -145,30 +142,6 @@ public class Boss : Character
                 Attack(attack);
             }
         }
-    }
-
-    private IEnumerator Fall()
-    {
-        Vector3 targetPosition = _path[currentPoint].Position;
-        RaycastHit2D targetPLateform = Physics2D.Raycast(_path[currentPoint].Position, -Vector3.up, Mathf.Infinity, _pathFinding.GetGrid().UnwalkableMask);
-
-        if (targetPLateform.collider)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position - transform.right * _boxCollider.bounds.extents.x, -Vector3.up, Mathf.Infinity, _pathFinding.GetGrid().UnwalkableMask);
-            while (targetPLateform.collider != hit.collider)
-            {
-                hit = Physics2D.Raycast(transform.position - transform.right * _boxCollider.bounds.extents.x, -Vector3.up, Mathf.Infinity, _pathFinding.GetGrid().UnwalkableMask);
-                Vector3 tg = targetPosition + transform.right * _boxCollider.size.x;
-                MoveTo(tg);
-                yield return null;
-            }
-        }
-    }
-
-    protected override void Die()
-    {
-        _gameManager.EndGame(false);
-        base.Die();
     }
 
     /**
@@ -242,8 +215,10 @@ public class Boss : Character
 
     void UpdatePath()
     {
-        if (_pathFinding.IsDone && !IsJumping() && OnGround)
-            _pathFinding.FindPath(transform.position, _player.transform.position, OnPathComplete);
+	    if (_pathFinding.IsDone && !IsJumping() && OnGround)
+	    {
+		    _pathFinding.FindPath(transform.position, _player.transform.position, OnPathComplete);
+	    }
     }
 
     void OnPathComplete(List<Node> _path)
@@ -271,7 +246,7 @@ public class Boss : Character
     public void UseStamina(float stamina)
     {
         _currentStamina = _currentStamina - stamina > 0 ? _currentStamina - stamina : 0;
-        StaminaBar.SetValue(_currentStamina);
+        //StaminaBar.SetValue(_currentStamina);
     }
 
     public AttackModel ChooseBestAttack()
@@ -372,33 +347,30 @@ public class Boss : Character
 	    base.Die();
     }
 
-    // private void OnDrawGizmos()
-    // {
-    //     if (_path != null)
-    //     {
-    //         Gizmos.DrawWireCube(_pathFinding.transform.position, new Vector3(_pathFinding.GetGrid().GetWidth(), _pathFinding.GetGrid().GetHeight(), 1));//Draw a wire cube with the given dimensions from the Unity inspector
-    //
-    //         if (_pathFinding.GetGrid() != null)//If the grid is not empty
-    //         {
-    //             foreach (Node n in _path)//Loop through every node in the grid
-    //             {
-    //                 if (n.IsWalkable)//If the current node is a wall node
-    //                 {
-    //                     Gizmos.color = Color.white;//Set the color of the node
-    //                 }
-    //                 else
-    //                 {
-    //                     Gizmos.color = Color.red;//Set the color of the node
-    //                 }
-    //
-    //                 Gizmos.DrawCube(n.Position, Vector3.one * (_pathFinding.GetGrid().CellSize / 2));//Draw the node at the position of the node.
-    //             }
-    //         }
-    //     }
-    //     
-    //     
-    //
-    // }
+    private void OnDrawGizmos()
+    {
+        if (_path != null)
+        {
+            Gizmos.DrawWireCube(_pathFinding.transform.position, new Vector3(_pathFinding.GetGrid().GetWidth(), _pathFinding.GetGrid().GetHeight(), 1));//Draw a wire cube with the given dimensions from the Unity inspector
+    
+            if (_pathFinding.GetGrid() != null)//If the grid is not empty
+            {
+                foreach (Node n in _path)//Loop through every node in the grid
+                {
+                    if (n.IsWalkable)//If the current node is a wall node
+                    {
+                        Gizmos.color = Color.white;//Set the color of the node
+                    }
+                    else
+                    {
+                        Gizmos.color = Color.red;//Set the color of the node
+                    }
+    
+                    Gizmos.DrawCube(n.Position, Vector3.one * (_pathFinding.GetGrid().CellSize / 2));//Draw the node at the position of the node.
+                }
+            }
+        }
+    }
     
     // private void OnDrawGizmos()
     // {
@@ -419,11 +391,10 @@ public class Boss : Character
 				// 	    Gizmos.color = Color.red;//Set the color of the node
 				//     }
     //
-				//     Gizmos.DrawCube(n.Position, Vector3.one * (_pathFinding.GetGrid().CellSize / 2));//Draw the node at the position of the node.
+				//     Gizmos.DrawCube(n.Position, Vector3.one * (_pathFinding.GetGrid().CellSize/2));//Draw the node at the position of the node.
 			 //    }
 		  //   }
 	   //  }
-    //
     // }
 
 

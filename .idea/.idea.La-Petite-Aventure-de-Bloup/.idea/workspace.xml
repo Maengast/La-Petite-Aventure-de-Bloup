@@ -4,223 +4,22 @@
     <list default="true" id="864a069d-4079-4c07-8954-692686705718" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/Dirt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/Dirt.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/DirtLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/DirtLeft.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/DirtRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/DirtRight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/GrassLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/GrassLeft.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/GrassMid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/GrassMid.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/GrassRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BayatGames/Free Platform Game Assets/Tiles/png/512x512/GrassRight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Boss/Animations/boss_death.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Boss/Animations/boss_death.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Boss/Boss.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Boss/Boss.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Player/PlayerAnimCtrl.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Player/PlayerAnimCtrl.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/characters.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/characters.txt.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/1-1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/1-1x.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/2-1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/2-1x.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/3-1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/3-1x.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/4-1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/4-1x.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/5-1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/5-1x.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/6-1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/6-1x.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Animations.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Animations/ChestAnimController.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Animations/ChestAnimController.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Animations/Chest_Open.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Animations/Chest_Open.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Animations/WaterAnimController.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Animations/WaterAnimController.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Animations/Water_Anim.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Animations/Water_Anim.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Dirt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Dirt.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtDown.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeft.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtLeftCorner.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/DirtRightCorner.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Environment 1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Environment 1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassLeft.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassMid.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/GrassRight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/Menu.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 10.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 11.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 12.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 13.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 14.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 14.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 15.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 15.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 16.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 17.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 17.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 3.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 4.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 5.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 6.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 7.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 8.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Environnement/image 9.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Objects.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Objects/Saw.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Objects/Saw.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PathFinding.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PathFinding.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TilePrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TilePrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Flambi.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Flambi.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Le Malin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Le Malin.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Attack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Attack.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/AttackObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/AttackObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSaw.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSaw.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSawAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSawAttack.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/Claws.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/Claws.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/ClawsAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/ClawsAttack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/IAttack.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/IAttack.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BarScript.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BarScript.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boss_run.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boss_run.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Database/BonusDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Database/BonusDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Database/BossDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Database/BossDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Database/DbConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Database/DbConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Database/ObstacleDb.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Database/ObstacleDb.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Database/PlayerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Database/PlayerDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/AttackModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/AttackModel.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Bonus.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Bonus.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Boss.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Boss.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Character.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Character.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterCollisions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/CharacterCollisions.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/BossInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/BossInfo.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/CharacterInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/EntityInfos/CharacterInfo.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Level.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Level.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Obstacle.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Obstacle.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Player.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/Player.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/PlayerInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Entities/PlayerInfo.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HealthBar.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HealthBar.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/SawTrapt.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/SawTrapt.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/TileManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/TileManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New Folder.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New Folder/Testing.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New Folder/Testing.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Singleton/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/DataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Singleton/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/AttackInitialiser.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/AttackInitialiser.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/PathFinding.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/PathFinding.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/Character_init.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/Character_init.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Animations.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Animations/UILevelController.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Animations/UILevelController.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Animations/UILevel_New.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Animations/UILevel_New.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Animations/UILevel_Played.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Animations/UILevel_Played.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Animations/UILevel_Wait.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Animations/UILevel_Wait.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Animations/UI_BlockLevel.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Animations/UI_BlockLevel.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/AspectRatio.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/AspectRatio.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Background 1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Background 1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Button.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Button_Highliht.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Button_Highliht.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Health_bar_white.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Health_bar_white.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Healthbar_sprite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Healthbar_sprite.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Levels.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Levels.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Levels_Hightlight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Levels_Hightlight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Logo.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/NewBackground1920x1081.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/NewBackground1920x1081.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Play.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Play.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/PlayLevel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/PlayLevel.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/PlayLevel_Hightlight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/PlayLevel_Hightlight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Play_Hightlight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Play_Hightlight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Quit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Quit.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Quit_HightLight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Quit_HightLight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Replay.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Replay.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Replay_Hightlight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Replay_Hightlight.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Stamina_bar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/Stamina_bar.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/UILevel1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/UILevel1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/UILevel2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/UILevel2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/Level_Init.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/Level_Init.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +89,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Node.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/PathFinding.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Entities/LevelInfo.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/Tile.cs" />
@@ -299,11 +97,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/New Folder/Testing.cs" />
         <option value="$PROJECT_DIR$/Assets/StreamingAssets/AttackInitialiser.json" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" />
-        <option value="$PROJECT_DIR$/Assets/StreamingAssets/Character_init.json" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Database/BossDb.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Entities/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Singleton/Singleton.cs" />
-        <option value="$PROJECT_DIR$/Assets/StreamingAssets/Level_Init.json" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Database/DbConnection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/SawTrapt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Database/PlayerDb.cs" />
@@ -316,24 +112,27 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Singleton/DataManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSaw.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/ClawsAttack.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/Claws.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSawAttack.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Attacks/AttackObject.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character/Bonus.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Database/BonusDb.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Singleton/GameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Level/TileManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/SawTrap.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Camera/FollowingCamera.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/BarScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character/Player.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character/CharacterCollisions.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Singleton/SoundManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Attacks/Claws/Claws.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Attacks/AttackObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Attacks/CircularSaw/CircularSawAttack.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level/TileManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/StreamingAssets/Level_Init.json" />
+        <option value="$PROJECT_DIR$/Assets/StreamingAssets/Character_init.json" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/PathFinding.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" />
       </list>
     </option>
   </component>
@@ -419,7 +218,7 @@
       <workItem from="1586932738069" duration="36295000" />
       <workItem from="1587028169537" duration="24714000" />
       <workItem from="1587062690201" duration="12462000" />
-      <workItem from="1587113065262" duration="848000" />
+      <workItem from="1587113065262" duration="10882000" />
     </task>
     <servers />
   </component>
@@ -442,10 +241,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1587074170727">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1587118857901">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.-115.2560.1400@0.0.1536.824" timestamp="1587074170727" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.-115.2560.1400@0.0.1536.824" timestamp="1587118857901" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
