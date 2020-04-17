@@ -13,6 +13,7 @@ public class CircularSawAttack : Attack
         _numberOfCircleSaw = 2;
         Name = "CircleSaw";
     }
+    
     public override void Launch(Character character)
     {
         float damages = character.AttackMultiplier * AttackModel.Damage;
@@ -24,10 +25,10 @@ public class CircularSawAttack : Attack
             GameObject circleSawObj = Instantiate(AttackModel.ObjectPrefab,position , _firePoint.rotation) as GameObject;
             circleSawObj.name = AttackModel.Name;
             CircularSaw circularSaw = circleSawObj.GetComponent<CircularSaw>();
-            circularSaw.SetDammages(damages / _numberOfCircleSaw);
+            circularSaw.SetDamages(damages / _numberOfCircleSaw);
             circularSaw.Launcher = character;
             circularSaw.Direction = character.transform.right;
-    }
+		}
     }
 
 

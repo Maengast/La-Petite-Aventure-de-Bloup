@@ -14,7 +14,7 @@ public class ClawsAttack : Attack
         Claws claws = character.gameObject.GetComponentInChildren<Claws>();
         if (claws != null)
         {
-            claws.SetDammages(damages);
+            claws.SetDamages(damages);
         }
     }
 }

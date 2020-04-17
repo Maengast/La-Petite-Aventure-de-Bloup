@@ -16,8 +16,12 @@ namespace DataBase
         private const string KEY_LIFE_POINTS = "life_points";
         private const string KEY_ATTACK_MULTIPLIER = "attack_multiplier";
         private const string KEY_SPEED = "speed";
-        private string[] COLUMNS = new string[] { KEY_ID, KEY_NAME, KEY_LIFE_POINTS, KEY_ATTACK_MULTIPLIER, KEY_SPEED };
-
+        private const string KEY_JUMP_HEIGHT = "jump_height";
+        private string[] COLUMNS = new string[] { KEY_ID, KEY_NAME, KEY_LIFE_POINTS, KEY_ATTACK_MULTIPLIER, KEY_SPEED, KEY_JUMP_HEIGHT };
+		
+        /**
+         * Construct Player Table
+         */
         static PlayerDb()
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
@@ -26,10 +30,14 @@ namespace DataBase
                 KEY_NAME + " TEXT, " +
                 KEY_LIFE_POINTS + " INTEGER, " +
                 KEY_ATTACK_MULTIPLIER + " NUMERIC, " +
-                KEY_SPEED + " NUMERIC ) ";
+                KEY_SPEED + " NUMERIC ," +
+                KEY_JUMP_HEIGHT + " NUMERIC )";
             dbcmd.ExecuteNonQuery();
         }
-
+	
+        /**
+         * Add Player in db
+         */
         public static void AddPlayer(PlayerInfo player)
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
@@ -39,46 +47,37 @@ namespace DataBase
                 + KEY_NAME + ", "
                 + KEY_LIFE_POINTS + ", "
                 + KEY_ATTACK_MULTIPLIER + ", "
-                + KEY_SPEED + " ) "
+				+ KEY_SPEED + ", "
+	            + KEY_JUMP_HEIGHT + ")"
 
                 + "VALUES ( '"
                 + player.Name + "', '"
                 + player.MaxLife + "', '"
                 + player.Attack_Multiplier + "', '"
-                + player.Speed + "' )";
+                + player.Speed + "', '"
+                + player.JumpHeight + "' )";
             dbcmd.ExecuteNonQuery();
         }
-
-        public static List<PlayerInfo> GetPlayers()
+		
+        /**
+         * Get player from db
+         */
+        public static PlayerInfo GetPlayer()
         {
             IDataReader reader = sqliteHelper.GetAllData(TABLE_NAME);
-            List<PlayerInfo> players = new List<PlayerInfo>();
-            while (reader.Read())
-            {
-                PlayerInfo player = ReadPlayer(reader);
-
-                players.Add(player);
-            }
-            reader.Close();
-            return players;
-        }
-
-        public static PlayerInfo GetPlayerByName(string name)
-        {
-            IDbCommand dbcmd = sqliteHelper.GetDbCommand();
-            dbcmd.CommandText =
-                "SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_NAME + " = '" + name + "'";
-            IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
             {
                 PlayerInfo player = ReadPlayer(reader);
                 reader.Close();
                 return player;
             }
-            throw new KeyNotFoundException();
+
+            return null;
         }
 
-
+		/**
+		 * Reader to convert data in player info class
+		 */
         private static PlayerInfo ReadPlayer(IDataReader reader)
         {
             PlayerInfo player = new PlayerInfo();
@@ -86,6 +85,7 @@ namespace DataBase
             player.MaxLife = reader.GetInt32(2);
             player.Attack_Multiplier = reader.GetFloat(3);
             player.Speed = reader.GetFloat(4);
+            player.JumpHeight = reader.GetFloat(5);
             return player;
         }
     }

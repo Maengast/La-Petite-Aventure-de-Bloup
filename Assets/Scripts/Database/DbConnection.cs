@@ -16,8 +16,7 @@ namespace DataBase
 
         DbConnection()
         {
-            Debug.Log("Connection à la base de donnée!");
-            db_connection_string = "URI=file:" + Application.persistentDataPath + "/" + database_name;
+	        db_connection_string = "URI=file:" + Application.persistentDataPath + "/" + database_name;
             sqlConnection = new SqliteConnection(db_connection_string);
         }
         public SqliteConnection SqlConnetionFactory

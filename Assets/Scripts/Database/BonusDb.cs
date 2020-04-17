@@ -28,7 +28,7 @@ namespace DataBase
             dbcmd.ExecuteNonQuery();
         }
 
-        public static void AddBonus(Bonus bonus)
+        public static void AddBonus(BonusInfo bonus)
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
             dbcmd.CommandText =
@@ -45,7 +45,7 @@ namespace DataBase
             dbcmd.ExecuteNonQuery();
         }
 
-        public static Bonus GetBonusById(int id)
+        public static BonusInfo GetBonusById(int id)
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
             dbcmd.CommandText =
@@ -53,7 +53,7 @@ namespace DataBase
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
             {
-                Bonus bonus = ReadBonus(reader);
+                BonusInfo bonus = ReadBonus(reader);
                 reader.Close();
                 return bonus;
             }
@@ -61,16 +61,16 @@ namespace DataBase
 
         }
 
-        public static List<Bonus> GetAllBonus()
+        public static List<BonusInfo> GetAllBonus()
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
             dbcmd.CommandText =
                 "SELECT * FROM " + TABLE_NAME ;
             IDataReader reader = dbcmd.ExecuteReader();
-            List<Bonus> bonusList = new List<Bonus>();
+            List<BonusInfo> bonusList = new List<BonusInfo>();
             while (reader.Read())
             {
-                Bonus bonus = ReadBonus(reader);
+                BonusInfo bonus = ReadBonus(reader);
                 bonusList.Add(bonus);
             }
             reader.Close();
@@ -78,7 +78,7 @@ namespace DataBase
 
         }
 
-        public static Bonus GetBonusByName(string name)
+        public static BonusInfo GetBonusByName(string name)
         {
             IDbCommand dbcmd = sqliteHelper.GetDbCommand();
             dbcmd.CommandText =
@@ -86,7 +86,7 @@ namespace DataBase
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
             {
-                Bonus bonus = ReadBonus(reader);
+                BonusInfo bonus = ReadBonus(reader);
                 reader.Close();
                 return bonus;
             }
@@ -94,9 +94,9 @@ namespace DataBase
         }
 
 
-        private static Bonus ReadBonus(IDataReader reader)
+        private static BonusInfo ReadBonus(IDataReader reader)
         {
-            Bonus bonus = new Bonus();
+            BonusInfo bonus = new BonusInfo();
             bonus.Id = reader.GetInt32(0);
             bonus.Name = reader.GetString(1);
             bonus.Multipler = reader.GetInt32(2);

@@ -25,7 +25,7 @@ namespace PathFinder
         {
             RaycastHit2D ledgeHit = Physics2D.Raycast(
                 pos,
-                -Vector2.up,
+                Vector2.down,
                 10,
                 Grid.UnwalkableMask);
 
@@ -48,13 +48,14 @@ namespace PathFinder
         public void FindPath(Vector3 startPos, Vector3 targetPos, OnPathCompleteDelegate pathComplete )
         {
             IsDone = false;
-
+		
             if(!IsGrounded(startPos) || !IsGrounded(targetPos))
             {
-                IsDone = true;
+	            IsDone = true;
                 return;
             }
-
+			
+            
             Node startNode = Grid.NodeFromWorldPoint(LedgeCheck(startPos).point);
             Node targetNode = Grid.NodeFromWorldPoint(LedgeCheck(targetPos).point);
 

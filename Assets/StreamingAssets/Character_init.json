@@ -3,7 +3,8 @@
     "Attack_Multiplier": 1,
     "MaxLife": 100,
     "Name": "Bloup",
-    "Speed": 5
+    "Speed": 6,
+    "JumpHeight" : 6
   },
 
   "Boss": [

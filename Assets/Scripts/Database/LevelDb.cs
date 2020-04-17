@@ -14,11 +14,11 @@ namespace DataBase
         private const String KEY_ID = "id";
         private const String KEY_NUMBER = "number";
         private const String KEY_TRAPS_COUNT = "traps_count";
-        private const String KEY_ENEMIES_COUNT = "enemies_count";
-        private const String KEY_CHESTS_COUNT = "chests_count";
+        private const String KEY_BONUS_COUNT = "bonus_count";
         private const String KEY_WIDTH = "width";
         private const String KEY_HEIGHT = "height";
-        private String[] COLUMNS = new String[] { KEY_ID, KEY_NUMBER, KEY_TRAPS_COUNT, KEY_ENEMIES_COUNT, KEY_CHESTS_COUNT, KEY_WIDTH, KEY_HEIGHT };
+        private const String KEY_BOSS_NAME = "boss_name";
+        private String[] COLUMNS = new String[] { KEY_ID, KEY_NUMBER, KEY_TRAPS_COUNT, KEY_BONUS_COUNT, KEY_WIDTH, KEY_HEIGHT, KEY_BOSS_NAME };
 
         static LevelDb()
         {
@@ -27,10 +27,10 @@ namespace DataBase
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_NUMBER + " INTEGER, " +
                 KEY_TRAPS_COUNT + " INTEGER, " +
-                KEY_ENEMIES_COUNT + " INTEGER, " +
-                KEY_CHESTS_COUNT + " INTEGER, " +
+                KEY_BONUS_COUNT + " INTEGER, " +
                 KEY_WIDTH + " INTEGER, " +
-                KEY_HEIGHT + " INTEGER ) ";
+                KEY_HEIGHT + " INTEGER , " + 
+				KEY_BOSS_NAME + " TEXT ) ";
             dbcmd.ExecuteNonQuery();
         }
 
@@ -43,17 +43,18 @@ namespace DataBase
                 + " ( "
                 + KEY_NUMBER + ", "
                 + KEY_TRAPS_COUNT + ", "
-                + KEY_ENEMIES_COUNT + ", "
-                + KEY_CHESTS_COUNT + ", "
+                + KEY_BONUS_COUNT + ", "
                 + KEY_WIDTH + ", "
-                + KEY_HEIGHT + " ) "
+                + KEY_HEIGHT + ", "
+                + KEY_BOSS_NAME + " ) "
 
                 + "VALUES ( '"
                 + level.Number + "', '"
                 + level.TrapsCount + "', '"
                 + level.BonusCount + "', '"
                 + level.Width + "', '"
-                + level.Height + "' )";
+                + level.Height + "', '"
+                + level.BossName + "' )";
             dbcmd.ExecuteNonQuery();
             Debug.Log("Niveau ajouté!");
         }
@@ -115,10 +116,9 @@ namespace DataBase
             level.BonusCount = reader.GetInt32(3);
             level.Width = reader.GetInt32(4);
             level.Height = reader.GetInt32(5);
+            level.BossName = reader.GetString(6);
             return level;
         }
-
-
     }
 }
 

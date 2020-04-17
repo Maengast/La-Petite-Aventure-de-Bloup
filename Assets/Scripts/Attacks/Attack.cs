@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
-public abstract class Attack : ScriptableObject, IAttack
+public abstract class Attack : ScriptableObject
 {
 
     public string Name;

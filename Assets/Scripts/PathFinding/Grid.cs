@@ -14,7 +14,7 @@ namespace PathFinder
 
         private int _gridSizeX, _gridSizeY;
         private Vector2 _boxPosition;
-        public float CellSize;
+        public float CellSize = 0.5f;
 
         private List<Node> _ledges = new List<Node>();
         private List<Node> _corners = new List<Node>();
@@ -23,21 +23,23 @@ namespace PathFinder
         public float CornerOffset = 2;
         private float _boxWidth, _boxHeight;
 
-        private GameObject _areaBox;
+        private Area _areaBox;
         
-        private void Start()
+        public void InitGrid(Area gridArea, float cornerOffset, float jumpDistance)
         {
-            DefineBox();
+	        JumpDistance = jumpDistance;
+	        CornerOffset = cornerOffset;
+	        DefineBox(gridArea);
             CreateGrid();
         }
 
-        void DefineBox()
+        void DefineBox(Area area)
         {
-	        _areaBox = GameObject.Find("Background");
-            _boxWidth = _areaBox.GetComponent<SpriteRenderer>().bounds.size.x;
-            _boxHeight = _areaBox.GetComponent<SpriteRenderer>().bounds.size.y;
-            float boxX = _areaBox.GetComponent<SpriteRenderer>().bounds.center.x - (_areaBox.GetComponent<SpriteRenderer>().bounds.size.x / 2);
-            float boxY = _areaBox.GetComponent<SpriteRenderer>().bounds.center.y + (_areaBox.GetComponent<SpriteRenderer>().bounds.size.y / 2);
+	        _areaBox = area;
+            _boxWidth = area.Size.x;
+            _boxHeight = area.Size.y;
+            float boxX = area.Origin.x;
+	        float boxY = area.Origin.y;
             _boxPosition = new Vector2(boxX, boxY);
         }
 
@@ -95,7 +97,7 @@ namespace PathFinder
             {
                 for (int y = 0; y < _gridSizeY; y++)
                 {
-                    Vector3 nodePosition = new Vector3((x * CellSize) + _boxPosition.x + (CellSize / 2), -(y * CellSize) + _boxPosition.y + (CellSize / 2), 0);
+                    Vector3 nodePosition = new Vector3((x * CellSize) + _boxPosition.x + (CellSize / 2), (y * CellSize) + _boxPosition.y + (CellSize / 2), 0);
 
                     // Check if there are obstacles
                     bool walkable = IsNodeWalkable(nodePosition);
@@ -109,10 +111,10 @@ namespace PathFinder
         private bool IsNodeWalkable(Vector3 position)
         {
             // Get top left position of node
-            Vector2 topLeft = new Vector2(position.x - (CellSize / 2), position.y - (CellSize / 2));
+            Vector2 topLeft = new Vector2(position.x - (CellSize / 2)+0.1f, position.y + (CellSize / 2)-0.1f);
 
             // Get bottom right position of node
-            Vector2 bottomRight = new Vector2(position.x + (CellSize / 2), position.y + (CellSize / 2));
+            Vector2 bottomRight = new Vector2(position.x + (CellSize / 2)-0.1f, position.y - (CellSize / 2)+0.1f);
 
             // Check if an unwalkable surface stands between these two points
             return !(Physics2D.OverlapArea(topLeft, bottomRight, UnwalkableMask));
@@ -126,12 +128,14 @@ namespace PathFinder
                 for (int y = 0; y < _gridSizeY; y++)
                 {
                     Node node = GetGridObject(x, y);
-                    if (node.IsWalkable && Blocked(x, y + 1) && y + 1 < _gridSizeY)
+                    if (node.IsWalkable && Blocked(x, y - 1) && y - 1 > 0)
                     {   // If the bottom ledge is blocked or bottom of y axis
-                        node.Ledge = true;
+	                    node.Ledge = true;
                         _ledges.Add(node);
-                        if (!Blocked(x - 1, y + 1) || !Blocked(x + 1, y + 1))
-                            _corners.Add(node);
+                        if (!Blocked(x - 1, y - 1) || !Blocked(x + 1, y - 1))
+                        {
+	                        _corners.Add(node);
+                        }
                     }
                 }
             }
@@ -164,7 +168,7 @@ namespace PathFinder
             foreach (Node corner in _corners)
             {
                 // Discover the direction the tile is facing
-                int direction = Blocked(corner.GridX - 1, corner.GridY + 1) ? 1 : -1;
+                int direction = Blocked(corner.GridX - 1, corner.GridY - 1) ? 1 : -1;
 
                 // Step over the facing direction 1 tile
                 Node overhang = GetGridObject(corner.GridX + direction*(int)CornerOffset, corner.GridY);
@@ -174,7 +178,7 @@ namespace PathFinder
                 RaycastHit2D hit = Physics2D.Raycast(
                     overhang.Position,
                     Vector2.down,
-                    (GetHeight() - overhang.GridY) * CellSize,
+                    overhang.Position.y,
                     UnwalkableMask);
 
                 // If we hit something add a fall link at the hit target
@@ -185,13 +189,13 @@ namespace PathFinder
                     corner.AddLink(node, distance, PathLinkType.fall);
                 }
 
+                overhang = GetGridObject(corner.GridX + direction, corner.GridY);
                 float initialValue = 0.2f;
                 float h = initialValue;
                 /// Find all corner jump point
                 while (h <= 0.5)
                 {
-
-                    hit = Physics2D.Raycast(
+	                hit = Physics2D.Raycast(
                         overhang.Position,
                         new Vector2( h*direction, -(initialValue + 0.5f) +h ),
                         JumpDistance,
@@ -202,6 +206,8 @@ namespace PathFinder
                     if (hit.collider)
                     {
                         Node node = NodeFromWorldPoint(hit.point);
+                        GameObject test = new GameObject("jump");
+                        test.transform.position = node.Position;
                         int distance = (int)Mathf.Floor(Vector3.Distance(corner.Position, node.Position));
                         // platform corner to node link
                         corner.AddLink(node, distance, PathLinkType.jump);
@@ -210,9 +216,6 @@ namespace PathFinder
                     }
 
                 }
-
-
-
             }
         }
 
@@ -239,18 +242,12 @@ namespace PathFinder
         {
             float percentX = Mathf.Abs(_boxPosition.x - worldPosition.x) / CellSize;
             float percentY = Mathf.Abs(_boxPosition.y - worldPosition.y) / CellSize;
-            percentX = Mathf.Floor(percentX);
-            percentY = Mathf.Floor(percentY);
             int x = Mathf.RoundToInt(percentX);
             int y = Mathf.RoundToInt(percentY);
 
             return _gridArray[x, y];
-
         }
-
     }
-
-
 }
 
 
