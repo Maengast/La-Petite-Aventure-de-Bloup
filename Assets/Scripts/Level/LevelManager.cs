@@ -47,7 +47,7 @@ public class LevelManager : MonoBehaviour
 	    _levelInfos.MaxJumpDistance = new Coordinate(Mathf.FloorToInt(_playerInfos.Speed),Mathf.FloorToInt(_playerInfos.JumpHeight));
 	    
 	    CreateLevel(); //Create Level
-	    _gameManager.SwitchGameState(GameState.InGame);
+	    
     }
     
     
@@ -83,6 +83,8 @@ public class LevelManager : MonoBehaviour
 	    //Setup Camera
 	    FollowingCamera.AddComponent<FollowingCamera>();
 	    FollowingCamera.GetComponent<FollowingCamera>().Init(player,_levelInfos.Height,_levelInfos.Width);
+	    
+	    _gameManager.SwitchGameState(GameState.InGame);
     }
 	
     /**

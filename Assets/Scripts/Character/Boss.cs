@@ -124,6 +124,7 @@ public class Boss : Character
         if (!Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size ,0f , Vector3.up, 3f,LayerMask.GetMask("Ground")).collider)
         {
             JumpHeight = 5f;
+            _movementDirection.x = 0;
             Jump();
         }
         else
@@ -163,7 +164,7 @@ public class Boss : Character
     /**
      * Move Character to target position
      */
-    public virtual void MoveTo(Vector3 targetPos)
+    private void MoveTo(Vector3 targetPos)
     {
 	    Vector2 distance = (targetPos - transform.position);
 	    //boss slow down when reach target

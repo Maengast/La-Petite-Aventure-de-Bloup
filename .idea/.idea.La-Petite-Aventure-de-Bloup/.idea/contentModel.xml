@@ -102,7 +102,6 @@
             <e p="DataManager.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
             <e p="Singleton.cs" t="Include" />
-            <e p="SoundManager.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
