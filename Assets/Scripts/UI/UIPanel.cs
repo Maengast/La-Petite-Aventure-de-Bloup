@@ -7,7 +7,6 @@ public class UIPanel : UIComponent
 	public UIComponent[] ComponentsToInitialize;
 	public override void Init()
 	{
-		gameObject.SetActive(true);
 		foreach (UIComponent component in ComponentsToInitialize)
 		{
 			component.Init();
@@ -20,6 +19,5 @@ public class UIPanel : UIComponent
 		{
 			component.Disable();
 		}
-		gameObject.SetActive(false);
 	}
 }

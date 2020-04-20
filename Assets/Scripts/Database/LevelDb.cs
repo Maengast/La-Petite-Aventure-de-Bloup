@@ -56,7 +56,6 @@ namespace DataBase
                 + level.Height + "', '"
                 + level.BossName + "' )";
             dbcmd.ExecuteNonQuery();
-            Debug.Log("Niveau ajouté!");
         }
 
         public static Level GetLevelById(int id)

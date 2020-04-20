@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
 	private int _currentLevelNumber = 0;
 	private int _levelUnlock = 1;
 	private Dictionary<int, LevelState> _levelStates = new Dictionary<int, LevelState>();
-	private int _maxLevelNumber=3;
+	private int _maxLevelNumber = 3;
 	
 	private GameState _currentGameState;
 
@@ -59,13 +59,6 @@ public class GameManager : Singleton<GameManager>
 			case GameState.MainMenu:
 				//Load menu
 				SceneManager.LoadScene("Menu", LoadSceneMode.Single);
-				break;
-			case GameState.LevelSelection:
-				//Load menu if the scene not currently loaded
-				if (_currentGameState != GameState.MainMenu)
-				{
-					SceneManager.LoadScene("Menu", LoadSceneMode.Single);
-				}
 				break;
 			case GameState.LoadLevel:
 				//Load level in background
