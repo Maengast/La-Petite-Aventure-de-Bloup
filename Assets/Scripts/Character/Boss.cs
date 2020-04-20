@@ -101,15 +101,15 @@ public class Boss : Character
                 Dodge(attackObject);
                 return;
             }
-            
+            //Change node target if boss has reached the target
+            float distance = Vector2.Distance(transform.position, targetPos);
             //Jump if is on jump node
-            if (targetNode.LinkType == PathLinkType.jump && !IsJumping())
+            if (distance > 1f && targetNode.LinkType == PathLinkType.jump && !IsJumping())
             {
                 Jump();
             }
             
-            //Change node target if boss has reached the target
-            float distance = Vector2.Distance(transform.position, targetPos);
+            
             if (distance < 1f)
             {
 	            currentPoint++;
@@ -170,9 +170,12 @@ public class Boss : Character
 	    //boss slow down when reach target
 	    if (!OnGround)
 	    {
-		    float time = (Mathf.Abs(distance.x )+2*_bossSize)/currentSpeed;
-		    float speedMultiplier = time / trajectoryTime;
-		    currentSpeed *= speedMultiplier;
+		    if (Mathf.Abs(distance.x) < 0.5f)
+		    {
+			    float time = (Mathf.Abs(distance.x))/currentSpeed;
+			    float speedMultiplier = time / trajectoryTime;
+			    currentSpeed *= speedMultiplier;
+		    }
 	    }
 	    else
 	    {
@@ -350,4 +353,54 @@ public class Boss : Character
 	    _levelManager.CharacterDie(false);
 	    base.Die();
     }
+    
+    private void OnDrawGizmos()
+    {
+	    if (_path != null)
+	    {
+		    Gizmos.DrawWireCube(_pathFinding.transform.position, new Vector3(_pathFinding.GetGrid().GetWidth(), _pathFinding.GetGrid().GetHeight(), 1));//Draw a wire cube with the given dimensions from the Unity inspector
+    
+		    if (_pathFinding.GetGrid() != null)//If the grid is not empty
+		    {
+			    foreach (Node n in _path)//Loop through every node in the grid
+			    {
+				    if (n.IsWalkable)//If the current node is a wall node
+				    {
+					    Gizmos.color = Color.white;//Set the color of the node
+				    }
+				    else
+				    {
+					    Gizmos.color = Color.red;//Set the color of the node
+				    }
+    
+				    Gizmos.DrawCube(n.Position, Vector3.one * (_pathFinding.GetGrid().CellSize / 2));//Draw the node at the position of the node.
+			    }
+		    }
+	    }
+    }
+    
+    // private void OnDrawGizmos()
+    // {
+    //  if (_pathFinding != null)
+    //  {
+    //   //Gizmos.DrawWireCube(_pathFinding.transform.position, new Vector3(_pathFinding.GetGrid().GetWidth(), _pathFinding.GetGrid().GetHeight(), 1));//Draw a wire cube with the given dimensions from the Unity inspector
+    //
+    //   if (_pathFinding.GetGrid() != null)//If the grid is not empty
+    //   {
+    //    foreach (Node n in _pathFinding.GetGrid().GetGridArray())//Loop through every node in the grid
+    //    {
+    //     if (n.IsWalkable)//If the current node is a wall node
+    //     {
+    // 	    Gizmos.color = Color.white;//Set the color of the node
+    //     }
+    //     else
+    //     {
+    // 	    Gizmos.color = Color.red;//Set the color of the node
+    //     }
+    //
+    //     Gizmos.DrawCube(n.Position, Vector3.one * (_pathFinding.GetGrid().CellSize/2));//Draw the node at the position of the node.
+    //    }
+    //   }
+    //  }
+    // }
 }
