@@ -28,6 +28,7 @@ public class Boss : Character
     Transform _firePoint;
    
     private BossInfo _info;
+    private float _bossSize;
     private float trajectoryTime;
     /**
      * Called when Object and components are fully instantiated
@@ -66,6 +67,7 @@ public class Boss : Character
 	    SetCharacterStats(_info);
 	    _maxStamina = _info.MaxStamina;
 	    trajectoryTime = 2 * Speed / Gravity;
+	    _bossSize = LevelManager.BossSize;
     }
 	
     /**
@@ -75,8 +77,8 @@ public class Boss : Character
     {
         //Do nothing if not alive
 	    base.Update();
-
-        CheckAttack();
+		
+        if(_player)CheckAttack();
         //No _path , no move
         if (_path == null || currentPoint >= _path.Count || !HasDetectedVictim )
         {
@@ -112,20 +114,17 @@ public class Boss : Character
             {
 	            currentPoint++;
             }
-            
-            //Move Boss
-            MoveTo(targetPos);
         }
-
         
-
+        MoveTo(targetPos);
     }
-
+	
     private void Dodge(AttackObject obj)
     {
         if (!Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size ,0f , Vector3.up, 3f,LayerMask.GetMask("Ground")).collider)
         {
             JumpHeight = 5f;
+            _movementDirection.x = 0;
             Jump();
         }
         else
@@ -165,17 +164,20 @@ public class Boss : Character
     /**
      * Move Character to target position
      */
-    public virtual void MoveTo(Vector3 targetPos)
+    private void MoveTo(Vector3 targetPos)
     {
 	    Vector2 distance = (targetPos - transform.position);
+	    //boss slow down when reach target
 	    if (!OnGround)
 	    {
-		    float time = (Mathf.Abs(distance.x )+2.0f)/currentSpeed;
+		    float time = (Mathf.Abs(distance.x )+2*_bossSize)/currentSpeed;
 		    float speedMultiplier = time / trajectoryTime;
 		    currentSpeed *= speedMultiplier;
 	    }
-
-	    _movementDirection.x = distance.normalized.x;
+	    else
+	    {
+		    _movementDirection.x = distance.normalized.x;
+	    }
     }
 
 
@@ -185,25 +187,15 @@ public class Boss : Character
      */
     protected override void Jump()
     {
-	    CalcJumpHeigth();
+	    CalcJumpHeight();
 	    base.Jump();
-	    // Vector2 pos = transform.position;
-	    // Vector2 targPos = _path[currentPoint].Position;
-	    // float velocity = Mathf.Sqrt(2 * Gravity * JumpHeight + Mathf.Pow(currentSpeed, 2));
-	    // float jumpAngle = Mathf.Atan(Mathf.Pow(velocity, 2) +
-	    //                              Mathf.Sqrt(Mathf.Pow(velocity, 4) - Gravity *
-	    //                                         (Gravity * Mathf.Pow(targPos.x-pos.x, 2) +
-	    //                                          2 * targPos.y-pos.y * Mathf.Pow(velocity, 2))) / (Gravity * targPos.x-pos.x));
-	    // Debug.Log(jumpAngle);
-	    // _movementDirection.x = Mathf.Cos(jumpAngle);
-	    // _movementDirection.y = Mathf.Sin(jumpAngle);
     }
 
-    private void CalcJumpHeigth()
+    private void CalcJumpHeight()
     {
         Vector2 distanceToTarget = _path[currentPoint].Position - transform.position;
-        JumpHeight = distanceToTarget.y + 2f;
-        if (JumpHeight < 0) JumpHeight = 0;
+        JumpHeight = distanceToTarget.y + _bossSize;
+        if (JumpHeight < 0) JumpHeight = _bossSize/2;
     }
 
     public override void SetOnGround(bool value)
@@ -353,7 +345,7 @@ public class Boss : Character
         return attack.Cost < _currentStamina;
     }
 
-    protected override void Die()
+    public override void Die()
     {
 	    _levelManager.CharacterDie(false);
 	    base.Die();

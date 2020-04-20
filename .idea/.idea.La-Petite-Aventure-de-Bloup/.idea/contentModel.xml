@@ -7,12 +7,6 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="BayatGames" t="Include">
-          <e p="Free Platform Game Assets" t="Include">
-            <e p="Readme.txt" t="Include" />
-          </e>
-        </e>
-        <e p="DetectArea.cs" t="Include" />
         <e p="JMO Assets" t="Include">
           <e p="Cartoon FX" t="Include">
             <e p="CartoonFX Free.txt" t="Include" />
@@ -71,6 +65,7 @@
             <e p="Boss.cs" t="Include" />
             <e p="Character.cs" t="Include" />
             <e p="CharacterCollisions.cs" t="Include" />
+            <e p="DetectArea.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
           <e p="Database" t="Include">
@@ -90,6 +85,7 @@
             <e p="SqliteHelper.cs" t="Include" />
           </e>
           <e p="Level" t="Include">
+            <e p="KillZone.cs" t="Include" />
             <e p="LevelGenerator.cs" t="Include" />
             <e p="LevelManager.cs" t="Include" />
             <e p="SawTrap.cs" t="Include" />
@@ -106,7 +102,6 @@
             <e p="DataManager.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
             <e p="Singleton.cs" t="Include" />
-            <e p="SoundManager.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
           </e>
           <e p="UI" t="Include">

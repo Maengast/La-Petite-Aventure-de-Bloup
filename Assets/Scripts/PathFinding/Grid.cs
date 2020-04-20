@@ -37,8 +37,8 @@ namespace PathFinder
         {
 
             AreaBox = GameObject.Find("Background");
-            BoxWidth = gridSize.x;
-            BoxHeight = gridSize.y;
+            BoxWidth = gridSize.x + JumpDistance;
+            BoxHeight = gridSize.y + JumpDistance;
             float boxX = gridOrigin.x;
             float boxY = gridOrigin.y;
             BoxPosition = new Vector2(boxX, boxY);
@@ -176,7 +176,7 @@ namespace PathFinder
                 // Discover the direction the tile is facing
                 int direction = Blocked(corner.GridX - 1, corner.GridY + 1) ? 1 : -1;
                 //Detect if out of bounds
-                if (OutOfBounds(corner.GridX + direction, corner.GridY)) return;
+                if (OutOfBounds(corner.GridX + direction* (int)CornerOffset, corner.GridY)) return;
                 // Step over the facing direction 1 tile
                 Node overhang = GetGridObject(corner.GridX + direction, corner.GridY);
                 
@@ -185,16 +185,18 @@ namespace PathFinder
                 float x = direction;
                 float y = 0;
                 List<Vector2> jumpPoints = new List<Vector2>();
-				
+                
                 /// Find all corner jump point
-                while (y > -1f)
+                while (y > -0.9f)
                 {
 	                hit = Physics2D.Raycast(
 		                overhang.Position,
 		                new Vector2(x, y),
-		                JumpDistance,
+		                JumpDistance+1,
 		                JumpMask
 	                );
+	                x -= Mathf.Sign(direction) * 0.05f;
+	                y -= 0.05f;
 
                     if (hit.collider && !OutOfBounds((int)hit.point.x, (int)hit.point.y))
 	                { 
@@ -208,10 +210,7 @@ namespace PathFinder
 			                // current node to platform corner
 			                node.AddLink(corner, distance, PathLinkType.jump);
 		                }
-
 	                }
-	                x -= Mathf.Sign(direction) * 0.1f;
-	                y -= 0.1f;
                 }
                 
 
@@ -257,8 +256,6 @@ namespace PathFinder
         {
             float percentX = Mathf.Abs(BoxPosition.x - worldPosition.x) / CellSize;
             float percentY = Mathf.Abs(BoxPosition.y - worldPosition.y) / CellSize;
-            percentX = Mathf.Floor(percentX);
-            percentY = Mathf.Floor(percentY);
             int x = Mathf.RoundToInt(percentX);
             int y = Mathf.RoundToInt(percentY);
 

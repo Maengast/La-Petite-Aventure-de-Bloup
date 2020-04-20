@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.AccessControl;
-using DataBase;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.WSA;
 using Random = UnityEngine.Random;
 
 
@@ -64,6 +59,9 @@ public class LevelGenerator : MonoBehaviour
 
 		//Set the tile sprites for render tiles
 		TileManager.LevelTileSprites = LevelTileSprites;
+		
+		//Add limits to the level
+		AddLevelLimits();
 		//Instantiate and upgrades tiles
 		UpgradeTiles(InstantiateTiles());
 
@@ -76,9 +74,10 @@ public class LevelGenerator : MonoBehaviour
 	 */
 	private void SetSizeAndOffset()
 	{
-		MaxJumpDistance = _level.MaxJumpDistance;
-		MinHeightOffset = LevelManager.BossSize;
-		MinWidthOffset = LevelManager.PlayerSize;
+		int playerSize = LevelManager.PlayerSize;
+		MaxJumpDistance = new Coordinate(_level.MaxJumpDistance.x -playerSize,_level.MaxJumpDistance.y - playerSize);;
+		MinHeightOffset = LevelManager.BossSize+1;
+		MinWidthOffset = LevelManager.BossSize;
 		
 		//Set tile floor size
 		FloorInfo.MaxHeight = Mathf.CeilToInt(_level.Height / 3);
@@ -381,7 +380,7 @@ public class LevelGenerator : MonoBehaviour
 		int sizeY = target.Size.y;
 		int widthOffset = _tileTypeInfos[target.TileType].WidthOffset;
 		
-		Area area = CreateAreaAroundTile(target.Origin, MaxJumpDistance, target.Size);
+		Area area = CreateAreaAroundTile(target.Origin,  MaxJumpDistance, target.Size);
 		
 		for (int x = area.Origin.x; x < (area.Origin.x + area.Size.x); x++)
 		{
@@ -391,7 +390,7 @@ public class LevelGenerator : MonoBehaviour
 				if (cellType > (int) CellType.Corpse)
 				{
 
-					if (y > (originY + sizeY)-1)
+					if (y > (originY + sizeY))
 					{
 						if (cellType == (int) CellType.Bound && x < (originX - widthOffset)) return true;
 						if (x > (originX + widthOffset) || x < (originX + sizeX - 1) - widthOffset) return true;
@@ -407,6 +406,23 @@ public class LevelGenerator : MonoBehaviour
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Add limits of level to avoid side exits
+	 */
+	private void AddLevelLimits()
+	{
+		TileObject leftLimit = new TileObject();
+		leftLimit.Origin = new Coordinate(-1,0);
+		leftLimit.Size = new Coordinate(1, _level.Height);
+		leftLimit.TileType = TileType.Floor;
+		TileObject rightLimit = new TileObject();
+		rightLimit.Origin = new Coordinate(_level.Width,0);
+		rightLimit.Size = new Coordinate(1, _level.Height);
+		rightLimit.TileType = TileType.Floor;
+		_levelTiles.Add(leftLimit);
+		_levelTiles.Add(rightLimit);
 	}
 	
 	/**

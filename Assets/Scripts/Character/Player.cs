@@ -29,7 +29,6 @@ public class Player : Character
 	        
             if (!IsJumping() && Input.GetButtonDown("Jump"))
             {
-	            _movementDirection.y = 1;
 	            Jump();
             }
         }
@@ -46,7 +45,7 @@ public class Player : Character
 
     }
 
-    protected override void Die()
+    public override void Die()
     {
 	    _levelManager.CharacterDie(true);
 	    base.Die();

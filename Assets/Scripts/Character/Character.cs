@@ -12,8 +12,8 @@ using Debug = UnityEngine.Debug;
 
 public class Character : MonoBehaviour
 {
-	protected const float Gravity = 9.5f;
-    
+	public const float Gravity = 15f;
+
 	[Header("Character Components")]
 	public Rigidbody2D Rigidbody;
 	public Animator CharacterAnimator;
@@ -105,7 +105,7 @@ public class Character : MonoBehaviour
 	    positionOffset.y -= 1 * currentFallSpeed;
 	    if (_inJump)
 	    {
-		    positionOffset.y += /*_movementDirection.y*/ Mathf.Sqrt(2 * Gravity * JumpHeight);
+		    positionOffset.y += Mathf.Sqrt(2 * Gravity * JumpHeight);
 		    if (Mathf.Sign(positionOffset.y) < 0)
 		    {
 			    SwitchJumpState(false);
@@ -197,7 +197,7 @@ public class Character : MonoBehaviour
      * Call when Character has no more life
      * Anim is played and Update and fixed Update are blocked
      */
-    protected virtual void Die()
+    public virtual void Die()
     {
 	    isAlive = false;
         SetTriggerAnim("Die");

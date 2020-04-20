@@ -43,11 +43,15 @@ public class SawTrap : MonoBehaviour
      * Give him damages
      * This callback is call because Saw are child of this object without rigidbody
      */
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
 	    if (other.CompareTag("Player"))
 	    {
-		    other.GetComponent<Character>().TakeDamages(SawDamages);
+		    Character character = other.GetComponent<Character>();
+		    if (character)
+		    {
+			    other.GetComponent<Character>().TakeDamages(SawDamages);
+		    }
 	    }
     }
 }

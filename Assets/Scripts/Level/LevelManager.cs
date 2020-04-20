@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
     
     void Start()
     {
+
 	    _dataManager = DataManager.Instance;
 	    _gameManager = GameManager.Instance;
 
@@ -41,13 +42,15 @@ public class LevelManager : MonoBehaviour
 	    _bossInfo = _dataManager.GetBossInfo(_levelInfos.BossName);
 	    //Same jump height
 	    _bossInfo.JumpHeight = _playerInfos.JumpHeight;
+	    _bossInfo.Speed = _playerInfos.Speed+BossSize;
 	    //Set Max jump distance rounded to smaller integer
 	    _levelInfos.MaxJumpDistance = new Coordinate(Mathf.FloorToInt(_playerInfos.Speed),Mathf.FloorToInt(_playerInfos.JumpHeight));
 	    
 	    CreateLevel(); //Create Level
-
+	    
     }
-	
+    
+    
     /**
      * Create the level
      */
@@ -80,6 +83,8 @@ public class LevelManager : MonoBehaviour
 	    //Setup Camera
 	    FollowingCamera.AddComponent<FollowingCamera>();
 	    FollowingCamera.GetComponent<FollowingCamera>().Init(player,_levelInfos.Height,_levelInfos.Width);
+	    
+	    _gameManager.SwitchGameState(GameState.InGame);
     }
 	
     /**
@@ -94,7 +99,7 @@ public class LevelManager : MonoBehaviour
 	    Vector2 size = new Vector2(_levelInfos.Width, _levelInfos.Height);
 	    //init grid
 	    //Take max jump distance to setup path finding
-	    pathfinding.GetComponent<Grid>().InitGrid(origin,size,BossSize,Mathf.Max(_levelInfos.MaxJumpDistance.x,_levelInfos.MaxJumpDistance.x)+3);
+	    pathfinding.GetComponent<Grid>().InitGrid(origin,size,BossSize,Mathf.Max(_levelInfos.MaxJumpDistance.x,_levelInfos.MaxJumpDistance.y));
     }
     
     /**

@@ -64,7 +64,7 @@ public class UIManager : Singleton<UIManager>
 
 	public void ReplayLevel()
 	{
-		_gameManager.SwitchGameState(GameState.LoadLevel);
+		_gameManager.LoadLevel(_gameManager.GetCurrentLevel());
 	}
 	
 	public void NextLevel()
