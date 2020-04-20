@@ -36,12 +36,6 @@ public class CharacterCollisions : MonoBehaviour
     {
 	    Vector2 targetPoint = new Vector2(originPoint.x + sizeX, originPoint.y + (dirY * sizeY));
 	    Collider2D hitCollider = Physics2D.OverlapArea(originPoint, targetPoint,GroundLayerMask);
-	    
-	    //Debug
-	    Debug.DrawLine(originPoint,new Vector2(targetPoint.x,originPoint.y),Color.red);
-	    Debug.DrawLine(originPoint,new Vector2(originPoint.x,targetPoint.y),Color.red);
-	    Debug.DrawLine(new Vector2(targetPoint.x,originPoint.y),targetPoint,Color.red);
-	    Debug.DrawLine(new Vector2(originPoint.x,targetPoint.y),targetPoint,Color.red);
 
 	    return hitCollider;
     }

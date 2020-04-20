@@ -31,12 +31,11 @@ public class LevelManager : MonoBehaviour
     
     void Start()
     {
-
 	    _dataManager = DataManager.Instance;
 	    _gameManager = GameManager.Instance;
 
 	    //get all info needed
-	    _levelNumber = /*_gameManager.GetCurrentLevel();*/ 1;
+	    _levelNumber = _gameManager.GetCurrentLevel();
 	    _levelInfos = _dataManager.GetLevelInfo(_levelNumber);
 	    _playerInfos = _dataManager.GetPlayerInfo();
 	    _bossInfo = _dataManager.GetBossInfo(_levelInfos.BossName);

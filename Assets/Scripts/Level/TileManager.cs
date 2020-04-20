@@ -11,7 +11,6 @@ public class TileManager : MonoBehaviour
 	private Vector2 _tileOrigin;
 	public TileType TileType;
 	private BoxCollider2D collider;
-	private float groundOffset = 0.2f;
 
 	public void InitTile(Vector2 size, Vector2 origin)
 	{
