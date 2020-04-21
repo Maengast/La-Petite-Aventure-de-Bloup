@@ -14,14 +14,14 @@ TagManager:
   - 
   - 
   - PostProcessing
+  - Ground
+  - Detection
+  - Character
+  - Obstacle
+  - Jump
+  - Background
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - AttackObject
   - 
   - 
   - 

@@ -1,0 +1,18 @@
+{
+  "test" : [
+    {
+      "Name": "CircleSaw",
+      "Level": 1,
+      "Damage": 10,
+      "Description": "Le joueur lance deux scies circulaires devant lui"
+    },
+    {
+      "Name": "Claws",
+      "Level": 1,
+      "Damage": 5,
+      "Description": "Le joueur lance deux scies circulaires devant lui"
+    }
+  ]
+
+
+}
