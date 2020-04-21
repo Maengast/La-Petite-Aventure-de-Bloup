@@ -172,9 +172,9 @@ public class Boss : Character
 	    {
 		    if (Mathf.Abs(distance.x) < 0.5f)
 		    {
-			    float time = (Mathf.Abs(distance.x))/currentSpeed;
+			    float time = (Mathf.Abs(distance.x))/_currentSpeed;
 			    float speedMultiplier = time / trajectoryTime;
-			    currentSpeed *= speedMultiplier;
+			    _currentSpeed *= speedMultiplier;
 		    }
 	    }
 	    else
@@ -204,7 +204,7 @@ public class Boss : Character
     public override void SetOnGround(bool value)
     {
 	    base.SetOnGround(value);
-	    if(value)currentSpeed = Speed;
+	    if(value)_currentSpeed = Speed;
     }
 
 

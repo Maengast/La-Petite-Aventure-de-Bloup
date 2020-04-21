@@ -16,7 +16,7 @@ namespace PathFinder
         public Vector3 Position;
         public List<Link> Links = new List<Link>();
         public bool Ledge { get; set; }
-        public PathLinkType LinkType = PathLinkType.ground;
+        public PathLinkType LinkType = PathLinkType.none;
 
         public Node(bool _walkable, Vector3 _pos, int _gridX, int _gridY)
         {

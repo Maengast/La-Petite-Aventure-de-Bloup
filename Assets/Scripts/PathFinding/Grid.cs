@@ -22,7 +22,7 @@ namespace PathFinder
 
         public int JumpDistance = 5;
         float BoxWidth, BoxHeight;
-
+        
         public float CornerOffset = 2;
 
         public void InitGrid(Vector2 gridOrigin, Vector2 gridSize, float cornerOffset, int jumpDistance)
@@ -35,7 +35,7 @@ namespace PathFinder
 
         void DefineBox(Vector2 gridOrigin, Vector2 gridSize)
         {
-	        BoxWidth = gridSize.x + JumpDistance;
+            BoxWidth = gridSize.x + JumpDistance;
             BoxHeight = gridSize.y + JumpDistance;
             float boxX = gridOrigin.x;
             float boxY = gridOrigin.y;

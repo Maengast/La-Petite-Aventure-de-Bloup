@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
 	public Rigidbody2D Rigidbody;
 	public Animator CharacterAnimator;
 	public BarScript HealthBar;
-	protected bool isAlive = true;
+	protected bool _isAlive = true;
 	
 	[Header("Jump Values")]
 	public float JumpHeight = 5.0f;
@@ -28,8 +28,8 @@ public class Character : MonoBehaviour
     public float Speed = 8.0f;
     public float MaxFallSpeed = 15.0f;
     
-    private float currentFallSpeed;
-    protected float currentSpeed;
+    private float _currentFallSpeed;
+    protected float _currentSpeed;
     
     //Movement and Direction
     protected Vector2 _movementDirection;
@@ -57,7 +57,7 @@ public class Character : MonoBehaviour
         GetComponent<SpriteRenderer>().sortingOrder = LevelGenerator.CharacterSortingOrder;
         Life = MaxLife;
         if(HealthBar) HealthBar.SetMaxValue(MaxLife);
-        currentSpeed = Speed;
+        _currentSpeed = Speed;
     }
 
     protected void SetCharacterStats(CharacterInfo info)
@@ -72,7 +72,7 @@ public class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-	    if (!isAlive) return;
+	    if (!_isAlive) return;
     }
 
     /**
@@ -98,11 +98,11 @@ public class Character : MonoBehaviour
 	    
 	    Vector2 positionOffset = Vector2.zero;
 	    //calc X movement
-	    positionOffset.x = _movementDirection.x * currentSpeed;
+	    positionOffset.x = _movementDirection.x * _currentSpeed;
 	    
 	    //Define character fall speed with gravity acceleration
-	    currentFallSpeed = (OnGround)? 0 : IncrementSpeed(currentFallSpeed, MaxFallSpeed, Gravity);
-	    positionOffset.y -= 1 * currentFallSpeed;
+	    _currentFallSpeed = (OnGround)? 0 : IncrementSpeed(_currentFallSpeed, MaxFallSpeed, Gravity);
+	    positionOffset.y -= 1 * _currentFallSpeed;
 	    if (_inJump)
 	    {
 		    positionOffset.y += Mathf.Sqrt(2 * Gravity * JumpHeight);
@@ -152,7 +152,7 @@ public class Character : MonoBehaviour
 	    SetBoolAnim("InJump",_inJump);
 	    if (!_inJump)
 	    {
-		    currentFallSpeed = 0;
+		    _currentFallSpeed = 0;
 	    }
     }
     
@@ -199,8 +199,8 @@ public class Character : MonoBehaviour
      */
     public virtual void Die()
     {
-	    isAlive = false;
-        SetTriggerAnim("Die");
+	    _isAlive = false;
+        SetBoolAnim("IsAlive", _isAlive);
         Destroy(this);
     }
     
