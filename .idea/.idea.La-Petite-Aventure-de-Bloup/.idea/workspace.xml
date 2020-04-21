@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="864a069d-4079-4c07-8954-692686705718" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/Boss/Boss.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Boss/Boss.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterCollisions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/CharacterCollisions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Database/DbConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Database/DbConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/TileManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/TileManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Singleton/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Singleton/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Singleton/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,8 +84,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Node.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Entities/LevelInfo.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/Tile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/TileInfos.cs" />
@@ -125,10 +118,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/SawTrap.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character/Character.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/PathFinding.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Attacks/Attack.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" />
         <option value="$PROJECT_DIR$/Assets/StreamingAssets/Level_Init.json" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/TileManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" />
@@ -138,8 +129,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Database/DbConnection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Database/LevelDb.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Camera/FollowingCamera.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character/CharacterCollisions.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Node.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" />
       </list>
     </option>
   </component>
@@ -233,7 +228,8 @@
       <workItem from="1587168372225" duration="20000" />
       <workItem from="1587195978946" duration="812000" />
       <workItem from="1587368542017" duration="4288000" />
-      <workItem from="1587372974043" duration="378000" />
+      <workItem from="1587372974043" duration="422000" />
+      <workItem from="1587373591583" duration="19976000" />
     </task>
     <servers />
   </component>
@@ -256,11 +252,11 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1587372327980">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1587390359910">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.-115.2560.1400@0.0.1536.824" timestamp="1587144880908" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1587372327980" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1587390359910" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

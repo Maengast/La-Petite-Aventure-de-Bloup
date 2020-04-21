@@ -75,7 +75,7 @@ public class LevelGenerator : MonoBehaviour
 	private void SetSizeAndOffset()
 	{
 		int playerSize = LevelManager.PlayerSize;
-		MaxJumpDistance = new Coordinate(_level.MaxJumpDistance.x -playerSize,_level.MaxJumpDistance.y - playerSize);;
+		MaxJumpDistance = new Coordinate(_level.MaxJumpDistance.x - playerSize,_level.MaxJumpDistance.y - playerSize);;
 		MinHeightOffset = LevelManager.BossSize+1;
 		MinWidthOffset = LevelManager.BossSize;
 		
@@ -389,17 +389,22 @@ public class LevelGenerator : MonoBehaviour
 				int cellType = _levelCoordinates[x, y];
 				if (cellType > (int) CellType.Corpse)
 				{
-
+					//Exclude end tile 
+					if (cellType == (int) CellType.Bound && x > originX) continue;
+					
+					//Check above tile
 					if (y > (originY + sizeY))
 					{
-						if (cellType == (int) CellType.Bound && x < (originX - widthOffset)) return true;
+						//Determine if the tile can be reach if the cell has the same x of tile cell
 						if (x > (originX + widthOffset) || x < (originX + sizeX - 1) - widthOffset) return true;
-						if (x < originX || x > (originX + sizeX - 1)) return true;
+						//Check for tile on the tile sides
+						if (x < originX || x > (originX + sizeX)) return true;
 					}
-
-					if (y < originY)
+					
+					//Check under tile and on the same y
+					if (y < originY || (y > originY && y < originY+sizeY))
 					{
-						if (cellType == (int) CellType.Bound && x < (originX - widthOffset)) return true;
+						//Check for tile on the tile sides with tile width offset
 						if (x < (originX - widthOffset) || x > (originX + sizeX - 1) + widthOffset) return true;
 					}
 				}
