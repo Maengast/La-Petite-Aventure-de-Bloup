@@ -187,7 +187,7 @@ namespace PathFinder
 		            hit = Physics2D.Raycast(
 		                overhang.Position,
 		                new Vector2(x, y),
-		                JumpDistance,
+		                JumpDistance + CornerOffset,
 		                JumpMask
 	                );
 	                x -= Mathf.Sign(direction) * 0.05f;
@@ -228,8 +228,8 @@ namespace PathFinder
 		            int distance = (int)Mathf.Floor(Vector3.Distance(jumpOverhang.Position, newJumpPoint.Position));
 		            // platform corner to node link
 		            jumpOverhang.AddLink(newJumpPoint, distance, PathLinkType.jump);
-		            GameObject test = new GameObject("jumpOverhang");
-		            test.transform.position = jumpOverhang.Position;
+		            // GameObject test = new GameObject("jumpOverhang");
+		            // test.transform.position = jumpOverhang.Position;
 		            // current node to platform corner
 		            newJumpPoint.AddLink(jumpOverhang, distance, PathLinkType.jump);
 		            GameObject jump = new GameObject("jump");

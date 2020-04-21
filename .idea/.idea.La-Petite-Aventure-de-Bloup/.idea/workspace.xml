@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="864a069d-4079-4c07-8954-692686705718" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.La-Petite-Aventure-de-Bloup/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/Boss/Boss.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Boss/Boss.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,8 +128,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Level/LevelGenerator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Link.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Node.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Character/Boss.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding/Grid.cs" />
       </list>
     </option>
   </component>
@@ -230,6 +225,7 @@
       <workItem from="1587368542017" duration="4288000" />
       <workItem from="1587372974043" duration="422000" />
       <workItem from="1587373591583" duration="19976000" />
+      <workItem from="1587465817336" duration="509000" />
     </task>
     <servers />
   </component>
